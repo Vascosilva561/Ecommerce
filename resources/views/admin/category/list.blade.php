@@ -58,9 +58,9 @@
                      <div class="product-status-wrap">
                          <h4>Lista de Categorias</h4>
                          <div class="add-product">
-                             <button type="button" data-toggle="modal" data-target="#myModal2" class="navbar-right">Nova
+                             <button type="button" data-toggle="modal" data-target="#myModal" class="navbar-right">Nova
                                  Categoria</button>
-                             @include('admin.category.creates')
+                             @include('admin.category.editor')
 
                          </div>
                          <table style="margin-top: -200px;">
@@ -78,16 +78,19 @@
                                      <td>{{ $category->name }}</td>
 
                                      <td>
-                                         <a href="#editcategories-{{ $category->id }}" data-toggle="modal"
-                                             data-target=".editcategories-{{ $category->id }}" title="Edit"
-                                             class="pd-setting-ed"><i class="fa fa-pencil-square-o"
-                                                 aria-hidden="true"></i></a>
-                                         <a data-toggle="tooltip" title="Trash" class="pd-setting-ed"><i
-                                                 class="fa fa-trash-o" aria-hidden="true"></i></a>
+                                         <button data-toggle="modal" data-target="#myModal{{ $category->id }}"
+                                             title="Edit" class="pd-setting-ed"><i class="fa fa-pencil-square-o"
+                                                 aria-hidden="true"></i></button>
+                                         <form action="{{ route('categories.destroy', ['category' => $category->id]) }}"
+                                             method="POST">
+                                             @csrf
+                                             <button type="submit" class="pd-setting-ed" data-toggle="tooltip"
+                                                 title="Trash"><i class="fa fa-trash-o" aria-hidden="true"></i></button>
+                                         </form>
                                      </td>
 
                                  </tr>
-                                 @include('admin.category.edits')
+                                 @include('admin.category.editor', ['item' => $category])
                              @endforeach
 
 

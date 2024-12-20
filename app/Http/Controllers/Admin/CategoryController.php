@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers\Admin;
+
 use App\Category;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -11,11 +12,11 @@ class CategoryController extends Controller
 
 
 
-       Private $category; 
+    private $category;
 
-       public function __Construct(Category $category){
-        $this->category = $category; 
-
+    public function __Construct(Category $category)
+    {
+        $this->category = $category;
     }
     /**
      * Display a listing of the resource.
@@ -49,35 +50,35 @@ class CategoryController extends Controller
 
 
 
-            $formInput=$request->except('image');
-            $this->validate($request, [
-                'name'=>'required',
-                'slug'=>'required',
-                'image'=>'required',
+        $formInput = $request->except('image');
+        $this->validate($request, [
+            'name' => 'required',
+            'slug' => 'required',
+            'image' => 'required',
         ]);
-        $fname="liga1";
-        if ($request->hasFile('image')){
+        $fname = "liga1";
+        if ($request->hasFile('image')) {
             $extension = $request->image->extension();
             $request->file('image');
             $name = uniqid(date('HisYmd'));
             $fname = "$name.$extension";
         }
 
-            $insert = Category::create([
+        $insert = Category::create([
             'name' => $request->name,
             'slug' => $request->slug,
-            'image'=> $fname,
-       ]);
-        
+            'image' => $fname,
+        ]);
+
         if ($insert) {
             if ($request->hasFile('image')) {
-                $request->image->storeAs('categories',"$fname");
+                $request->image->storeAs('categories', "$fname");
             }
-        return back()->with('success_message', 'Obrigado! Seu pagamento foi efetuado com sucesso');
-    }else{
-        return redirect()->back();
+            return back()->with('success_message', 'Categoria criada com sucesso');
+        } else {
+            return redirect()->back();
+        }
     }
-     }
 
 
     /**
@@ -111,20 +112,21 @@ class CategoryController extends Controller
      */
     public function update(Request $request, $id)
     {
-            $this->validate($request, [
-            'name'=>'required',
-            'slug'=>'required',
-
+        $this->validate($request, [
+            'name' => 'required',
+            'slug' => 'required',
         ]);
 
         //Recuperar os dados pelo ID
         $category = $this->category->find($id);
-dd($category);
         //Alterando os dados
         $update = $category->update($request->all());
 
-       
-           return 'error';
+        if ($update) {
+            return back()->with('success_message', 'Categoria atualizada com sucesso');
+        } else {
+            return back()->with('error_message', 'Erro ao atualizar a categoria');
+        }
     }
 
     /**
@@ -135,6 +137,8 @@ dd($category);
      */
     public function destroy($id)
     {
-        //
+        $this->category->where('id', $id)->delete();
+
+        return back()->with('success_message', 'Categoria deletada com sucesso');
     }
 }
