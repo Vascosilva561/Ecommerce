@@ -2,15 +2,12 @@
 	@section('title', 'Contacto')
 
 		@section('content')
-		<link rel="stylesheet" type="text/css" href="{{ asset('plugins/slick-1.8.0/slick.css') }}">
-		<link rel="stylesheet" type="text/css" href="{{ asset('styles/main_styles.css') }}">
-		<link rel="stylesheet" type="text/css" href="{{ asset('styles/responsive.css') }}">
-		
+
 				<div class="banner" style="height: 800px;">
 					{{-- <div class="banner_background" style="background-image:url(images/benguela/ecommerce.jpg); height: 1000px;"></div> --}}
-					
+
 					<div class="banner_background"> <img src="images/benguela/ecommerce2.jpg" style="width: 1900px;"></div>
-					
+
 				</div>
 
 				<div class="characteristics">
@@ -49,7 +46,7 @@
 
 				<!-- Char. Item -->
 							<div class="col-lg-3 col-md-6 char_col">
-								
+
 								<div class="char_item d-flex flex-row align-items-center justify-content-start">
 									<div class="char_icon"><img src="images/icons/angola48.png" alt=""></div>
 									<div class="char_content">
@@ -65,9 +62,9 @@
 
 
 
-{{--  
+{{--
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
- 
+
 
 <div class="container">
 
@@ -76,7 +73,7 @@
   <!-- Modal -->
   <div class="modal fade" id="myModal" role="dialog">
     <div class="modal-dialog">
-    
+
       <!-- Modal content-->
       <div class="modal-content">
         <div class="modal-header">
@@ -90,10 +87,10 @@
           <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
         </div>
       </div>
-      
+
     </div>
   </div>
-  
+
 </div> --}}
 
 						</div>
@@ -105,17 +102,17 @@
 					<div class="container">
 						<div class="row">
 							<div class="col d-flex flex-lg-row flex-column align-items-center justify-content-start">
-					
+
 					<!-- Deals -->
 
 					<div class="deals">
 						<div class="deals_title">Ofertas da Semana</div>
 						@foreach($promocoes as $promocao)
 						<div class="deals_slider_container">
-							
+
 							<!-- Deals Slider -->
 							<div class="owl-carousel owl-theme deals_slider">
-								
+
 								<!-- Deals Item -->
 								<div class="owl-item deals_item">
 									<div class="deals_image"><img src="{{ asset('images/product/'.$promocao->image) }}" alt=""></div>
@@ -126,12 +123,12 @@
 										</div>
 										<div class="deals_info_line d-flex flex-row justify-content-start">
 											<div class="deals_item_name" style="font-size: 17px;">{{ $promocao->name }}</div>
-											
+
 										</div>
 										<div class="available">
 											<div class="available_line d-flex flex-row justify-content-start">
 												<div class="available_title">Disponivel: <span>{{ $promocao->stock }}</span></div>
-												
+
 											</div>
 											<div class="available_bar"><span style="width:80%; background-color: #a12421;"></span></div>
 										</div>
@@ -169,8 +166,8 @@
 						</div>
 					</div>
 
-					
-					
+
+
 					<div class="featured">
 						<div class="tabbed_container">
 							<div class="tabs">
@@ -181,13 +178,13 @@
 							</div>
 
 							<!-- Product Panel -->
-							<div class="product_panel panel active"> 
-								
+							<div class="product_panel panel active">
+
 								<div class="featured_slider slider">
 
 									@foreach($products as $product)
-									
-									
+
+
 										<div class="featured_slider_item">
 										<div class="border_active"></div>
 										<div class="product_item discount d-flex flex-column align-items-center justify-content-center text-center">
@@ -202,7 +199,7 @@
 															<input type="radio" name="product_color" style="background:#000000">
 															<input type="radio" name="product_color" style="background:#999999">
 													</div>
-													
+
 													<form action="{{ route('cart.store') }}" method="POST">
 														<input type="hidden" name="_token" value="{{csrf_token ()}}">
 															{{ csrf_field() }}
@@ -212,7 +209,7 @@
 						                            	<input type="hidden" name="name" value="{{ $product->name }}">
 						                            	<input type="hidden" name="price" value="{{ $product->price }}">
 
-						                            	
+
 						                            			<a href="{{ route('shop.show', $product->id) }}" class="btn btn-lg btn-outline-secondary" style="background-color: #a12421; color: white; font-size:16px;"> Ver </a>
 						                            			<button type="submit" class="btn btn-lg btn-outline-secondary" style="background-color: #a12421; color: white; font-size:16px;">Add no carrinho</button>
 						                            		</div>
@@ -220,7 +217,7 @@
 
 						                            </form>
 
-                  
+
 												</div>
 											</div>
 											<div class="product_fav"><i class="fas fa-heart"></i></div>
@@ -232,7 +229,7 @@
 
 									@endforeach
 								</div>
-								<div class="featured_slider_dots_cover"></div> 
+								<div class="featured_slider_dots_cover"></div>
 
 							</div>
 						</div>
@@ -261,7 +258,7 @@
 						<div class="popular_categories_link"><a href="#" style="color: #fdc403;">catálogo completo</a></div>
 					</div>
 				</div>
-				
+
 				<!-- Popular Categories Slider -->
 
 				<div class="col-lg-9">
@@ -344,7 +341,7 @@
 										<div class="banner_2_text"><b>Retina Display</b>: 13,3 polegadas, <b>Processador</b>: Até 4 núcleos Intel Core i7, <b>Memória</b>: Até 32 GB</div>
 										<div class="button banner_2_button" style="background-color: #a12421;"><a href="#">Explore</a></div>
 									</div>
-									
+
 								</div>
 								<div class="col-lg-8 col-md-6 fill_height">
 									<div class="banner_2_image_container">
@@ -352,7 +349,7 @@
 									</div>
 								</div>
 							</div>
-						</div>			
+						</div>
 					</div>
 				</div>
 
@@ -366,10 +363,10 @@
 										<div class="banner_2_category">Laptops</div>
 										<div class="banner_2_title">MacBook Air 13</div>
 										<div class="banner_2_text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas fermentum laoreet.</div>
-										
+
 										<div class="button banner_2_button"><a href="#">Explore</a></div>
 									</div>
-									
+
 								</div>
 								<div class="col-lg-8 col-md-6 fill_height">
 									<div class="banner_2_image_container">
@@ -377,7 +374,7 @@
 									</div>
 								</div>
 							</div>
-						</div>			
+						</div>
 					</div>
 				</div>
 			</div>
@@ -393,7 +390,7 @@
 							<div class="new_arrivals_title">Novidades Recentes</div>
 							<ul class="clearfix">
 								<li class="active">Top 10</li>
-								
+
 							</ul>
 							<div class="tabs_line"><span style="background-color: #a12421;"></span></div>
 						</div>
@@ -489,11 +486,11 @@
 							</div>
 
 						</div>
-								
+
 					</div>
 				</div>
 			</div>
-		</div>		
+		</div>
 	</div>
 
 	<!-- Best Sellers -->
@@ -540,7 +537,7 @@
 							</div>
 						</div>
 					</div>
-						
+
 				</div>
 			</div>
 		</div>
@@ -553,7 +550,7 @@
 			<div class="row">
 
 				<div class="col-lg-4 advert_col">
-					
+
 					<!-- Advert Item -->
 
 					<div class="advert d-flex flex-row align-items-center justify-content-start">
@@ -565,7 +562,7 @@
 				</div>
 
 				<div class="col-lg-4 advert_col">
-					
+
 					<!-- Advert Item -->
 
 					<div class="advert d-flex flex-row align-items-center justify-content-start">
@@ -577,7 +574,7 @@
 				</div>
 
 				<div class="col-lg-4 advert_col">
-					
+
 					<!-- Advert Item -->
 
 					<div class="advert d-flex flex-row align-items-center justify-content-start">
@@ -749,17 +746,17 @@
 		<div class="container">
 			<div class="row">
 				<div class="col">
-					
+
 					<div class="reviews_title_container">
 						<h3 class="reviews_title">Ultimas Revisões</h3>
 						<div class="reviews_all ml-auto"><a href="#">VER TODAS AS <span>OPINIÕES</span></a></div>
 					</div>
 
 					<div class="reviews_slider_container">
-						
+
 						<!-- Reviews Slider -->
 						<div class="owl-carousel owl-theme reviews_slider">
-							
+
 							<!-- Reviews Slider Item -->
 							<div class="owl-item">
 								<div class="review d-flex flex-row align-items-start justify-content-start">
@@ -873,11 +870,11 @@
 					</div>
 
 					<div class="viewed_slider_container">
-						
+
 						<!-- Recently Viewed Slider -->
 
 						<div class="owl-carousel owl-theme viewed_slider">
-							
+
 							@foreach($view_counts as $view_count)
 							<!-- Recently Viewed Item -->
 							<div class="owl-item">
@@ -885,7 +882,7 @@
 									<div class="viewed_image"><a href="{{ route('shop.show', $view_count->id) }}"><img src="{{ asset('images/product/'.$view_count->image) }}" alt="" style="width: 200px; height: 140px;"></a></div>
 									<div class="viewed_content text-center">
 										<div class="viewed_price">{{ $view_count->presentPrice() }}Kz</div>
-	
+
 									</div>
 									<ul class="item_marks">
 										<li class="item_mark item_discount">-25%</li>
