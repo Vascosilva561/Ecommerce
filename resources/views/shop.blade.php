@@ -21,9 +21,9 @@
                     <!-- Shop Sidebar -->
                     <div class="shop_sidebar">
                         <div class="sidebar_section">
-                            <div class="sidebar_title">Categories</div>
+                            <div class="sidebar_title">Categorias</div>
                             <ul class="sidebar_categories">
-                                <li><a href="{{ route('shop.index') }}">DESTAQUES</a></li>
+                                <li><a href="{{ route('shop.index') }}">TODOS</a></li>
                                 @foreach ($categories as $category)
                                     <li><a
                                             href="{{ route('shop.index', ['category' => $category->slug]) }}">{{ $category->name }}</a>
@@ -36,12 +36,15 @@
                             <div class="sidebar_subtitle">Preço</div>
                             <div class="filter_price">
                                 <div id="slider-range" class="slider_range"></div>
-                                <p>Alcance: </p>
-                                <p><input type="text" id="amount" class="amount" readonly
-                                        style="border:0; font-weight:bold;"></p>
+                                <p>Faixa de Preço: </p>
+                                <?php $max = DB::table('products')->max('price'); ?>
+                                <?php $min = DB::table('products')->min('price'); ?>
+                                <p><input type="text" id="amount" class="amount" data-max-value="{{ $max }}"
+                                        data-min-value="{{ $min }}" readonly style="border:0; font-weight:bold;">
+                                </p>
                             </div>
                         </div>
-                        <div class="sidebar_section">
+                        {{-- <div class="sidebar_section">
                             <div class="sidebar_subtitle color_subtitle">Cor</div>
                             <ul class="colors_list">
                                 <li class="color"><a href="#" style="background: #b19c83;"></a></li>
@@ -52,7 +55,7 @@
                                 <li class="color"><a href="#"
                                         style="background: #ffffff; border: solid 1px #e1e1e1;"></a></li>
                             </ul>
-                        </div>
+                        </div> --}}
 
                     </div>
 
@@ -93,13 +96,13 @@
                             <div class="shop_product_count"><span style="color: #a12421;"> {{ $total_counts }} </span> -
                                 Productos Encontrado</div>
                             <div class="shop_sorting">
-                                <span>Liltrar Por:</span>
+                                <span>Filtrar Por:</span>
                                 <a
                                     href="{{ route('shop.index', ['category' => request()->category, 'sort' => 'low_high']) }}">
-                                    Preços Baixio </a> ||
+                                    Menor Preço </a> ||
                                 <a
-                                    href="{{ route('shop.index', ['category' => request()->category, 'sort' => 'high_low']) }}">Preços
-                                    Alto </a>
+                                    href="{{ route('shop.index', ['category' => request()->category, 'sort' => 'high_low']) }}">
+                                    Maior Preço </a>
                                 <ul>
                                     <li>
                                         <span class="sorting_text">Ordem<i class="fas fa-chevron-down"></span></i>

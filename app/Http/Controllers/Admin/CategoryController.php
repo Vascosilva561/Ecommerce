@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Category;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Storage;
 
 class CategoryController extends Controller
 {
@@ -56,23 +57,20 @@ class CategoryController extends Controller
             'slug' => 'required',
             'image' => 'required',
         ]);
-        $fname = "liga1";
-        if ($request->hasFile('image')) {
-            $extension = $request->image->extension();
-            $request->file('image');
-            $name = uniqid(date('HisYmd'));
-            $fname = "$name.$extension";
-        }
 
         $insert = Category::create([
             'name' => $request->name,
             'slug' => $request->slug,
-            'image' => $fname,
+            'image' => '',
         ]);
 
         if ($insert) {
             if ($request->hasFile('image')) {
-                $request->image->storeAs('categories', "$fname");
+                $extension = $request->image->extension();
+                $name = uniqid(date('HisYmd'));
+                $fname = "$name.$extension";
+                $request->image->storeAs('categories', $fname, 'local');
+                $insert->update(['image' => $fname]);
             }
             return back()->with('success_message', 'Categoria criada com sucesso');
         } else {
@@ -120,9 +118,20 @@ class CategoryController extends Controller
         //Recuperar os dados pelo ID
         $category = $this->category->find($id);
         //Alterando os dados
-        $update = $category->update($request->all());
+        $update = $category->update($request->except("image"));
 
         if ($update) {
+            if ($request->hasFile('image')) {
+                if ($category->image !== "") {
+                    Storage::disk('local')->delete("categories/$category->image");
+                }
+
+                $extension = $request->image->extension();
+                $name = uniqid(date('HisYmd'));
+                $fname = "$name.$extension";
+                $request->image->storeAs('categories', $fname, 'local');
+                $category->update(['image' => $fname]);
+            }
             return back()->with('success_message', 'Categoria atualizada com sucesso');
         } else {
             return back()->with('error_message', 'Erro ao atualizar a categoria');

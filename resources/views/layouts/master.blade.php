@@ -2,7 +2,7 @@
 <html lang="Pt-pt">
 
 <head>
-    <title>Okulandisa-Shop</title>
+    <title>JM2X E-commerce</title>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="description" content="Okulandisa E-commerce">
@@ -15,6 +15,20 @@
 
     <link rel="stylesheet" type="text/css" href="styles/shop_styles.css">
     <link rel="stylesheet" type="text/css" href="styles/shop_responsive.css">
+
+    <style>
+        .efect svg {
+            stroke: #4d4d4d;
+        }
+
+        .efect:hover {
+            color: #952825 !important;
+        }
+
+        .efect:hover svg {
+            stroke: #952825 !important;
+        }
+    </style>
     @yield('style')
 
 </head>
@@ -51,8 +65,8 @@
                                                         Categorias</span>
                                                     <i class="fas fa-chevron-down"></i>
                                                     <ul class="custom_list clc">
-                                                        <?php $categories = DB::table('categories')->get(); ?>
-                                                        @foreach ($categories as $category)
+                                                        <?php $searchCategories = DB::table('categories')->get(); ?>
+                                                        @foreach ($searchCategories as $category)
                                                             <li><a class="clc" href="#">{{ $category->name }}
                                                                     <i class="fas fa-chevron-right ml-auto"></i></a>
                                                             </li>
@@ -178,18 +192,106 @@
 
                                 <div class="main_nav_menu ml-auto">
                                     <ul class="standard_dropdown main_nav_dropdown">
-                                        <li><a href="{{ route('home') }}" style="color: #952825;"
-                                                class="efect">Inicio<i class="fas fa-chevron-down"></i></a></li>
+                                        <li><a class="d-flex efect" href="{{ route('home') }}">
+                                                <div class="mt-1 mr-1">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="20"
+                                                        height="20" viewBox="0 0 24 24" fill="none">
+                                                        <path
+                                                            d="M3 9L12 2L21 9V20C21 20.5304 20.7893 21.0391 20.4142 21.4142C20.0391 21.7893 19.5304 22 19 22H5C4.46957 22 3.96086 21.7893 3.58579 21.4142C3.21071 21.0391 3 20.5304 3 20V9Z"
+                                                            stroke-width="2" stroke-linecap="round"
+                                                            stroke-linejoin="round" />
+                                                        <path d="M9 22V12H15V22" stroke-width="2"
+                                                            stroke-linecap="round" stroke-linejoin="round" />
+                                                    </svg>
+                                                </div>
+                                                Inicio
+                                            </a></li>
 
-                                        <li><a href="{{ route('shop.index') }}" style="color: #952825;"
-                                                class="efect">Produtos<i class="fas fa-chevron-down"></i></a></li>
-                                        <li><a href="{{ route('checkout.index') }}" style="color: #952825;"
-                                                class="efect">Checkout<i class="fas fa-chevron-down"></i></a></li>
-
+                                        <li><a class="d-flex efect" href="{{ route('shop.index') }}">
+                                                <div class="mt-1">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="20"
+                                                        height="20" viewBox="0 0 24 24" fill="none">
+                                                        <path d="M16.5 9.39999L7.5 4.20999" stroke-width="2"
+                                                            stroke-linecap="round" stroke-linejoin="round" />
+                                                        <path
+                                                            d="M21 16V7.99999C20.9996 7.64927 20.9071 7.3048 20.7315 7.00116C20.556 6.69751 20.3037 6.44536 20 6.26999L13 2.26999C12.696 2.09446 12.3511 2.00204 12 2.00204C11.6489 2.00204 11.304 2.09446 11 2.26999L4 6.26999C3.69626 6.44536 3.44398 6.69751 3.26846 7.00116C3.09294 7.3048 3.00036 7.64927 3 7.99999V16C3.00036 16.3507 3.09294 16.6952 3.26846 16.9988C3.44398 17.3025 3.69626 17.5546 4 17.73L11 21.73C11.304 21.9055 11.6489 21.9979 12 21.9979C12.3511 21.9979 12.696 21.9055 13 21.73L20 17.73C20.3037 17.5546 20.556 17.3025 20.7315 16.9988C20.9071 16.6952 20.9996 16.3507 21 16Z"
+                                                            stroke-width="2" stroke-linecap="round"
+                                                            stroke-linejoin="round" />
+                                                        <path d="M3.27 6.95999L12 12.01L20.73 6.95999" stroke-width="2"
+                                                            stroke-linecap="round" stroke-linejoin="round" />
+                                                        <path d="M12 22.08V12" stroke-width="2" stroke-linecap="round"
+                                                            stroke-linejoin="round" />
+                                                    </svg>
+                                                </div>
+                                                <span class="ml-1">
+                                                    Produtos
+                                                </span>
+                                            </a></li>
                                         <?php if(Auth::check()){ ?>
+                                        <li><a class="d-flex efect" href="{{ route('checkout.index') }}">
+                                                <div class="mt-1">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="20"
+                                                        height="20" viewBox="0 0 24 24" fill="none">
+                                                        <path
+                                                            d="M9 22C9.55228 22 10 21.5523 10 21C10 20.4477 9.55228 20 9 20C8.44772 20 8 20.4477 8 21C8 21.5523 8.44772 22 9 22Z"
+                                                            stroke-width="2" stroke-linecap="round"
+                                                            stroke-linejoin="round" />
+                                                        <path
+                                                            d="M20 22C20.5523 22 21 21.5523 21 21C21 20.4477 20.5523 20 20 20C19.4477 20 19 20.4477 19 21C19 21.5523 19.4477 22 20 22Z"
+                                                            stroke-width="2" stroke-linecap="round"
+                                                            stroke-linejoin="round" />
+                                                        <path
+                                                            d="M1 1H5L7.68 14.39C7.77144 14.8504 8.02191 15.264 8.38755 15.5583C8.75318 15.8526 9.2107 16.009 9.68 16H19.4C19.8693 16.009 20.3268 15.8526 20.6925 15.5583C21.0581 15.264 21.3086 14.8504 21.4 14.39L23 6H6"
+                                                            stroke-width="2" stroke-linecap="round"
+                                                            stroke-linejoin="round" />
+                                                    </svg>
+                                                </div>
+                                                <span class="ml-1">
+                                                    Carrinho @if (Cart::instance('default')->count() > 0)
+                                                        <span
+                                                            class="text-white badge bg-primary">{{ Cart::instance('default')->count() }}</span>
+                                                    @endif
+                                                </span>
+                                            </a></li>
+                                        <li><a class="d-flex efect" href="/orders">
+                                                <div class="mt-1">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="20"
+                                                        height="20" viewBox="0 0 24 24" fill="none">
+                                                        <path
+                                                            d="M6 2L3 6V20C3 20.5304 3.21071 21.0391 3.58579 21.4142C3.96086 21.7893 4.46957 22 5 22H19C19.5304 22 20.0391 21.7893 20.4142 21.4142C20.7893 21.0391 21 20.5304 21 20V6L18 2H6Z"
+                                                            stroke-width="2" stroke-linecap="round"
+                                                            stroke-linejoin="round" />
+                                                        <path d="M3 6H21" stroke-width="2" stroke-linecap="round"
+                                                            stroke-linejoin="round" />
+                                                        <path
+                                                            d="M16 10C16 11.0609 15.5786 12.0783 14.8284 12.8284C14.0783 13.5786 13.0609 14 12 14C10.9391 14 9.92172 13.5786 9.17157 12.8284C8.42143 12.0783 8 11.0609 8 10"
+                                                            stroke-width="2" stroke-linecap="round"
+                                                            stroke-linejoin="round" />
+                                                    </svg>
+                                                </div>
+                                                <span class="ml-1">
+                                                    Pedidos
+                                                </span>
+                                            </a></li>
                                         <li class="hassubs">
-                                            <a href="#">{{ Auth::user()->name }}<i
-                                                    class="fas fa-chevron-down"></i></a>
+                                            <a href="#" class="d-flex justify-content-center efect">
+                                                <div class="mt-1 ml-1">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="24"
+                                                        height="24" viewBox="0 0 24 24" fill="none">
+                                                        <path
+                                                            d="M20 21V19C20 17.9391 19.5786 16.9217 18.8284 16.1716C18.0783 15.4214 17.0609 15 16 15H8C6.93913 15 5.92172 15.4214 5.17157 16.1716C4.42143 16.9217 4 17.9391 4 19V21"
+                                                            stroke="#4D4D4D" stroke-width="2" stroke-linecap="round"
+                                                            stroke-linejoin="round" />
+                                                        <path
+                                                            d="M12 11C14.2091 11 16 9.20914 16 7C16 4.79086 14.2091 3 12 3C9.79086 3 8 4.79086 8 7C8 9.20914 9.79086 11 12 11Z"
+                                                            stroke="#4D4D4D" stroke-width="2" stroke-linecap="round"
+                                                            stroke-linejoin="round" />
+                                                    </svg>
+                                                </div>
+                                                <span>
+                                                    {{ Auth::user()->name }}<i class="fas fa-chevron-down"></i>
+                                                </span>
+                                            </a>
                                             <ul>
 
                                                 <li><a href="{{ url('/addres') }}" style="color: #952825;"
@@ -207,9 +309,6 @@
                                                             class="fas fa-chevron-down"></i></a></li>
                                             </ul>
                                         </li>
-                                        <?php }else{ ?>
-                                        <li class="nav-item"><a class="nav-link" href="{{ url('/login') }}"
-                                                style="color: #952825;" class="efect">Entrar</a></li>
                                         <?php }?>
                                         {{-- <li><a href="contact.html" style="color: #952825;" class="efect">Contactos<i
                                                     class="fas fa-chevron-down"></i></a></li> --}}
@@ -263,12 +362,15 @@
                     <div class="col">
                         <div
                             class="newsletter_container d-flex flex-lg-row flex-column align-items-lg-center align-items-center justify-content-lg-start justify-content-center">
-                            <div class="newsletter_title_container">
-                                <div class="newsletter_icon"><img src="images/icons/mensagens.png" alt="">
+                            <div class="newsletter_title_container d-flex mr-4 align-items-center">
+                                <div class="newsletter_icon mr-2 flex-1"><img src="images/icons/mensagens.png"
+                                        alt="">
                                 </div>
-                                <div class="newsletter_title">Inscreva-se no boletim Informativo</div>
-                                <div class="newsletter_text">
-                                    <p>... e receba cupom de 20% para a primeira compra</p>
+                                <div>
+                                    <div class="newsletter_title">Inscreva-se no boletim Informativo</div>
+                                    <div class="newsletter_text text-nowrap">
+                                        <p>Fique por todas as novidades e promoções da loja!</p>
+                                    </div>
                                 </div>
                             </div>
                             <div class="newsletter_content clearfix">
@@ -298,15 +400,17 @@
                                             style="width: 150px;"></a></div>
                             </div>
                             <div class="footer_title">Tem alguma pergunta? Ligue para nós</div>
-                            <div class="footer_phone" style="color: #a12421;"> +244 997 602 038</div>
+                            <div class="footer_phone" style="color: #a12421;"> +244 940 803 094</div>
 
                             <div class="footer_social">
                                 <ul>
-                                    <li><a href="#"><i class="fab fa-facebook-f"></i></a></li>
-                                    <li><a href="#"><i class="fab fa-twitter"></i></a></li>
-                                    <li><a href="#"><i class="fab fa-youtube"></i></a></li>
+                                    <li><a href="https://www.facebook.com/jm2x09?mibextid=ZbWKwL"><i
+                                                class="fab fa-facebook-f"></i></a></li>
+                                    <li><a href="https://www.instagram.com/geral.jm2x?igsh=MWcyNXBvem0wM2FydQ=="><i
+                                                class="fab fa-instagram"></i></a></li>
+                                    {{-- <li><a href="#"><i class="fab fa-youtube"></i></a></li>
                                     <li><a href="#"><i class="fab fa-google"></i></a></li>
-                                    <li><a href="#"><i class="fab fa-vimeo-v"></i></a></li>
+                                    <li><a href="#"><i class="fab fa-vimeo-v"></i></a></li> --}}
                                 </ul>
                             </div>
                         </div>
@@ -335,9 +439,9 @@
                             <div class="footer_title">Servico de atendimento ao Consumidor</div>
                             <ul class="footer_list">
                                 <li><a href="#">Minha Conta</a></li>
-                                <li><a href="#">Rastreamento de pedido</a></li>
+                                {{-- <li><a href="#">Rastreamento de pedido</a></li> --}}
                                 <li><a href="#">Lista de Desejos</a></li>
-                                <li><a href="#">Atendimento ao cliente</a></li>
+                                {{-- <li><a href="#">Atendimento ao cliente</a></li> --}}
 
                             </ul>
                         </div>
@@ -362,10 +466,9 @@
                                 <script>
                                     document.write(new Date().getFullYear());
                                 </script> Todos os direitos reservados | <i class="fa fa-heart"
-                                    aria-hidden="true"></i> by <a href="https://okulandisa.net"
-                                    target="_blank">okulandisa</a>
+                                    aria-hidden="true"></i> by <a href="https://" target="_blank">Vasco Silva</a>
                             </div>
-                            <div class="logos ml-sm-auto">
+                            {{-- <div class="logos ml-sm-auto">
                                 <ul class="logos_list">
                                     <li><a href="#"><img src="{{ asset('images/logos_1.png') }}"
                                                 alt=""></a></li>
@@ -377,7 +480,7 @@
                                                 alt=""></a></li>
 
                                 </ul>
-                            </div>
+                            </div> --}}
                         </div>
                     </div>
                 </div>
@@ -396,9 +499,13 @@
     <script src="{{ asset('plugins/greensock/ScrollToPlugin.min.js') }}"></script>
     <script src="{{ asset('plugins/OwlCarousel2-2.2.1/owl.carousel.js') }}"></script>
     <script src="{{ asset('plugins/slick-1.8.0/slick.js') }}"></script>
+
     <script src="{{ asset('plugins/easing/easing.js') }}"></script>
+
+    <script src="plugins/Isotope/isotope.pkgd.min.js"></script>
+    <script src="plugins/jquery-ui-1.12.1.custom/jquery-ui.js"></script>
+    <script src="plugins/parallax-js-master/parallax.min.js"></script>
     <script src="{{ asset('js/custom.js') }}"></script>
-    <script src="js/shop_custom.js"></script>
     @yield('script')
 
 

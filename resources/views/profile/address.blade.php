@@ -1,13 +1,16 @@
 @extends('layouts.master')
 @section('title', 'Contacto')
-@section('content')
+@section('style')
     <link rel="stylesheet" type="text/css" href="styles/cart_styles.css">
     <link rel="stylesheet" type="text/css" href="styles/cart_responsive.css">
     <link rel="stylesheet" type="text/css" href="{{ asset('styles/product_styles.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('styles/product_responsive.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('styles/new.css') }}">
+@endsection
 
+@section('script')
     <script src="https://js.stripe.com/v3/"></script>
+@endsection
 
 
 @section('content')

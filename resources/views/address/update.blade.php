@@ -1,10 +1,12 @@
 @extends('layouts.master')
 @section('title', 'Contacto')
-@section('content')
+@section('style')
     <link rel="stylesheet" type="text/css" href="{{ asset('styles/cart_styles.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('styles/cart_responsive.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('styles/product_styles.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('styles/product_responsive.css') }}">
+@endsection
+@section('content')
 
     <div class="cart_section">
         <div class="container">
@@ -86,4 +88,7 @@
     </div>
 
 @endsection
-<script src="{{ asset('js/app.js') }}"></script>
+
+@section('script')
+    <script src="{{ asset('js/app.js') }}"></script>
+@endsection

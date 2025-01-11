@@ -1,10 +1,12 @@
 @extends('layouts.master')
 @section('title', 'Contacto')
-@section('content')
+@section('style')
     <link rel="stylesheet" type="text/css" href="{{ asset('styles/contact_styles.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('styles/contact_responsive.css') }}">
 
     <link rel="stylesheet" type="text/css" href="{{ asset('css/bootstrap4/css/bootstrap.css') }}">
+@endsection
+@section('content')
 
 
     <div class="contact_form">
@@ -139,4 +141,7 @@
 
 
 @endsection
-<script src="{{ asset('js/app.js') }}"></script>
+
+@section('script')
+    <script src="{{ asset('js/app.js') }}"></script>
+@endsection

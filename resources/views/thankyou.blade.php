@@ -16,7 +16,8 @@
                     <hr>
                     <img src="{{ asset('images/benguela/multibanco.png') }}" style="width: 150px;">
                     <p>Para proceder ao pagamento no multicaixa, siga os seguintes passos:</p><br>
-                    <p><b>1º</b> Pagamentos > <b>2º</b> Seguintes > <b>3º</b> Compras Online > <b>4º</b> Okulandisa.net</p>
+                    <p><b>1º</b> Pagamentos > <b>2º</b> Seguintes > <b>3º</b> Compras Online > <b>4º</b>
+                        www.linkedin.com/in/vasco-silva-8a680918b</p>
                     @foreach ($user as $use)
                         <a class="btn btn-warning btn-lg" style="background: #fafafa;">
                             Referencia: {{ $use->referens }}<br>

@@ -1,17 +1,71 @@
 @extends('layouts.master')
 @section('title', 'Contacto')
 
-@section('content')
+@section('style')
     <link rel="stylesheet" type="text/css" href="{{ asset('plugins/slick-1.8.0/slick.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('styles/main_styles.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('styles/responsive.css') }}">
     {{-- <link rel="stylesheet" type="text/css" href="{{ asset('styles/shop_styles.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('styles/shop_responsive.css') }}"> --}}
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
 
-    <div class="banner" style="height: 800px;">
+    <style>
+        .swiper .swiper-slide img {
+            width: 100%;
+            height: auto;
+            object-fit: cover;
+            object-position: center;
+        }
+
+        .swiper .swiper-pagination-bullet-active {
+            background-color: #932825 !important;
+        }
+
+        .swiper .swiper-button-next,
+        .swiper .swiper-button-prev {
+            color: #932825 !important;
+        }
+
+        .banner_2_text {
+            overflow: hidden;
+            text-overflow: ellipsis;
+            display: -webkit-box;
+            -webkit-line-clamp: 4;
+            /* number of lines to show */
+            -webkit-box-orient: vertical;
+        }
+    </style>
+@endsection
+
+@section('content')
+
+    <div class="banner">
         {{-- <div class="banner_background" style="background-image:url(images/benguela/ecommerce.jpg); height: 1000px;"></div> --}}
 
-        <div class="banner_background"> <img src="images/benguela/ecommerce2.jpg" style="width: 1900px;"></div>
+        <!-- Slider main container -->
+        <div class="swiper" id="swiper-banner">
+            <!-- Additional required wrapper -->
+            <div class="swiper-wrapper">
+                <!-- Slides -->
+                <div class="swiper-slide"><img src="images/banners/banner-1.png">
+                </div>
+                <div class="swiper-slide"><img src="images/banners/banner-2.png">
+                </div>
+                <div class="swiper-slide"><img src="images/banners/banner-3.png">
+                </div>
+                ...
+            </div>
+            <!-- If we need pagination -->
+            <div class="swiper-pagination"></div>
+
+            <!-- If we need navigation buttons -->
+            <div class="swiper-button-prev"></div>
+            <div class="swiper-button-next"></div>
+
+            <!-- If we need scrollbar -->
+            <div class="swiper-scrollbar"></div>
+        </div>
+        {{-- <div class="banner_background"> </div> --}}
 
     </div>
 
@@ -23,7 +77,7 @@
                         <div class="char_icon"><img src="images/icons/transport.png" alt=""></div>
                         <div class="char_content">
                             <div class="char_title">Transporte</div>
-                            <div class="char_subtitle">2.000kz</div>
+                            <div class="char_subtitle">Preço acessível</div>
                         </div>
                     </div>
                 </div>
@@ -45,7 +99,7 @@
                         </div>
                         <div class="char_content">
                             <div class="char_title">Taxa de Imposto</div>
-                            <div class="char_subtitle">15%</div>
+                            <div class="char_subtitle">Menor do mercado</div>
                         </div>
                     </div>
                 </div>
@@ -113,68 +167,73 @@
 
                     <div class="deals">
                         <div class="deals_title">Ofertas da Semana</div>
-                        @foreach ($promocoes as $promocao)
-                            <div class="deals_slider_container">
+                        <div class="deals_slider_container">
 
-                                <!-- Deals Slider -->
-                                <div class="owl-carousel owl-theme deals_slider">
+                            <!-- Deals Slider -->
+                            <div class="owl-carousel owl-theme deals_slider">
 
+                                @foreach ($promocoes as $promocao)
                                     <!-- Deals Item -->
                                     <div class="owl-item deals_item">
-                                        <div class="deals_image"><img
-                                                src="{{ asset('images/product/' . $promocao->image) }}" alt="">
-                                        </div>
-                                        <div class="deals_content">
-                                            <div class="deals_info_line d-flex flex-row justify-content-start">
-                                                <div class="deals_item_category"><a href="#"></a>Munitore e Projectora
-                                                </div>
-                                                <div class="deals_item_price ml-auto"
-                                                    style="font-size: 20px; color: #932825;">{{ $promocao->presentPrice() }}
-                                                    kz</div>
+                                        <a href="{{ route('shop.show', $promocao->id) }}">
+                                            <div class="deals_image"><img
+                                                    src="{{ asset('images/product/' . $promocao->image) }}" alt="">
                                             </div>
-                                            <div class="deals_info_line d-flex flex-row justify-content-start">
-                                                <div class="deals_item_name" style="font-size: 17px;">{{ $promocao->name }}
+                                            <div class="deals_content">
+                                                <div class="deals_info_line d-flex flex-row justify-content-start">
+                                                    <div class="deals_item_category"><a href="#"></a>Munitore e
+                                                        Projectora
+                                                    </div>
+                                                    <div class="deals_item_price ml-auto"
+                                                        style="font-size: 20px; color: #932825;">
+                                                        {{ $promocao->presentPrice() }}
+                                                        kz</div>
                                                 </div>
-
-                                            </div>
-                                            <div class="available">
-                                                <div class="available_line d-flex flex-row justify-content-start">
-                                                    <div class="available_title">Disponivel:
-                                                        <span>{{ $promocao->stock }}</span>
+                                                <div class="deals_info_line d-flex flex-row justify-content-start">
+                                                    <div class="deals_item_name" style="font-size: 17px;">
+                                                        {{ $promocao->name }}
                                                     </div>
 
                                                 </div>
-                                                <div class="available_bar"><span
-                                                        style="width:80%; background-color: #a12421;"></span></div>
-                                            </div>
-                                            <div
-                                                class="deals_timer d-flex flex-row align-items-center justify-content-start">
-                                                <div class="deals_timer_title_container">
-                                                    <div class="deals_timer_title">Se Apresse</div>
-                                                    <div class="deals_timer_subtitle">Oferta termina em:</div>
+                                                <div class="available">
+                                                    <div class="available_line d-flex flex-row justify-content-start">
+                                                        <div class="available_title">Disponivel:
+                                                            <span>{{ $promocao->stock }}</span>
+                                                        </div>
+
+                                                    </div>
+                                                    <div class="available_bar"><span
+                                                            style="width:80%; background-color: #a12421;"></span></div>
                                                 </div>
-                                                <div class="deals_timer_content ml-auto">
-                                                    <div class="deals_timer_box clearfix" data-target-time="">
-                                                        <div class="deals_timer_unit">
-                                                            <div id="deals_timer1_hr" class="deals_timer_hr"></div>
-                                                            <span>hors</span>
-                                                        </div>
-                                                        <div class="deals_timer_unit">
-                                                            <div id="deals_timer1_min" class="deals_timer_min"></div>
-                                                            <span>mins</span>
-                                                        </div>
-                                                        <div class="deals_timer_unit">
-                                                            <div id="deals_timer1_sec" class="deals_timer_sec"></div>
-                                                            <span>segs</span>
+                                                <div
+                                                    class="deals_timer d-flex flex-row align-items-center justify-content-start">
+                                                    <div class="deals_timer_title_container">
+                                                        <div class="deals_timer_title">Se Apresse</div>
+                                                        <div class="deals_timer_subtitle">Oferta termina em:</div>
+                                                    </div>
+                                                    <div class="deals_timer_content ml-auto">
+                                                        <div class="deals_timer_box clearfix" data-target-time="">
+                                                            <div class="deals_timer_unit">
+                                                                <div id="deals_timer1_hr" class="deals_timer_hr"></div>
+                                                                <span>hors</span>
+                                                            </div>
+                                                            <div class="deals_timer_unit">
+                                                                <div id="deals_timer1_min" class="deals_timer_min"></div>
+                                                                <span>mins</span>
+                                                            </div>
+                                                            <div class="deals_timer_unit">
+                                                                <div id="deals_timer1_sec" class="deals_timer_sec"></div>
+                                                                <span>segs</span>
+                                                            </div>
                                                         </div>
                                                     </div>
                                                 </div>
                                             </div>
-                                        </div>
+                                        </a>
                                     </div>
-                                </div>
+                                @endforeach
                             </div>
-                        @endforeach
+                        </div>
 
                         <div class="deals_slider_nav_container">
                             <div class="deals_slider_prev deals_slider_nav"><i class="fas fa-chevron-left ml-auto"></i>
@@ -294,7 +353,7 @@
                             <div class="popular_categories_next popular_categories_nav"><i
                                     class="fas fa-angle-right ml-auto"></i></div>
                         </div>
-                        <div class="popular_categories_link"><a href="#" style="color: #fdc403;">catálogo
+                        <div class="popular_categories_link"><a href="/shop" style="color: #fdc403;">catálogo
                                 completo</a></div>
                     </div>
                 </div>
@@ -305,59 +364,23 @@
                     <div class="popular_categories_slider_container">
                         <div class="owl-carousel owl-theme popular_categories_slider">
 
-                            <!-- Popular Categories Item -->
-                            <div class="owl-item" style="background-color: #f5d67c;">
-                                <div class="popular_category d-flex flex-column align-items-center justify-content-center">
-                                    <div class="popular_category_image"><img src="images/popular_1.png" alt="">
-                                    </div>
-                                    <div class="popular_category_text">Telefones & Tablets</div>
-                                </div>
-                            </div>
+                            @foreach ($categories as $category)
+                                <!-- Popular Categories Item -->
 
-                            <!-- Popular Categories Item -->
-                            <div class="owl-item">
-                                <div class="popular_category d-flex flex-column align-items-center justify-content-center">
-                                    <div class="popular_category_image"><img src="images/popular_2.png" alt="">
-                                    </div>
-                                    <div class="popular_category_text">Computadores & Laptops</div>
+                                <div class="owl-item"
+                                    @if ($loop->index % 2 == 0) style="background-color: #f5d67c;" @else style="background-color: white" @endif>
+                                    <a class="text-reset text-dark"
+                                        href="/shop?category={{ strtolower($category->name) }}">
+                                        <div
+                                            class="popular_category d-flex flex-column align-items-center justify-content-center">
+                                            <div class="popular_category_image"><img
+                                                    src="/images/categories/{{ $category->image }}" alt="">
+                                            </div>
+                                            <div class="popular_category_text">{{ $category->name }}</div>
+                                        </div>
+                                    </a>
                                 </div>
-                            </div>
-
-                            <!-- Popular Categories Item -->
-                            <div class="owl-item" style="background-color: #f5d67c;">
-                                <div class="popular_category d-flex flex-column align-items-center justify-content-center">
-                                    <div class="popular_category_image"><img src="images/popular_3.png" alt="">
-                                    </div>
-                                    <div class="popular_category_text">Gadgets</div>
-                                </div>
-                            </div>
-
-                            <!-- Popular Categories Item -->
-                            <div class="owl-item">
-                                <div class="popular_category d-flex flex-column align-items-center justify-content-center">
-                                    <div class="popular_category_image"><img src="images/popular_4.png" alt="">
-                                    </div>
-                                    <div class="popular_category_text">Video Games & Consolas</div>
-                                </div>
-                            </div>
-
-                            <!-- Popular Categories Item -->
-                            <div class="owl-item" style="background-color: #f5d67c;">
-                                <div class="popular_category d-flex flex-column align-items-center justify-content-center">
-                                    <div class="popular_category_image"><img src="images/popular_5.png" alt="">
-                                    </div>
-                                    <div class="popular_category_text">Accessorios</div>
-                                </div>
-                            </div>
-
-                            <div class="owl-item">
-                                <div class="popular_category d-flex flex-column align-items-center justify-content-center">
-                                    <div class="popular_category_image"><img src="images/popular_4.png" alt="">
-                                    </div>
-                                    <div class="popular_category_text">Video Games & Consolas</div>
-                                </div>
-                            </div>
-
+                            @endforeach
                         </div>
                     </div>
                 </div>
@@ -367,71 +390,52 @@
 
     <!-- Banner -->
 
-    <div class="banner_2">
-        <div class="banner_2_background" style="background-image:url(images/banner_2_background.jpg)"></div>
-        <div class="banner_2_container">
-            <div class="banner_2_dots"></div>
-            <!-- Banner 2 Slider -->
+    @if (count($highlights) > 0)
+        <div class="banner_2">
+            <div class="banner_2_background" style="background-image:url(images/banner_2_background.jpg)"></div>
+            <div class="banner_2_container">
+                <div class="banner_2_dots"></div>
+                <!-- Banner 2 Slider -->
 
-            <div class="owl-carousel owl-theme banner_2_slider">
+                <div class="owl-carousel owl-theme banner_2_slider">
 
-                <!-- Banner 2 Slider Item -->
-                <div class="owl-item">
-                    <div class="banner_2_item">
-                        <div class="container fill_height">
-                            <div class="row fill_height">
-                                <div class="col-lg-4 col-md-6 fill_height">
-                                    <div class="banner_2_content">
-                                        <div class="banner_2_category">Laptops</div>
-                                        <div class="banner_2_title">MacBook Air 13</div>
-                                        <div class="banner_2_text"><b>Retina Display</b>: 13,3 polegadas,
-                                            <b>Processador</b>: Até 4 núcleos Intel Core i7, <b>Memória</b>: Até 32 GB
+                    @foreach ($highlights as $highlight)
+                        <!-- Banner 2 Slider Item -->
+                        <div class="owl-item">
+                            <div class="banner_2_item">
+                                <div class="container fill_height">
+                                    <div class="row fill_height">
+                                        <div class="col-lg-4 col-md-6 fill_height">
+                                            <div class="banner_2_content">
+                                                @if ($highlight->category)
+                                                    <a class="banner_2_category text-dark"
+                                                        href="/shop?category={{ strtolower($highlight->category->name) }}">{{ $highlight->category->name }}</a>
+                                                @endif
+                                                <div class="banner_2_title">{{ $highlight->name }}</div>
+                                                <div class="banner_2_text">
+                                                    {{ $highlight->description }}
+                                                </div>
+                                                <div class="button banner_2_button" style="background-color: #a12421;"><a
+                                                        href="/shop/{{ $highlight->id }}">Ver produto</a></div>
+                                            </div>
+
                                         </div>
-                                        <div class="button banner_2_button" style="background-color: #a12421;"><a
-                                                href="#">Explore</a></div>
-                                    </div>
-
-                                </div>
-                                <div class="col-lg-8 col-md-6 fill_height">
-                                    <div class="banner_2_image_container">
-                                        <div class="banner_2_image"><img src="images/banner_2_product.png"
-                                                alt=""></div>
+                                        <div class="col-lg-8 col-md-6 fill_height">
+                                            <div class="banner_2_image_container">
+                                                <div class="banner_2_image"><img
+                                                        src="/images/product/{{ $highlight->image }}" alt="">
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                </div>
-
-                <!-- Banner 2 Slider Item -->
-                <div class="owl-item">
-                    <div class="banner_2_item">
-                        <div class="container fill_height">
-                            <div class="row fill_height">
-                                <div class="col-lg-4 col-md-6 fill_height">
-                                    <div class="banner_2_content">
-                                        <div class="banner_2_category">Laptops</div>
-                                        <div class="banner_2_title">MacBook Air 13</div>
-                                        <div class="banner_2_text">Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                                            Maecenas fermentum laoreet.</div>
-
-                                        <div class="button banner_2_button"><a href="#">Explore</a></div>
-                                    </div>
-
-                                </div>
-                                <div class="col-lg-8 col-md-6 fill_height">
-                                    <div class="banner_2_image_container">
-                                        <div class="banner_2_image"><img src="images/banner_2_product.png"
-                                                alt=""></div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                    @endforeach
                 </div>
             </div>
         </div>
-    </div>
+    @endif
 
     <div class="new_arrivals">
         <div class="container">
@@ -439,7 +443,7 @@
                 <div class="col">
                     <div class="tabbed_container">
                         <div class="tabs clearfix tabs-right">
-                            <div class="new_arrivals_title">Novidades Recentes</div>
+                            <div class="new_arrivals_title">Novidades</div>
                             <ul class="clearfix">
                                 <li class="active">Top 10</li>
 
@@ -538,7 +542,8 @@
                                                 <div class="arrivals_single_name_container clearfix">
                                                     <div class="arrivals_single_name"><a
                                                             href="{{ route('shop.show', $news->id) }}"
-                                                            style="font-size: 12px;"><b>{{ $news->name }}</b></a></div>
+                                                            style="font-size: 12px;"><b>{{ $news->name }}</b></a>
+                                                    </div>
                                                     <div class="arrivals_single_price text-right">
                                                         {{ $news->presentPrice() }}kz</div>
                                                 </div>
@@ -623,7 +628,8 @@
                                                         href="{{ route('shop.show', $produto->id) }}"
                                                         style="font-size: 12px;">{{ $produto->name }}</a></div>
                                                 <div class="rating_r rating_r_4 bestsellers_rating">categoria</div>
-                                                <div class="bestsellers_price discount">{{ $produto->presentPrice() }}kz
+                                                <div class="bestsellers_price discount">
+                                                    {{ $produto->presentPrice() }}kz
                                                 </div>
                                             </div>
                                         </div>
@@ -646,7 +652,7 @@
 
     <!-- Adverts -->
 
-    <div class="adverts">
+    {{-- <div class="adverts">
         <div class="container">
             <div class="row">
 
@@ -695,11 +701,11 @@
 
             </div>
         </div>
-    </div>
+    </div> --}}
 
     <!-- Trends -->
 
-    <div class="trends">
+    {{-- <div class="trends">
         <div class="trends_background" style="background-image:url(images/trends_background.jpg)"></div>
         <div class="trends_overlay"></div>
         <div class="container">
@@ -859,18 +865,19 @@
 
             </div>
         </div>
-    </div>
+    </div> --}}
 
     <!-- Reviews -->
 
-    <div class="reviews">
+    {{-- <div class="reviews">
         <div class="container">
             <div class="row">
                 <div class="col">
 
                     <div class="reviews_title_container">
                         <h3 class="reviews_title">Ultimas Revisões</h3>
-                        <div class="reviews_all ml-auto"><a href="#">VER TODAS AS <span>OPINIÕES</span></a></div>
+                        <div class="reviews_all ml-auto"><a href="#">VER TODAS AS <span>OPINIÕES</span></a>
+                        </div>
                     </div>
 
                     <div class="reviews_slider_container">
@@ -882,7 +889,8 @@
                             <div class="owl-item">
                                 <div class="review d-flex flex-row align-items-start justify-content-start">
                                     <div>
-                                        <div class="review_image"><img src="images/review_1.jpg" alt=""></div>
+                                        <div class="review_image"><img src="images/review_1.jpg" alt="">
+                                        </div>
                                     </div>
                                     <div class="review_content">
                                         <div class="review_name">Roberto Sanchez</div>
@@ -893,7 +901,8 @@
                                             <div class="review_time">2 day ago</div>
                                         </div>
                                         <div class="review_text">
-                                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas fermentum
+                                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas
+                                                fermentum
                                                 laoreet.</p>
                                         </div>
                                     </div>
@@ -904,7 +913,8 @@
                             <div class="owl-item">
                                 <div class="review d-flex flex-row align-items-start justify-content-start">
                                     <div>
-                                        <div class="review_image"><img src="images/review_2.jpg" alt=""></div>
+                                        <div class="review_image"><img src="images/review_2.jpg" alt="">
+                                        </div>
                                     </div>
                                     <div class="review_content">
                                         <div class="review_name">Brandon Flowers</div>
@@ -915,7 +925,8 @@
                                             <div class="review_time">2 day ago</div>
                                         </div>
                                         <div class="review_text">
-                                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas fermentum
+                                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas
+                                                fermentum
                                                 laoreet.</p>
                                         </div>
                                     </div>
@@ -926,7 +937,8 @@
                             <div class="owl-item">
                                 <div class="review d-flex flex-row align-items-start justify-content-start">
                                     <div>
-                                        <div class="review_image"><img src="images/review_3.jpg" alt=""></div>
+                                        <div class="review_image"><img src="images/review_3.jpg" alt="">
+                                        </div>
                                     </div>
                                     <div class="review_content">
                                         <div class="review_name">Emilia Clarke</div>
@@ -937,7 +949,8 @@
                                             <div class="review_time">2 day ago</div>
                                         </div>
                                         <div class="review_text">
-                                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas fermentum
+                                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas
+                                                fermentum
                                                 laoreet.</p>
                                         </div>
                                     </div>
@@ -948,7 +961,8 @@
                             <div class="owl-item">
                                 <div class="review d-flex flex-row align-items-start justify-content-start">
                                     <div>
-                                        <div class="review_image"><img src="images/review_1.jpg" alt=""></div>
+                                        <div class="review_image"><img src="images/review_1.jpg" alt="">
+                                        </div>
                                     </div>
                                     <div class="review_content">
                                         <div class="review_name">Roberto Sanchez</div>
@@ -959,7 +973,8 @@
                                             <div class="review_time">2 day ago</div>
                                         </div>
                                         <div class="review_text">
-                                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas fermentum
+                                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas
+                                                fermentum
                                                 laoreet.</p>
                                         </div>
                                     </div>
@@ -970,7 +985,8 @@
                             <div class="owl-item">
                                 <div class="review d-flex flex-row align-items-start justify-content-start">
                                     <div>
-                                        <div class="review_image"><img src="images/review_2.jpg" alt=""></div>
+                                        <div class="review_image"><img src="images/review_2.jpg" alt="">
+                                        </div>
                                     </div>
                                     <div class="review_content">
                                         <div class="review_name">Brandon Flowers</div>
@@ -981,7 +997,8 @@
                                             <div class="review_time">2 day ago</div>
                                         </div>
                                         <div class="review_text">
-                                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas fermentum
+                                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas
+                                                fermentum
                                                 laoreet.</p>
                                         </div>
                                     </div>
@@ -992,7 +1009,8 @@
                             <div class="owl-item">
                                 <div class="review d-flex flex-row align-items-start justify-content-start">
                                     <div>
-                                        <div class="review_image"><img src="images/review_3.jpg" alt=""></div>
+                                        <div class="review_image"><img src="images/review_3.jpg" alt="">
+                                        </div>
                                     </div>
                                     <div class="review_content">
                                         <div class="review_name">Emilia Clarke</div>
@@ -1003,7 +1021,8 @@
                                             <div class="review_time">2 day ago</div>
                                         </div>
                                         <div class="review_text">
-                                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas fermentum
+                                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas
+                                                fermentum
                                                 laoreet.</p>
                                         </div>
                                     </div>
@@ -1016,7 +1035,7 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div> --}}
 
     <!-- Recently Viewed -->
 
@@ -1073,4 +1092,26 @@
 
 
 
+@endsection
+
+@section('script')
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <script>
+        const swiper = new Swiper("#swiper-banner", {
+            loop: true,
+            navigation: {
+                nextEl: ".swiper-button-next",
+                prevEl: ".swiper-button-prev",
+            },
+            autoplay: {
+                delay: 5000,
+            },
+            pagination: {
+                el: ".swiper-pagination",
+                clickable: true,
+            },
+        });
+
+        swiper.init();
+    </script>
 @endsection

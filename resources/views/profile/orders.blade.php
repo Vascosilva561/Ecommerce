@@ -1,6 +1,9 @@
 @extends('layouts.master')
-<link rel="stylesheet" type="text/css" href="{{ asset('styles/product_styles.css') }}">
-<link rel="stylesheet" type="text/css" href="{{ asset('styles/product_responsive.css') }}">
+
+@section('style')
+    <link rel="stylesheet" type="text/css" href="{{ asset('styles/product_styles.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('styles/product_responsive.css') }}">
+@endsection
 
 @section('title', 'Pedidos')
 
