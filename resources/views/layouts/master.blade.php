@@ -34,6 +34,13 @@
         .efect:hover svg {
             stroke: #952825 !important;
         }
+
+        .custom_dropdown_placeholder.clc {
+            height: 50px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            word-wrap: break-word;
+        }
     </style>
     @yield('style')
 
@@ -66,12 +73,15 @@
                                             <input type="search" required="required" class="header_search_input"
                                                 placeholder="Procurar produtos">
                                             <div class="custom_dropdown">
-                                                <div class="custom_dropdown_list">
-                                                    <span class="custom_dropdown_placeholder clc">Todas
+                                                <div class="custom_dropdown_list d-flex align-items-center">
+                                                    <span class="custom_dropdown_placeholder clc mr-auto">Todas
                                                         Categorias</span>
-                                                    <i class="fas fa-chevron-down"></i>
+                                                    <i class="fas fa-chevron-down pr-2"></i>
                                                     <ul class="custom_list clc">
                                                         <?php $searchCategories = DB::table('categories')->get(); ?>
+                                                        <li><a class="clc" href="#">Todas Categorias
+                                                                <i class="fas fa-chevron-right ml-auto"></i></a>
+                                                        </li>
                                                         @foreach ($searchCategories as $category)
                                                             <li><a class="clc" href="#">{{ $category->name }}
                                                                     <i class="fas fa-chevron-right ml-auto"></i></a>

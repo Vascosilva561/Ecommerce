@@ -278,15 +278,6 @@
                                                                 style="font-size: 12px;">{{ $product->name }}</a></div>
                                                     </div>
                                                     <div class="product_extras">
-                                                        <div class="product_color">
-                                                            <input type="radio" checked name="product_color"
-                                                                style="background:#b19c83">
-                                                            <input type="radio" name="product_color"
-                                                                style="background:#000000">
-                                                            <input type="radio" name="product_color"
-                                                                style="background:#999999">
-                                                        </div>
-
                                                         <form action="{{ route('cart.store') }}" method="POST">
                                                             <input type="hidden" name="_token"
                                                                 value="{{ csrf_token() }}">
@@ -477,14 +468,6 @@
                                                             </div>
                                                         </div>
                                                         <div class="product_extras">
-                                                            <div class="product_color">
-                                                                <input type="radio" checked name="product_color"
-                                                                    style="background:#b19c83">
-                                                                <input type="radio" name="product_color"
-                                                                    style="background:#000000">
-                                                                <input type="radio" name="product_color"
-                                                                    style="background:#999999">
-                                                            </div>
                                                             <form action="{{ route('cart.store') }}" method="POST">
                                                                 {{ csrf_field() }}
                                                                 <input type="hidden" name="id"
