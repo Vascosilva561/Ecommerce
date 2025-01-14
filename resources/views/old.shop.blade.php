@@ -33,7 +33,7 @@
                         <div class="col d-flex flex-row">
                             <div class="top_bar_contact_item">
                                 <div class="top_bar_icon"><img src="{{ asset('images/phone.png') }}" alt="">
-                                    <b>+(244) 997 602 038</b>
+                                    <b>+(244) 940 803 094</b>
                                 </div>
                             </div>
                             <div class="top_bar_contact_item">
@@ -394,7 +394,7 @@
 
                                     </div>
                                 @empty
-                                    <div> Nao exite nada </div>
+                                    <div> Não exite nada </div>
                                 @endforelse
 
                             </div>
@@ -500,7 +500,7 @@
 
                     <div class="col-lg-2">
                         <div class="footer_column">
-                            <div class="footer_title">Servico de atendimento ao Consumidor</div>
+                            <div class="footer_title">Serviço de atendimento ao Consumidor</div>
                             <ul class="footer_list">
                                 <li><a href="#">Minha Conta</a></li>
                                 <li><a href="#">Rastreamento de pedido</a></li>

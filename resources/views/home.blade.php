@@ -166,7 +166,7 @@
                     <!-- Deals -->
 
                     <div class="deals">
-                        <div class="deals_title">Ofertas da Semana</div>
+                        <div class="deals_title">Ofertas Semanais</div>
                         <div class="deals_slider_container">
 
                             <!-- Deals Slider -->

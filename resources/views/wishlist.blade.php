@@ -40,7 +40,7 @@
                     <!-- Shop Content -->
 
                     <div class="shop_content">
-                        <h3 style="text-align: center; text-decoration: underline;">Lista de Produtos desejado</h3><br>
+                        <h3 style="text-align: center;">Lista de Desejos</h3><br>
 
 
                         <?php
@@ -81,14 +81,14 @@
 
 
                                                 <button type="submit" class="btn btn-lg btn-outline-secondary"
-                                                    style="background-color: #a12421; color: white; font-size:16px;">Add no
+                                                    style="background-color: #a12421; color: white; font-size:16px;">Add ao
                                                     carrinho</button>
 
                                             </div>
                                         </div>
 
                                     </form><a href="{{ url('/') }}/remove-wishlist/{{ $product->id }}"
-                                        style="color: red;" class="btn btn-default btn-block">Remover desejado</a>
+                                        style="color: red;" class="btn btn-default btn-block">Remover da Lista</a>
                                     <div class="product_fav"><i class="fas fa-heart"></i></div>
 
                                 </div>

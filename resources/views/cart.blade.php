@@ -37,6 +37,9 @@
 
     <!-- Cart -->
     <div class="cart_section">
+                <h3 style="text-align: center;">
+                <center>Carrinho</center>
+                </h3>
         <div class="container">
             @if (session()->has('success_message'))
                 <div class="alert alert-success">
@@ -171,7 +174,7 @@
                                                 <div class="cart_item_text">{{ presentPrice(Cart::subtotal()) }}kz</div>
                                             </div>
                                             <div class="cart_item_color cart_info_col">
-                                                <div class="cart_item_title"><b>TAX (13%)</b></div>
+                                                <div class="cart_item_title"><b>TAX (14%)</b></div>
                                                 <div class="cart_item_text"><span
                                                         style="width: 200px;">{{ presentPrice(Cart::tax()) }}kz</span>
                                                 </div>
@@ -190,7 +193,7 @@
 
                             <div class="cart_buttons">
                                 {{-- <a href="{{ route('checkout.index') }}"  class="button cart_button_clear">Add to Cart</a> --}}
-                                <a href="{{ url('faturaProforma') }}" class="btn btn-info btn-lg">Fatura Proforma</a>
+                                <a href="{{ url('faturaProforma') }}" class="btn btn-info btn-lg">Factura Proforma</a>
                                 {{-- <a href="{{ route('formpayment.formasPagamento') }}"  class="btn btn-warning btn-lg">Forma de Pagamento</a> --}}
                                 <a href="{{ route('address.viewAddress') }}" class="btn btn-warning btn-lg"
                                     style="background-color: #a12422; color: white">Continuar</a>
@@ -211,7 +214,7 @@
                     </div>
                 </section> <!--/#cart_items-->
 
-                <a href="{{ route('shop.index') }}" class="btn btn-warning btn-lg"> Continuar Comprando</a>
+                <a href="{{ route('shop.index') }}" class="btn btn-warning btn-lg"> Continuar Compra</a>
 
             @endif
 
@@ -296,7 +299,7 @@
                     </div>
                 </div>
             @else
-                {{-- <h4>Nao existe item salvo para mais tarde</h4> --}}
+                {{-- <h4>Não existe item salvo para mais tarde</h4> --}}
 
             @endif
         </div>

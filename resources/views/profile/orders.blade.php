@@ -17,23 +17,23 @@
     <section id="cart_items">
         <div class="container">
             <br>
-            <h3 style="text-align: center; text-decoration: underline; margin-top: 40px;">
+            <h3 style="text-align: center; text-decoration: margin-top: 40px;">
                 <center>Lista de Pedidos</center>
             </h3><br>
 
             <div class="row">
 
                 <div class="col-md-12">
-                    <h3><span style="color: green;">{{ ucwords(Auth::user()->name) }}</span>, Seus Pedidos</h3>
+                    <h3><span style="color: #df3b3b;">{{ ucwords(Auth::user()->name) }}</span>, Seus Pedidos</h3>
                     <div class="table-responsive">
                         <table class="table table-hover">
                             <thead>
                                 <tr>
                                     <th>Data</th>
                                     <th>Nome do Producto</th>
-                                    <th>Codigo do Producto</th>
+                                    <th>Código do Producto</th>
                                     <th>Quantidade</th>
-                                    <th>Preco Unit</th>
+                                    <th>Preço Unit</th>
 
                                     <th>Status do Pedido</th>
 

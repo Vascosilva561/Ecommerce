@@ -15,7 +15,7 @@
             <div class="row">
                 <div class="col-md-3 well well-sm">
                     <div class="card border-secondary mb-3" style="max-width: 18rem ">
-                        <div class="card-header"> |Mudsar Senha </div>
+                        <div class="card-header"> |Mudar Senha </div>
                         <div class="card-body text-secondary">
                             <nav class="nav flex-column">
                                 <a class="nav-link" href="{{ '/profile' }}">Meu Perfil</a>

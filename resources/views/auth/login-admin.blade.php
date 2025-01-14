@@ -76,7 +76,7 @@
 <html lang="en">
 
 <head>
-    <title>Okulandisa-Login</title>
+    <title>Admin Login</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!--===============================================================================================-->
@@ -116,7 +116,7 @@
         </div>
     @endif
     <div class="limiter">
-        <div class="container-login100" style="background-image: url('{{ asset('images/benguela/1.jpg') }}');">
+        <div class="container-login100" style="background:#152036;">
             <div class="wrap-login100">
 
                 <form class="login100-form validate-form" method="POST" action="{{ url('/admin/login') }}"
@@ -157,7 +157,7 @@
                         <input class="input-checkbox100" id="ckb1" type="checkbox" name="remember"
                             {{ old('remember') ? 'checked' : '' }}>
                         <label class="label-checkbox100" for="remember">
-                            {{ __('Remember Me') }}
+                            {{ __('Lembrar') }}
                         </label>
                     </div>
 
@@ -170,7 +170,7 @@
 
                     <div class="text-center p-t-90">
                         <a class="txt1" href="{{ route('password.request') }}">
-                            {{ __('Forgot Your Password?') }}
+                            {{ __('Esqueceu sua senha?') }}
                         </a>
                     </div>
                 </form>

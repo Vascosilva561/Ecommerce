@@ -35,8 +35,8 @@
                         <table class="table">
                             <tr>
                                 <th>IMAGEM</th>
-                                <th>NOME</th>
-                                <th>DiSPONIBLIDADE</th>
+                                <th>DESCRIÇÃO</th>
+                                <th>DISPONIBLIDADE</th>
                                 <th>QUANTIDADE</th>
                                 <th>PREÇO UNT.</th>
                             </tr>
@@ -105,7 +105,7 @@
                             <form action="{{ route('coupon.store') }}" method="POST">
                                 {{ csrf_field() }}
                                 <input type="text" name="coupon_code" id="coupon_code" style="width: 900px;">
-                                <button type="submit" class="button button-plain" style="width: 234px;">Apply</button>
+                                <button type="submit" class="button button-plain" style="width: 234px;">Aplicar</button>
                             </form>
                         @endif
 
@@ -121,7 +121,7 @@
                                         </div>
 
                                         <div class="cart_item_color cart_info_col">
-                                            <div class="cart_item_title"><b>TAX (13%)</b></div>
+                                            <div class="cart_item_title"><b>TAX (14%)</b></div>
                                             <div class="cart_item_text"><span>{{ $newTax }}kz</span></div>
                                         </div>
 
@@ -138,13 +138,10 @@
 
                         <div class="cart_buttons" align="center">
                             {{-- <a href="{{ route('checkout.index') }}"  class="button cart_button_clear">Add to Cart</a> --}}
-                            <a href="{{ url('faturaProforma') }}" class="btn btn-warning btn-lg"
-                                style="width: 500px; margin-right: 700px; background: linear-gradient(to bottom, #003366 0%, #666633 100%);"><B>PAGAR
-                                    POR TRANFERENCIA BANCARIA</B></a>
                             {{-- <a href="{{ route('formpayment.formasPagamento') }}"  class="btn btn-warning btn-lg">Forma de Pagamento</a> --}}
                             <a href="{{ route('resumo.create') }}" class="btn btn-warning btn-lg"
-                                style="width: 550px; margin-top:-80px; background: linear-gradient(to bottom, #ff0000 0%, #ff9933 100%);"><B>PAGAR
-                                    POR REFERENÇIA MULTICAIXA</B></a>
+                                style="margin-top:40px; border-radius: 4px; background: #E7540A"><B>PAGAMENTO
+                                    POR REFERÊNCIA</B></a>
                         </div>
                     </div>
                 </div>

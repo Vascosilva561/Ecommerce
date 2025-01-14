@@ -12,36 +12,36 @@
             <div class="row">
                 <h4 style="color: white;">O TEU ENDEREÇO DE ENTREGA</h4>
                 <div class="col-md-6" align="center">
-                    <p style="font-size: 18px; margin-top: 30px;"><B>A SUA ENCOMENDA ESTA CONCLUIDA</B></p>
+                    <p style="font-size: 18px; margin-top: 30px;"><B>DADOS DE PAGAMENTO</B></p>
                     <hr>
                     <img src="{{ asset('images/benguela/multibanco.png') }}" style="width: 150px;">
-                    <p>Para proceder ao pagamento no multicaixa, siga os seguintes passos:</p><br>
-                    <p><b>1º</b> Pagamentos > <b>2º</b> Seguintes > <b>3º</b> Compras Online > <b>4º</b>
-                        www.linkedin.com/in/vasco-silva-8a680918b</p>
+                
+                    <p><b>Para proceder ao pagamento no multicaixa, siga os seguintes passos:</b>w</p><br>
+                    <p><b>1º</b> Pagamentos > <b>2º</b>Pagamento por Referência> <b>3º</b>Preencher Campos> <b>4º</b>
+                    Efectuar Pagamento.</p>
                     @foreach ($user as $use)
                         <a class="btn btn-warning btn-lg" style="background: #fafafa;">
-                            Referencia: {{ $use->referens }}<br>
+                            Referência: {{ $use->referens }}<br>
                             Valor: {{ $use->total }}kz</a>
                         <br><br><br>
                         OU
 
                         <br><br><br>
-                        <p><b>1º</b> Pagamentos > <b>2º</b> Seguintes > <b>3º</b> Pagamento por serviço</p>
+                        <p><b>1º</b> Pagamentos > <b>2º</b>Pagamento por Referência> <b>3º</b>Preencher Campos> <b>4º</b>
+                    Efectuar Pagamento.</p>
                         <a class="btn btn-warning btn-lg" style="background: #fafafa;">
                             Entidade: 99108<br>
-                            Referencia: {{ $use->referens }}<br>
+                            Referência: {{ $use->referens }}<br>
                             Valor: {{ $use->total }}kz</a>
                         <br><br><br>
 
-                        <p>Foi-lhe enviado um email com estas informações.</p>
-                        <p><b>A confirmação do seu pagamento pode demorar ate 1h.</b></p>
-                        <p><b>A sua encomenda sera enviada assim que o pagamento for confirmado.</b></p>
+                        <p><b>A confirmação do seu pagamento pode demorar até 1h.</b></p>
+                        <p><b>A sua encomenda será enviada assim que o pagamento for confirmado.</b></p>
                     @endforeach
 
 
                     <a href="{{ url('/') }}/orders" class="btn btn-warning btn-lg"
-                        style="background: linear-gradient(to bottom, #003366 0%, #666633 100%);"><B>VER HISTORICO DE
-                            PEDIDOS</B></a>
+                        style="border-radius: 4px; background: #0C8CE4; color:#ffff"><B>Visualizar Histórico de Pedidos</B></a>
 
                 </div>
 

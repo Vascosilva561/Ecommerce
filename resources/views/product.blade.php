@@ -31,7 +31,7 @@
                     <!-- Description -->
                     <div class="col-lg-5 order-3">
                         <div class="product_description">
-                            <div class="product_category">total v {!! $product->featured !!}</div>
+                            <div class="product_category">Detalhes do Produto</div>
                             <div class="product_name">{{ $product->name }}</div>
                             <div class="product_name">
                                 <h5>{{ $product->details }}</h5>
@@ -83,7 +83,7 @@
                                     <input type="hidden" value="{{ $product->id }}" name="prod_id">
                                     <button type="submit" class="btn btn-default"
                                         style="margin-top: -2px; background-color: #ad2d29; margin-left: 40px; color: white;">
-                                        Add na Lista de Desejos</button>
+                                        Add a Lista de Desejos</button>
 
                                 </form>
                                 <?php }else{?>
