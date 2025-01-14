@@ -20,7 +20,7 @@
                             <nav class="nav flex-column">
                                 <a class="nav-link" href="{{ '/profile' }}">Meu Perfil</a>
                                 <a class="nav-link" href="{{ '/orders' }}">Meus Pedidos</a>
-                                <a class="nav-link" href="{{ '/address' }}">Meu Endereço</a>
+                                <a class="nav-link" href="{{ '/profile/address' }}">Meu Endereço</a>
                                 <a class="nav-link" href="{{ '/password' }}">Mudar Senha</a>
                             </nav>
                         </div>

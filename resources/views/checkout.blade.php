@@ -79,7 +79,8 @@
 
                                     <td>
                                         <div class="cart_item_text" style="color: #df3b3b;">
-                                            <b>{{ $item->model->presentPrice() }}Kz</b></div>
+                                            <b>{{ $item->model->presentPrice() }}Kz</b>
+                                        </div>
                                     </td>
 
 
@@ -140,7 +141,7 @@
                             <a href="{{ url('faturaProforma') }}" class="btn btn-warning btn-lg"
                                 style="width: 500px; margin-right: 700px; background: linear-gradient(to bottom, #003366 0%, #666633 100%);"><B>PAGAR
                                     POR TRANFERENCIA BANCARIA</B></a>
-                            {{-- <a href="{{ route('formpaymant.formasPagamento') }}"  class="btn btn-warning btn-lg">Forma de Pagamento</a> --}}
+                            {{-- <a href="{{ route('formpayment.formasPagamento') }}"  class="btn btn-warning btn-lg">Forma de Pagamento</a> --}}
                             <a href="{{ route('resumo.create') }}" class="btn btn-warning btn-lg"
                                 style="width: 550px; margin-top:-80px; background: linear-gradient(to bottom, #ff0000 0%, #ff9933 100%);"><B>PAGAR
                                     POR REFERENÇIA MULTICAIXA</B></a>

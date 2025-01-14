@@ -20,7 +20,7 @@
                             <nav class="nav flex-column">
                                 <a class="nav-link" href="{{ '/profile' }}">Meu Perfil</a>
                                 <a class="nav-link" href="{{ '/orders' }}">Meus Pedidos</a>
-                                <a class="nav-link" href="{{ '/address' }}">Meu Endereço</a>
+                                <a class="nav-link" href="{{ '/profile/address' }}">Meu Endereço</a>
                                 <a class="nav-link" href="{{ '/password' }}">Mudar Senha</a>
                             </nav>
                         </div>
@@ -34,7 +34,7 @@
                         <table border="0" align="center">
                             <tr>
                                 <td><a href="{{ url('/') }}/orders" class="btn btn-success">Meus Pedidos</a></td>
-                                <td><a href="{{ url('/address') }}" class="btn btn-success">Meu Endereço</a></td>
+                                <td><a href="{{ url('/profile/address') }}" class="btn btn-success">Meu Endereço</a></td>
                                 <td><a href="{{ url('/password') }}/orders" class="btn btn-success">Mudar Senha</a></td>
                             </tr>
                         </table>

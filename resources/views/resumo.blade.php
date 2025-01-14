@@ -27,8 +27,8 @@
                     <a href="{{ url('faturaProforma') }}" class="btn btn-warning btn-lg"
                         style="width: 450px; margin-right: 700px; background: linear-gradient(to bottom, #003366 0%, #666633 100%);"><B>PAGAR
                             POR TRANFERENCIA BANCARIA</B></a>
-                    {{-- <a href="{{ route('formpaymant.formasPagamento') }}"  class="btn btn-warning btn-lg">Forma de Pagamento</a> --}}
-                    <a href="{{ route('paymant.referencia') }}" class="btn btn-warning btn-lg"
+                    {{-- <a href="{{ route('formpayment.formasPagamento') }}"  class="btn btn-warning btn-lg">Forma de Pagamento</a> --}}
+                    <a href="{{ route('payment.referencia') }}" class="btn btn-warning btn-lg"
                         style="width: 450px; margin-top:-50px; margin-left: 700px; background: linear-gradient(to bottom, #ff0000 0%, #ff9933 100%);"><B>Confirmo
                             a minha Encomenda</B></a>
                 </div>

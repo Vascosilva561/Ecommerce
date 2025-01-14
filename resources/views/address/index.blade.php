@@ -1,10 +1,10 @@
 @extends('layouts.master')
 @section('title', 'Contacto')
 @section('style')
-    <link rel="stylesheet" type="text/css" href="{{ asset('styles/contact_styles.css') }}">
-    <link rel="stylesheet" type="text/css" href="{{ asset('styles/contact_responsive.css') }}">
+    {{-- <link rel="stylesheet" type="text/css" href="{{ asset('styles/contact_styles.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('styles/contact_responsive.css') }}"> --}}
 
-    <link rel="stylesheet" type="text/css" href="{{ asset('css/bootstrap4/css/bootstrap.css') }}">
+    {{-- <link rel="stylesheet" type="text/css" href="{{ asset('css/bootstrap4/css/bootstrap.css') }}"> --}}
 @endsection
 @section('content')
 
@@ -13,9 +13,10 @@
         <div class="container">
             <div class="row">
 
+                <h4 class="mb-3">Preencha os campos abaixo com os seus dados de localização correctos.</h4>
 
 
-                <form action="{{ route('formvalidate.address') }}" method="post" style="width: 80%;" align="center">
+                <form action="{{ route('formValidate.address') }}" method="post" style="width: 80%;" align="center">
                     <input type="hidden" name="_token" value="{{ csrf_token() }}">
                     <div class="input-group mb-3">
                         <div class="input-group-prepend">
@@ -53,7 +54,7 @@
 
                     <div class="input-group mb-3">
                         <div class="input-group-prepend">
-                            <span class="input-group-text" id="basic-addon3">Ponto de Referencia*</span>
+                            <span class="input-group-text" id="basic-addon3">Ponto de Referência*</span>
                         </div>
                         <input type="text" class="form-control" id="basic-url" aria-describedby="basic-addon3"
                             value="{{ old('ponto_referencia') }}" name="ponto_referencia" style="margin-left:10px;">
@@ -69,7 +70,7 @@
 
                     <div class="input-group mb-3">
                         <div class="input-group-prepend">
-                            <span class="input-group-text" id="basic-addon3">Pais*</span>
+                            <span class="input-group-text" id="basic-addon3">País*</span>
                         </div>
                         <input type="text" class="form-control" id="basic-url" aria-describedby="basic-addon3"
                             value="{{ old('pais') }}" name="pais" style="margin-left:113px;">
@@ -77,14 +78,14 @@
 
                     <div class="input-group mb-3">
                         <div class="input-group-prepend">
-                            <span class="input-group-text" id="basic-addon3" style="width: 300px;">Municipio*</span>
+                            <span class="input-group-text" id="basic-addon3" style="width: 300px;">Município*</span>
                         </div>
                         <input type="text" class="form-control" id="basic-url" aria-describedby="basic-addon3"
                             value="{{ old('municipio') }}" name="municipio" style="margin-left:77px;">
                     </div>
                     <div class="input-group mb-3">
                         <div class="input-group-prepend">
-                            <span class="input-group-text" id="basic-addon3" style="width: 300px;">Provincia*</span>
+                            <span class="input-group-text" id="basic-addon3" style="width: 300px;">Província*</span>
                         </div>
                         <input type="text" class="form-control" id="basic-url" aria-describedby="basic-addon3"
                             value="{{ old('provincia') }}" name="provincia" style="margin-left:77px;">
@@ -92,12 +93,12 @@
 
                     <div class="input-group">
                         <div class="input-group-prepend">
-                            <span class="input-group-text" style="width: 300px;">Insere um nome que identifique este
-                                <br>endereço(ex: Casa, Emprego).*</span>
+                            <span class="input-group-text" style="width: 300px;">Insira uma identificação para este
+                                <br>endereço (ex: Casa, Emprego)* </span>
                         </div>
                         <textarea class="form-control" aria-label="With textarea" value="{{ old('identificacao') }}" name="identificacao"></textarea>
                     </div>
-                    <button type="submit">fghjklhj</button>
+                    <button class="btn btn-primary mt-2" type="submit">Guardar</button>
 
                 </form>
 

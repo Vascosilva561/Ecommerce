@@ -1,10 +1,13 @@
 @extends('layouts.master')
 @section('title', 'Contacto')
-@section('content')
+
+@section('style')
     <link rel="stylesheet" type="text/css" href="{{ asset('styles/cart_styles.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('styles/cart_responsive.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('styles/product_styles.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('styles/product_responsive.css') }}">
+@endsection
+@section('content')
 
     <script>
         $(document).ready(function() {
@@ -69,7 +72,7 @@
                         <div class="breadcrumbs">
                             <ol class="breadcrumb">
                                 <li class="active" style="color: black; font-size: 18px;">{{ Cart::count() }} item(s) no
-                                    Carrinhoco de compras</li>
+                                    Carrinho de compras</li>
                             </ol>
                         </div>
                     </div>
@@ -151,7 +154,8 @@
 
                                         <td>
                                             <div class="cart_item_text" style="color: #df3b3b;">
-                                                <b>{{ $item->model->presentPrice() }}Kz</b></div>
+                                                <b>{{ $item->model->presentPrice() }}Kz</b>
+                                            </div>
                                         </td>
 
                                     </tr>
@@ -187,7 +191,7 @@
                             <div class="cart_buttons">
                                 {{-- <a href="{{ route('checkout.index') }}"  class="button cart_button_clear">Add to Cart</a> --}}
                                 <a href="{{ url('faturaProforma') }}" class="btn btn-info btn-lg">Fatura Proforma</a>
-                                {{-- <a href="{{ route('formpaymant.formasPagamento') }}"  class="btn btn-warning btn-lg">Forma de Pagamento</a> --}}
+                                {{-- <a href="{{ route('formpayment.formasPagamento') }}"  class="btn btn-warning btn-lg">Forma de Pagamento</a> --}}
                                 <a href="{{ route('address.viewAddress') }}" class="btn btn-warning btn-lg"
                                     style="background-color: #a12422; color: white">Continuar</a>
                             </div>

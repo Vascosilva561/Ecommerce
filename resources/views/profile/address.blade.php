@@ -6,9 +6,7 @@
     <link rel="stylesheet" type="text/css" href="{{ asset('styles/product_styles.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('styles/product_responsive.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('styles/new.css') }}">
-@endsection
 
-@section('script')
     <script src="https://js.stripe.com/v3/"></script>
 @endsection
 
@@ -31,19 +29,25 @@
                             <nav class="nav flex-column">
                                 <a class="nav-link" href="{{ '/profile' }}">Meu Perfil</a>
                                 <a class="nav-link" href="{{ '/orders' }}">Meus Pedidos</a>
-                                <a class="nav-link" href="{{ '/address' }}">Meu Endereço</a>
+                                <a class="nav-link" href="{{ '/profile/address' }}">Meu Endereço</a>
                                 <a class="nav-link" href="{{ '/password' }}">Mudar Senha</a>
                             </nav>
                         </div>
                     </div>
                 </div>
                 <div class="col-md-9">
-                    <h3><span style="color: green;">{{ ucwords(Auth::user()->name) }}</span>, Seu Endereço</h3>
+                    @if (session()->has('success_message'))
+                        <div class="alert alert-success">
+                            {{ session()->get('success_message') }}
+                        </div>
+                    @endif
+                    <h3>{{ ucwords(Auth::user()->name) }}, Seu Endereço</h3>
                     <div class="container">
                         @if (session('msg'))
                             <div class="alert alert-info">{{ session('msg') }}</div>
                         @endif
-                        <form action="{{ url('updateAddress') }}" method="post" role="form" multpart="">
+                        <form action="{{ route('address.update', ['id' => $address->first()->id]) }}" method="post"
+                            role="form" multpart="">
                             <input type="hidden" name="_token" value="{{ csrf_token() }}">
                             @foreach ($address as $value)
                                 <div class="form-group {{ $errors->has('name') ? 'has-error' : '' }}">
@@ -96,6 +100,9 @@
 
 
 
+@endsection
+
+@section('script')
     <script>
         (function() {
             // Create a Stripe client.

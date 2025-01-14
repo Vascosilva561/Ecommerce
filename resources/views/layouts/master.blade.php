@@ -17,8 +17,14 @@
     <link rel="stylesheet" type="text/css" href="styles/shop_responsive.css">
 
     <style>
+        .efect {
+            display: flex;
+        }
+
         .efect svg {
             stroke: #4d4d4d;
+            margin-top: "auto";
+            margin-bottom: "auto";
         }
 
         .efect:hover {
@@ -193,7 +199,7 @@
                                 <div class="main_nav_menu ml-auto">
                                     <ul class="standard_dropdown main_nav_dropdown">
                                         <li><a class="d-flex efect" href="{{ route('home') }}">
-                                                <div class="mt-1 mr-1">
+                                                <div class="d-flex my-auto pb-1 mr-1">
                                                     <svg xmlns="http://www.w3.org/2000/svg" width="20"
                                                         height="20" viewBox="0 0 24 24" fill="none">
                                                         <path
@@ -208,7 +214,7 @@
                                             </a></li>
 
                                         <li><a class="d-flex efect" href="{{ route('shop.index') }}">
-                                                <div class="mt-1">
+                                                <div class="d-flex my-auto pb-1 mr-1">
                                                     <svg xmlns="http://www.w3.org/2000/svg" width="20"
                                                         height="20" viewBox="0 0 24 24" fill="none">
                                                         <path d="M16.5 9.39999L7.5 4.20999" stroke-width="2"
@@ -223,13 +229,11 @@
                                                             stroke-linejoin="round" />
                                                     </svg>
                                                 </div>
-                                                <span class="ml-1">
-                                                    Produtos
-                                                </span>
+                                                Produtos
                                             </a></li>
                                         <?php if(Auth::check()){ ?>
-                                        <li><a class="d-flex efect" href="{{ route('checkout.index') }}">
-                                                <div class="mt-1">
+                                        <li><a class="d-flex efect" href="{{ route('cart.index') }}">
+                                                <div class="d-flex my-auto pb-1 mr-1">
                                                     <svg xmlns="http://www.w3.org/2000/svg" width="20"
                                                         height="20" viewBox="0 0 24 24" fill="none">
                                                         <path
@@ -246,15 +250,13 @@
                                                             stroke-linejoin="round" />
                                                     </svg>
                                                 </div>
-                                                <span class="ml-1">
-                                                    Carrinho @if (Cart::instance('default')->count() > 0)
-                                                        <span
-                                                            class="text-white badge bg-primary">{{ Cart::instance('default')->count() }}</span>
-                                                    @endif
-                                                </span>
+                                                Carrinho @if (Cart::instance('default')->count() > 0)
+                                                    <span
+                                                        class="my-auto ml-1 text-white badge bg-primary">{{ Cart::instance('default')->count() }}</span>
+                                                @endif
                                             </a></li>
                                         <li><a class="d-flex efect" href="/orders">
-                                                <div class="mt-1">
+                                                <div class="d-flex my-auto pb-1 mr-1">
                                                     <svg xmlns="http://www.w3.org/2000/svg" width="20"
                                                         height="20" viewBox="0 0 24 24" fill="none">
                                                         <path
@@ -269,13 +271,11 @@
                                                             stroke-linejoin="round" />
                                                     </svg>
                                                 </div>
-                                                <span class="ml-1">
-                                                    Pedidos
-                                                </span>
+                                                Pedidos
                                             </a></li>
                                         <li class="hassubs">
                                             <a href="#" class="d-flex justify-content-center efect">
-                                                <div class="mt-1 ml-1">
+                                                <div class="d-flex my-auto pb-1 mr-1">
                                                     <svg xmlns="http://www.w3.org/2000/svg" width="24"
                                                         height="24" viewBox="0 0 24 24" fill="none">
                                                         <path
@@ -284,7 +284,7 @@
                                                             stroke-linejoin="round" />
                                                         <path
                                                             d="M12 11C14.2091 11 16 9.20914 16 7C16 4.79086 14.2091 3 12 3C9.79086 3 8 4.79086 8 7C8 9.20914 9.79086 11 12 11Z"
-                                                             stroke-width="2" stroke-linecap="round"
+                                                            stroke-width="2" stroke-linecap="round"
                                                             stroke-linejoin="round" />
                                                     </svg>
                                                 </div>
@@ -294,10 +294,10 @@
                                             </a>
                                             <ul>
 
-                                                <li><a href="{{ url('/addres') }}" style="color: #952825;"
+                                                <li><a href="{{ url('/profile/address') }}" style="color: #952825;"
                                                         class="efect">Meu Endereço<i
                                                             class="fas fa-chevron-down"></i></a></li>
-                                                <li><a href="{{ url('/wishList') }}" style="color: #952825;"
+                                                <li><a href="{{ url('/wishlist') }}" style="color: #952825;"
                                                         class="efect">Lista Desejos<i
                                                             class="fas fa-chevron-down"></i></a></li>
                                                 <li><a href="{{ url('/') }}/orders" style="color: #952825;"
@@ -438,9 +438,10 @@
                         <div class="footer_column">
                             <div class="footer_title">Servico de atendimento ao Consumidor</div>
                             <ul class="footer_list">
-                                <li><a href="#">Minha Conta</a></li>
+                                <li><a href="{{ route('profile.address') }}">Minha Conta</a></li>
                                 {{-- <li><a href="#">Rastreamento de pedido</a></li> --}}
-                                <li><a href="#">Lista de Desejos</a></li>
+                                <li><a href="{{ route('wishlist') }}">Lista de Desejos</a></li>
+                                <li><a href="{{ route('admin.login') }}">Entrar como Admin</a></li>
                                 {{-- <li><a href="#">Atendimento ao cliente</a></li> --}}
 
                             </ul>

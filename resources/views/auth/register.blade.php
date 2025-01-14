@@ -81,7 +81,7 @@
 
 @extends('layouts.master')
 @section('title', 'Contacto')
-@section('content')
+@section('style')
     <link rel="stylesheet" type="text/css" href="{{ asset('styles/cart_styles.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('styles/cart_responsive.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('styles/product_styles.css') }}">
@@ -95,17 +95,16 @@
     <link rel="stylesheet" type="text/css" href="{{ asset('open/css/util.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('open/css/main.css') }}">
     <!--===============================================================================================-->
-
+@endsection
+@section('content')
 
     <body>
-
-
         <div class="container">
             <section id="cart_items" style="margin-top: 40px;">
                 <div class="container">
                     <div class="breadcrumbs">
                         <ol class="breadcrumb">
-                            <li class="active" style="color: black; font-size: 18px;">Faça o seu login ou cria a sua conta
+                            <li class="active" style="color: black; font-size: 18px;">Faça o seu login ou crie a sua conta
                             </li>
                         </ol>
                     </div>
@@ -135,7 +134,7 @@
                                             class="input100{{ $errors->has('name') ? ' is-invalid' : '' }}" name="name"
                                             value="{{ old('name') }}" required autofocus>
                                         <span class="focus-input100" for="email"
-                                            data-placeholder="{{ __('Nome Usuario') }}"></span>
+                                            data-placeholder="{{ __('Nome de Usuario') }}"></span>
 
                                         @if ($errors->has('name'))
                                             <span class="invalid-feedback" role="alert">
@@ -149,7 +148,7 @@
                                             class="input100{{ $errors->has('email') ? ' is-invalid' : '' }}" name="email"
                                             value="{{ old('email') }}" required>
                                         <span class="focus-input100" for="email"
-                                            data-placeholder="{{ __('Email Usuario') }}"></span>
+                                            data-placeholder="{{ __('Email de Usuario') }}"></span>
 
                                         @if ($errors->has('email'))
                                             <span class="invalid-feedback" role="alert">
@@ -164,7 +163,7 @@
                                         </span>
                                         <input id="password" type="password" name="password"
                                             class="input100{{ $errors->has('password') ? ' is-invalid' : '' }}" required>
-                                        <span class="focus-input100" data-placeholder="{{ __('Password') }}"></span>
+                                        <span class="focus-input100" data-placeholder="{{ __('Palavra-passe') }}"></span>
 
                                         @if ($errors->has('password'))
                                             <span class="invalid-feedback" role="alert">
@@ -181,7 +180,7 @@
                                         <input id="password-confirm" type="password" class="input100"
                                             name="password_confirmation" required>
                                         <span class="focus-input100"
-                                            data-placeholder="{{ __('Confirma Password') }}"></span>
+                                            data-placeholder="{{ __('Confirmar Palavra-passe') }}"></span>
 
                                     </div>
 
@@ -193,7 +192,7 @@
                                                     id="remember" {{ old('remember') ? 'checked' : '' }}>
 
                                                 <label class="form-check-label" for="remember">
-                                                    {{ __('Remember Me') }}
+                                                    {{ __('Lembrar') }}
                                                 </label>
                                             </div>
                                         </div>
@@ -204,12 +203,10 @@
                                         <div class="wrap-login100-form-btn">
                                             <div class="login100-form-bgbtn"></div>
                                             <button type="submit" class="login100-form-btn">
-                                                {{ __('Register') }}
+                                                {{ __('Registrar') }}
                                             </button>
                                         </div>
                                     </div>
-                                    <dir align="center" style="margin-top: 10px;">|<a class="txt1"
-                                            href="{{ route('home') }}">{{ __('PAGINA INICIAL') }}</a></dir>
                                 </form>
                             </div>
                         </div>
@@ -227,7 +224,7 @@
                                 <div class="container-login100-form-btn">
                                     <div class="wrap-login100-form-btn" style="margin-top: -50px;">
                                         <div class="login100-form-bgbtn"></div>
-                                        <a href="{{ route('login') }}" class="login100-form-btn"> Logar</a>
+                                        <a href="{{ route('login') }}" class="login100-form-btn">Entrar</a>
                                     </div>
                                 </div>
                             </div>
@@ -244,6 +241,10 @@
 
         <div id="dropDownSelect1"></div>
 
+
+    @endsection
+
+    @section('script')
         <!--===============================================================================================-->
         <script src="{{ asset('open/vendor/jquery/jquery-3.2.1.min.js') }}"></script>
         <!--===============================================================================================-->
@@ -256,5 +257,4 @@
 
         <!--===============================================================================================-->
         <script src="{{ asset('open/js/main.js') }}"></script>
-
     @endsection

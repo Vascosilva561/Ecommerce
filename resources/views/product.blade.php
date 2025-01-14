@@ -88,7 +88,7 @@
                                 </form>
                                 <?php }else{?>
 
-                                <a href="{{ url('/wishList') }}">
+                                <a href="{{ url('/wishlist') }}">
                                     <h3 style="color: red; font-size: 18px; margin-left: 40px; margin-top: 5px;"> Alerta
                                         Lista de desejos </h3>
                                 </a>

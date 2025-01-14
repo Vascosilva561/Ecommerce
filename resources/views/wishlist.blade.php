@@ -60,7 +60,8 @@
                                     <div class="product_image d-flex flex-column align-items-center justify-content-center">
                                         <a href="{{ route('shop.show', $product->id) }}" tabindex="0"><img
                                                 src="{{ asset('images/product/' . $product->image) }}"
-                                                style="width: 150px; height: 150px;" alt=""></a></div>
+                                                style="width: 150px; height: 150px;" alt=""></a>
+                                    </div>
                                     <div class="product_content">
                                         <div class="product_price">{{ $product->price }}kz</div>
                                         <div class="product_name">
@@ -86,7 +87,7 @@
                                             </div>
                                         </div>
 
-                                    </form><a href="{{ url('/') }}/removeWishList/{{ $product->id }}"
+                                    </form><a href="{{ url('/') }}/remove-wishlist/{{ $product->id }}"
                                         style="color: red;" class="btn btn-default btn-block">Remover desejado</a>
                                     <div class="product_fav"><i class="fas fa-heart"></i></div>
 

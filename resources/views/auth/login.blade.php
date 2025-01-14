@@ -72,7 +72,8 @@
  --}}
 @extends('layouts.master')
 @section('title', 'Contacto')
-@section('content')
+
+@section('style')
     <link rel="stylesheet" type="text/css" href="{{ asset('styles/cart_styles.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('styles/cart_responsive.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('styles/product_styles.css') }}">
@@ -86,6 +87,8 @@
     <link rel="stylesheet" type="text/css" href="{{ asset('open/css/util.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('open/css/main.css') }}">
     <!--===============================================================================================-->
+@endsection
+@section('content')
 
 
     <body>
@@ -96,7 +99,7 @@
                 <div class="container">
                     <div class="breadcrumbs">
                         <ol class="breadcrumb">
-                            <li class="active" style="color: black; font-size: 18px;">Faça o seu login ou cria a sua conta
+                            <li class="active" style="color: black; font-size: 18px;">Faça o seu login ou crie a sua conta
                             </li>
                         </ol>
                     </div>
@@ -111,11 +114,11 @@
                         <div class="container-login100">
                             <div class="wrap-login100">
                                 <form class="login100-form validate-form" method="POST" action="{{ route('login') }}"
-                                    aria-label="{{ __('Login') }}">
+                                    aria-label="{{ __('Entrar') }}">
                                     @csrf
 
                                     <span class="login100-form-title p-b-26">
-                                        {{ __('Login') }}
+                                        {{ __('Entrar') }}
                                     </span>
                                     <span class="login100-form-title p-b-48">
                                         <i class="zmdi zmdi-font"></i>
@@ -126,7 +129,7 @@
                                             class="input100{{ $errors->has('email') ? ' is-invalid' : '' }}" name="email"
                                             value="{{ old('email') }}" required autofocus>
                                         <span class="focus-input100" for="email"
-                                            data-placeholder="{{ __('E-Mail Address') }}"></span>
+                                            data-placeholder="{{ __('Endereço E-Mail') }}"></span>
 
 
                                         @if ($errors->has('email'))
@@ -142,7 +145,7 @@
                                         </span>
                                         <input class="input100{{ $errors->has('password') ? ' is-invalid' : '' }}"
                                             id="password" type="password" name="password">
-                                        <span class="focus-input100" data-placeholder="{{ __('Password') }}"></span>
+                                        <span class="focus-input100" data-placeholder="{{ __('Palavra-passe') }}"></span>
                                         @if ($errors->has('password'))
                                             <span class="invalid-feedback" role="alert">
                                                 <strong>{{ $errors->first('password') }}</strong>
@@ -159,7 +162,7 @@
                                                     id="remember" {{ old('remember') ? 'checked' : '' }}>
 
                                                 <label class="form-check-label" for="remember">
-                                                    {{ __('Remember Me') }}
+                                                    {{ __('Lembrar') }}
                                                 </label>
                                             </div>
                                         </div>
@@ -170,18 +173,19 @@
                                         <div class="wrap-login100-form-btn">
                                             <div class="login100-form-bgbtn"></div>
                                             <button type="submit" class="login100-form-btn">
-                                                {{ __('Login') }}
+                                                {{ __('Entrar') }}
                                             </button>
+                                        </div>
+                                        <div class="text-center">
+                                            <a class="btn btn-link" href="{{ route('password.request') }}">
+                                                {{ __('Esqueceu sua Palavra-passe?') }}
+                                            </a>
                                         </div>
                                     </div>
 
                                     <div class="text-center p-t-115">
-                                        <a class="btn btn-link" href="{{ route('password.request') }}">
-                                            {{ __('Forgot Your Password?') }}
-                                        </a>
-
-                                        <a class="txt2" href="#">
-                                            Sign Up
+                                        <a class="btn btn-link" href="{{ route('admin.login') }}">
+                                            {{ __('Administrador? Entre por aqui!') }}
                                         </a>
                                     </div>
                                 </form>
@@ -201,7 +205,7 @@
                                 <div class="container-login100-form-btn">
                                     <div class="wrap-login100-form-btn" style="margin-top: -50px;">
                                         <div class="login100-form-bgbtn"></div>
-                                        <a href="{{ route('register') }}" class="login100-form-btn"> Cadastra-se</a>
+                                        <a href="{{ route('register') }}" class="login100-form-btn">Criar Conta</a>
                                     </div>
                                 </div>
                             </div>
