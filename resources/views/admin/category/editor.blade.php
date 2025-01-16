@@ -3,10 +3,10 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content">
 
-            <div class="modal-header">
+            <div class="modal-header" style="background:#1B2A47">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
                         aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title" id="myModalLabel2" style="color: black">Right Sidebar</h4>
+                <h4 class="modal-title" id="myModalLabel2" style="background:#1B2A47">Categorias</h4>
             </div>
 
             <div class="modal-body">
@@ -32,7 +32,7 @@
                                                         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                                                             <!-- Adicione seus campos de formulário aqui -->
                                                             <div class="form-group">
-                                                                <label for="category_name" class="text-white">Nome da
+                                                                <label for="category_name" class="text-white" style="color:#fff">Nome da
                                                                     Categoria</label>
                                                                 <input type="text" class="form-control"
                                                                     id="name" name="name"
@@ -40,7 +40,7 @@
                                                                     required>
                                                             </div>
                                                             <div class="form-group">
-                                                                <label for="slug" class="text-white">Slug da
+                                                                <label for="slug" class="text-white" style="color:#fff" >Slug da
                                                                     Categoria</label>
                                                                 <input type="text" class="form-control"
                                                                     id="slug" name="slug"
@@ -48,13 +48,12 @@
                                                                     required>
                                                             </div>
                                                             <div class="form-group">
-                                                                <label for="image" class="text-white">Imagem ou
-                                                                    SVG da Categoria</label>
+                                                                <label for="image" class="text-white"style="color:#fff" >Imagem da Categoria</label>
                                                                 <input type="file" class="form-control"
                                                                     id="image" name="image" accept="image/*,.svg">
                                                             </div>
                                                             <button type="submit"
-                                                                class="btn btn-primary">{{ isset($item) ? 'Atualizar' : 'Enviar' }}</button>
+                                                                class="btn btn-primary">{{ isset($item) ? 'Actualizar' : 'Enviar' }}</button>
                                                         </div>
                                                     </div>
                                                 </div>

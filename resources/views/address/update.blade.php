@@ -29,7 +29,7 @@
                                 </div>
 
                                 <div class="form-group col-md-6">
-                                    <label for="inputPassword4">email</label>
+                                    <label for="inputPassword4">Email</label>
                                     <input type="email" name="email" class="form-control" id="inputPassword4"
                                         placeholder="email" value="{{ $address->email }}" readonly>
                                 </div>
@@ -42,7 +42,7 @@
                             </div>
 
                             <div class="form-group">
-                                <label for="inputAddress2">Ponto de Referencia</label>
+                                <label for="inputAddress2">Ponto de Referência</label>
                                 <input type="text" name="ponto_referencia" class="form-control" id="inputAddress2"
                                     placeholder="Apartment, studio, or floor" value="{{ $address->ponto_referencia }}">
                             </div>
@@ -55,13 +55,13 @@
 
                             <div class="form-row">
                                 <div class="form-group col-md-6">
-                                    <label for="inputAddress2">Provincia</label>
+                                    <label for="inputAddress2">Província</label>
                                     <input type="text" name="provincia" class="form-control" id="inputAddress2"
                                         placeholder="Provincia" value="{{ $address->provincia }}">
                                 </div>
 
                                 <div class="form-group col-md-4">
-                                    <label for="inputAddress2">Municipio</label>
+                                    <label for="inputAddress2">Município</label>
                                     <input type="text" name="municipio" class="form-control" id="inputAddress2"
                                         placeholder="Municipio" value="{{ $address->municipio }}">
                                 </div>

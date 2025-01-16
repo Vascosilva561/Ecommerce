@@ -24,7 +24,7 @@
             <div class="row">
 
                 <div class="col-md-12">
-                    <h3><span style="color: #df3b3b;">{{ ucwords(Auth::user()->name) }}</span>, Seus Pedidos</h3>
+                    <h3><span style="color: black;">{{ ucwords(Auth::user()->name) }}</span>, Seus Pedidos</h3>
                     <div class="table-responsive">
                         <table class="table table-hover">
                             <thead>
