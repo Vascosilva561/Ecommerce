@@ -77,21 +77,24 @@
 
 								if ($count=="0"){ ?>
 
-                                <form action="{{ route('addToWishList') }}" method="post" role="form">
+                                <form action="{{ route('addToWishlist') }}" method="post" role="form">
                                     {{-- {{csrf_token()}} --}}
                                     <input type="hidden" name="_token" value="{{ csrf_token() }}">
                                     <input type="hidden" value="{{ $product->id }}" name="prod_id">
-                                    <button type="submit" class="btn btn-default"
+                                    <button type="submit" class="btn btn-danger"
                                         style="margin-top: -2px; background-color: #ad2d29; margin-left: 40px; color: white;">
-                                        Add a Lista de Desejos</button>
+                                        Adicionar a Lista de Desejos</button>
 
                                 </form>
                                 <?php }else{?>
 
-                                <a href="{{ url('/wishlist') }}">
-                                    <h3 style="color: red; font-size: 18px; margin-left: 40px; margin-top: 5px;"> Alerta
-                                        Lista de desejos </h3>
-                                </a>
+                                <form action="{{ route('removeWishlist', ['id' => $product->id]) }}" method="post"
+                                    role="form">
+                                    <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                                    <button type="submit" class="btn btn-outline-danger"
+                                        style="margin-top: -2px; margin-left: 40px;">
+                                        Remover da Lista de Desejos</button>
+                                </form>
                                 <?php }?>
 
                             </div>

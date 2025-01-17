@@ -30,9 +30,9 @@ Route::group(['middleware' => 'admin'], function () {
 Auth::routes();
 
 
-Route::post('/add-to-wishlist', 'LandingPageController@addWishList')->name('addToWishList')->middleware('auth');
+Route::post('/add-to-wishlist', 'LandingPageController@addWishlist')->name('addToWishlist')->middleware('auth');
 Route::get('/wishlist', 'LandingPageController@View_wishList')->middleware('auth')->name('wishlist');
-Route::get('/remove-wishlist/{id}', 'LandingPageController@removeWishList')->middleware('auth');
+Route::post('/remove-wishlist/{id}', 'LandingPageController@removeWishlist')->middleware('auth')->name('removeWishlist');
 Route::get('/orders', 'ProfileController@orders')->middleware('auth');
 Route::get('/profile/address', 'ProfileController@address')->middleware('auth')->name('profile.address');
 
