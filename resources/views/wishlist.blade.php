@@ -87,8 +87,13 @@
                                             </div>
                                         </div>
 
-                                    </form><a href="{{ url('/') }}/remove-wishlist/{{ $product->id }}"
-                                        style="color: red;" class="btn btn-default btn-block">Remover da Lista</a>
+                                    </form>
+                                    <form action="{{ route('removeWishlist', ['id' => $product->id]) }}" method="POST">
+                                        @csrf
+                                        <button type="submit" style="color: red;" class="btn btn-default btn-block">Remover
+                                            da
+                                            Lista</button>
+                                    </form>
                                     <div class="product_fav"><i class="fas fa-heart"></i></div>
 
                                 </div>

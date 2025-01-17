@@ -48,7 +48,7 @@ class LandingPageController extends Controller
         return view('home', compact('products', 'promocoes', 'news', 'news_destaque', 'total', 'view_counts', 'categories', 'highlights'));
     }
 
-    public function addWishList(Request $request)
+    public function addWishlist(Request $request)
     {
         $wishlist = new Wishlist_model();
         $wishlist->user_id = Auth::user()->id;
@@ -73,7 +73,7 @@ class LandingPageController extends Controller
         return view('wishlist', compact('products'));
     }
 
-    public function removeWishList($id)
+    public function removeWishlist($id)
     {
         $user = Auth::user();
         DB::table('wishlists')->where('prod_id', '=', $id)->where('user_id', '=', $user->id)->delete();

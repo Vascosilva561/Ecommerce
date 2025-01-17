@@ -37,9 +37,9 @@
 
     <!-- Cart -->
     <div class="cart_section">
-                <h3 style="text-align: center;">
-                <center>Carrinho</center>
-                </h3>
+        <h3 style="text-align: center;">
+            <center>Carrinho</center>
+        </h3>
         <div class="container">
             @if (session()->has('success_message'))
                 <div class="alert alert-success">
@@ -179,6 +179,12 @@
                                                         style="width: 200px;">{{ presentPrice(Cart::tax()) }}kz</span>
                                                 </div>
                                             </div>
+                                            {{-- <div class="cart_item_color cart_info_col">
+                                                <div class="cart_item_title"><b>FRETE</b></div>
+                                                <div class="cart_item_text"><span //
+                                                        style="width: 200px;">{{ presentPrice(Cart::freight()) }}kz</span>
+                                                </div>
+                                            </div> --}}
 
                                             <div class="cart_item_price cart_info_col">
                                                 <div class="cart_item_title"><b>TOTAL</b></div>

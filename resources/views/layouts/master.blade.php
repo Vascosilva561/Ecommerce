@@ -19,6 +19,7 @@
     <style>
         .efect {
             display: flex;
+            cursor: pointer !important;
         }
 
         .efect svg {
@@ -29,6 +30,7 @@
 
         .efect:hover {
             color: #952825 !important;
+            text-decoration: none !important;
         }
 
         .efect:hover svg {
@@ -314,9 +316,18 @@
                                                         class="efect">Lista Pedidos<i
                                                             class="fas fa-chevron-down"></i></a></li>
 
-                                                <li><a href="{{ route('logout') }}" style="color: #952825;"
-                                                        class="efect">Desconectar<i
-                                                            class="fas fa-chevron-down"></i></a></li>
+                                                <li class="d-flex align-items-end">
+                                                    <a style="color: #952825;" class="efect my-auto">
+                                                        <form action="{{ route('logout') }}" method="POST"
+                                                            class="pt-8">
+                                                            @csrf
+                                                            <button role="button"
+                                                                class="btn btn-link cursor-pointer p-0 text-decoration-none hover:text-decoration-none efect mt-auto"
+                                                                type="submit" style="color: #952825;">Desconectar<i
+                                                                    class="fas fa-chevron-down"></i></button>
+                                                        </form>
+                                                    </a>
+                                                </li>
                                             </ul>
                                         </li>
                                         <?php }?>
