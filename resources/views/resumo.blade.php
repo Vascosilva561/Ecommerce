@@ -22,15 +22,17 @@
                     <p>Por favor confirme a sua encomenda clicando "Confirmar Encomenda" </p>
 
                 </div>
-                <div class="cart_buttons" align="center">
-                    {{-- <a href="{{ route('checkout.index') }}"  class="button cart_button_clear">Add to Cart</a> --}}
-                    <a href="{{ url('faturaProforma') }}" class="btn btn-warning btn-lg"
-                        style="width: 450px; margin-right: 700px; background: linear-gradient(to bottom, #003366 0%, #666633 100%);"><B>PAGAR
-                            POR TRANFERÊNCIA BANCÁRIA</B></a>
-                    {{-- <a href="{{ route('formpayment.formasPagamento') }}"  class="btn btn-warning btn-lg">Forma de Pagamento</a> --}}
-                    <a href="{{ route('payment.referencia') }}" class="btn btn-warning btn-lg"
-                        style="width: 450px; margin-top:-50px; margin-left: 700px; background: linear-gradient(to bottom, #ff0000 0%, #ff9933 100%);"><B>Confirmo
+            </div>
+            <div class="row justify-content-center">
+                <div class="cart_buttons text-center" align="center">
+                    <a href="{{ route('payment.referencia') }}" class="btn btn-warning px-4 btn-lg text-uppercase"
+                        style="background: linear-gradient(to bottom, #ff0000 0%, #ff9933 100%);"><B>Confirmo
                             a minha Encomenda</B></a>
+                    {{-- <a href="{{ route('checkout.index') }}"  class="button cart_button_clear">Add to Cart</a> --}}
+                    {{-- <a href="{{ route('faturaProforma') }}" class="btn btn-warning btn-lg"
+                        style="width: 450px; margin-right: 700px; background: linear-gradient(to bottom, #003366 0%, #666633 100%);"><B>PAGAR
+                            POR TRANFERÊNCIA BANCÁRIA</B></a> --}}
+                    {{-- <a href="{{ route('formpayment.formasPagamento') }}"  class="btn btn-warning btn-lg">Forma de Pagamento</a> --}}
                 </div>
 
 

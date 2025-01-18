@@ -26,14 +26,13 @@
                 <div class="col-md-12">
                     <h3><span style="color: #df3b3b;">{{ ucwords(Auth::user()->name) }}</span>, Seus Pedidos</h3>
                     <div class="table-responsive">
-                        <table class="table table-hover">
+                        <table class="table">
                             <thead>
                                 <tr>
                                     <th>Data</th>
-                                    <th>Nome do Producto</th>
-                                    <th>Código do Producto</th>
-                                    <th>Quantidade</th>
-                                    <th>Preço Unit</th>
+                                    <th>Código do Pedido</th>
+                                    <th>Código de Referência</th>
+                                    <th>Total</th>
 
                                     <th>Status do Pedido</th>
 
@@ -44,12 +43,17 @@
                                 @foreach ($orders as $order)
                                     <tr>
                                         <td>{{ $order->created_at }}</td>
-                                        <td>{{ ucwords($order->name) }}</td>
+                                        <td>{{ $order->id }}</td>
                                         <td>{{ $order->referens }}</td>
-                                        <td>{{ $order->quantity }}</td>
-                                        <td>{{ $order->price }}</td>
+                                        <td>{{ presentPrice($order->total) }}kz</td>
 
-                                        <td class="btn btn-primary" style="background-color: #4bbeee;">{{ $order->status }}
+                                        <td>
+                                            <span class="badge badge-primary px-3 py-2 mb-3">{{ $order->status }}</span>
+
+                                            <br>
+                                            <a href="{{ route('orders.show', $order->id) }}"
+                                                class="btn btn-link link-danger btn-sm">Ver
+                                                informações do Pedido <i class="fas fa-arrow-right"></i></a>
                                         </td>
                                     </tr>
                                 @endforeach
@@ -59,6 +63,9 @@
                         </table>
 
                     </div>
+                </div>
+                <div class="d-flex flex-row ml-auto my-4">
+                    {{ $orders->appends(request()->input())->links() }}
                 </div>
             </div>
         </div>

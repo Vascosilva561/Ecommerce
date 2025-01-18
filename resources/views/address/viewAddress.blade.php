@@ -58,8 +58,8 @@
                         <p>{{ $address->telefone }}</p>
                         <p>{{ $address->ponto_referencia }}</p>
 
-                        <a href="{{ route('address.edit', $address->id) }}" id="complete-order" class="btn btn-info btn-lg"
-                            style="background-color: #fdc403;">Actualizar</a>
+                        <a href="{{ route('address.edit', $address->id) }}" id="complete-order"
+                            class="btn btn-primary btn-lg">Actualizar</a>
                     @endforeach
 
                 </div>
@@ -78,7 +78,7 @@
                     @endforeach
                 </div>
 
-                <a href="{{ route('checkout.index') }}" id="complete-order" class="btn btn-info btn-lg"
+                <a href="{{ route('checkout.index') }}" id="complete-order" class="btn btn-danger btn-lg"
                     style="margin-left: 1100px; background-color: #a3241e;">Continuar</a>
 
             </div>

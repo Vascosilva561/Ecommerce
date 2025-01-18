@@ -249,7 +249,7 @@
                         <div class="tabbed_container">
                             <div class="tabs">
                                 <ul class="clearfix">
-                                    <li class="active">PRODUTOS EM DESTAQUE</li>
+                                    <li class="active">PRODUCTOS EM DESTAQUE</li>
                                 </ul>
                                 <div class="tabs_line"><span style="background-color: #932825;"></span></div>
                             </div>
@@ -407,7 +407,7 @@
                                                     {{ $highlight->description }}
                                                 </div>
                                                 <div class="button banner_2_button" style="background-color: #a12421;"><a
-                                                        href="/shop/{{ $highlight->id }}">Ver produto</a></div>
+                                                        href="/shop/{{ $highlight->id }}">Ver producto</a></div>
                                             </div>
 
                                         </div>
@@ -596,29 +596,29 @@
                             <div class="bestsellers_slider slider">
 
                                 <!-- Best Sellers Item -->
-                                @foreach ($total as $produto)
+                                @foreach ($total as $productos)
                                     <div class="bestsellers_item discount">
                                         <div
                                             class="bestsellers_item_container d-flex flex-row align-items-center justify-content-start">
                                             <div class="bestsellers_image"><a
-                                                    href="{{ route('shop.show', $produto->id) }}"
+                                                    href="{{ route('shop.show', $productos->id) }}"
                                                     style="font-size: 12px;"><img
-                                                        src="{{ asset('images/product/' . $produto->image) }}"
+                                                        src="{{ asset('images/product/' . $productos->image) }}"
                                                         alt="" style="width: 200px;"></a></div>
                                             <div class="bestsellers_content">
                                                 <div class="bestsellers_category"><a href="#">.</a></div>
                                                 <div class="bestsellers_name"><a
-                                                        href="{{ route('shop.show', $produto->id) }}"
-                                                        style="font-size: 12px;">{{ $produto->name }}</a></div>
+                                                        href="{{ route('shop.show', $productos->id) }}"
+                                                        style="font-size: 12px;">{{ $productos->name }}</a></div>
                                                 <div class="rating_r rating_r_4 bestsellers_rating">categoria</div>
                                                 <div class="bestsellers_price discount">
-                                                    {{ $produto->presentPrice() }}kz
+                                                    {{ $productos->presentPrice() }}kz
                                                 </div>
                                             </div>
                                         </div>
                                         <div class="bestsellers_fav active"><i class="fas fa-heart"></i></div>
                                         <ul class="bestsellers_marks">
-                                            {{-- <li class="bestsellers_mark bestsellers_discount" style="background-color: #28a745;">{{ $produto->quantity }}</li> --}}
+                                            {{-- <li class="bestsellers_mark bestsellers_discount" style="background-color: #28a745;">{{ $productos->quantity }}</li> --}}
                                             <li class="bestsellers_mark bestsellers_new"></li>
                                         </ul>
                                     </div>

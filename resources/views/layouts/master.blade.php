@@ -73,7 +73,7 @@
                                     <div class="header_search_form_container">
                                         <form action="#" class="header_search_form clearfix">
                                             <input type="search" required="required" class="header_search_input"
-                                                placeholder="Procurar produtos">
+                                                placeholder="Procurar productos">
                                             <div class="custom_dropdown">
                                                 <div class="custom_dropdown_list d-flex align-items-center">
                                                     <span class="custom_dropdown_placeholder clc mr-auto">Todas
@@ -241,7 +241,7 @@
                                                             stroke-linejoin="round" />
                                                     </svg>
                                                 </div>
-                                                Produtos
+                                                Productos
                                             </a></li>
                                         <?php if(Auth::check()){ ?>
                                         <li><a class="d-flex efect" href="{{ route('cart.index') }}">

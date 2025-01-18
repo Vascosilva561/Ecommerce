@@ -95,8 +95,13 @@
                                 </tr>
 
                                 <?php $count = 1; ?>
+                                <?php $totalWeight = 0; ?>
+
 
                                 @foreach (Cart::content() as $item)
+                                    @php
+                                        $totalWeight += $item->model->weight * $item->qty;
+                                    @endphp
                                     <tr>
                                         <td>
                                             <a href="{{ route('shop.show', $item->model->slug) }}">
@@ -179,16 +184,17 @@
                                                         style="width: 200px;">{{ presentPrice(Cart::tax()) }}kz</span>
                                                 </div>
                                             </div>
-                                            {{-- <div class="cart_item_color cart_info_col">
-                                                <div class="cart_item_title"><b>FRETE</b></div>
+                                            <div class="cart_item_color cart_info_col">
+                                                <div class="cart_item_title"><b>ENVIO</b></div>
                                                 <div class="cart_item_text"><span //
-                                                        style="width: 200px;">{{ presentPrice(Cart::freight()) }}kz</span>
+                                                        style="width: 200px;">{{ presentPrice($totalWeight * env('FREIGHT_PRICE')) }}kz</span>
                                                 </div>
-                                            </div> --}}
+                                            </div>
 
                                             <div class="cart_item_price cart_info_col">
                                                 <div class="cart_item_title"><b>TOTAL</b></div>
-                                                <div class="cart_item_text"> <b>{{ presentPrice(Cart::total()) }}kz</b>
+                                                <div class="cart_item_text">
+                                                    <b>{{ presentPrice(Cart::total() + $totalWeight * env('FREIGHT_PRICE')) }}kz</b>
                                                 </div>
                                             </div>
 
@@ -199,7 +205,7 @@
 
                             <div class="cart_buttons">
                                 {{-- <a href="{{ route('checkout.index') }}"  class="button cart_button_clear">Add to Cart</a> --}}
-                                <a href="{{ url('faturaProforma') }}" class="btn btn-info btn-lg">Factura Proforma</a>
+                                <a href="{{ route('faturaProforma') }}" class="btn btn-info btn-lg">Factura Proforma</a>
                                 {{-- <a href="{{ route('formpayment.formasPagamento') }}"  class="btn btn-warning btn-lg">Forma de Pagamento</a> --}}
                                 <a href="{{ route('address.viewAddress') }}" class="btn btn-warning btn-lg"
                                     style="background-color: #a12422; color: white">Continuar</a>

@@ -123,7 +123,7 @@
                     aria-label="{{ __('Login') }}">
                     @csrf
                     <span class="login100-form-logo">
-                        <i class=""> <img src="{{ asset('images/icons/logo.png') }}"></i>
+                        <i class=""> <img src="{{ asset('images/icons/logo-shopp.png') }}"></i>
                     </span><br><br>
 
                     <div class="wrap-input100 validate-input" data-validate = "Digite o nome do utilizador">

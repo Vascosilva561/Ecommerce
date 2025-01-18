@@ -1,6 +1,8 @@
 @extends('layouts.master')
 @section('title', 'Contacto')
-@section('content')
+
+@section('style')
+
     <link rel="stylesheet" type="text/css" href="styles/cart_styles.css">
     <link rel="stylesheet" type="text/css" href="styles/cart_responsive.css">
     <link rel="stylesheet" type="text/css" href="{{ asset('styles/product_styles.css') }}">
@@ -8,10 +10,12 @@
     <link rel="stylesheet" type="text/css" href="{{ asset('styles/new.css') }}">
 
     <script src="https://js.stripe.com/v3/"></script>
+@endsection
+@section('content')
 
 
     <!-- Cart -->
-    <div class="shop" style="margin-top: 100px; font-family:Cambria; ">
+    <div class="shop" style="margin-top: 100px;">
         <div class="container">
             @if (session()->has('success_message'))
                 <div class="alert alert-success">
@@ -42,8 +46,14 @@
                             </tr>
 
                             <?php $count = 1; ?>
+                            @php
+                                $totalWeight = 0;
+                            @endphp
 
                             @foreach (Cart::content() as $item)
+                                @php
+                                    $totalWeight += $item->model->weight * $item->qty;
+                                @endphp
                                 <tr>
                                     <td>
                                         <a href="{{ route('shop.show', $item->model->slug) }}">
@@ -105,7 +115,7 @@
                             <form action="{{ route('coupon.store') }}" method="POST">
                                 {{ csrf_field() }}
                                 <input type="text" name="coupon_code" id="coupon_code" style="width: 900px;">
-                                <button type="submit" class="button button-plain" style="width: 234px;">Aplicar</button>
+                                <button type="submit" class="btn" style="width: 234px;">Aplicar</button>
                             </form>
                         @endif
 
@@ -116,18 +126,26 @@
                                     <div class="cart_item_info d-flex flex-md-row flex-column justify-content-between">
                                         <div class="cart_item_name cart_info_col">
                                             <div class="cart_item_title"><b>SUBTOTAL</b></div>
-                                            <div class="cart_item_text">{{ $newSubtotal }}kz</div>
+                                            <div class="cart_item_text">{{ presentPrice($newSubtotal) }}kz</div>
 
                                         </div>
 
                                         <div class="cart_item_color cart_info_col">
                                             <div class="cart_item_title"><b>TAX (14%)</b></div>
-                                            <div class="cart_item_text"><span>{{ $newTax }}kz</span></div>
+                                            <div class="cart_item_text"><span>{{ presentPrice($newTax) }}kz</span></div>
+                                        </div>
+                                        <div class="cart_item_color cart_info_col">
+                                            <div class="cart_item_title"><b>ENVIO</b></div>
+                                            <div class="cart_item_text"><span
+                                                    style="width: 200px;">{{ presentPrice($totalWeight * env('FREIGHT_PRICE')) }}kz</span>
+                                            </div>
                                         </div>
 
                                         <div class="cart_item_price cart_info_col">
                                             <div class="cart_item_title"><b>TOTAL</b></div>
-                                            <div class="cart_item_text"> <b>{{ $newTotal }}kz</b></div>
+                                            <div class="cart_item_text">
+                                                <b>{{ presentPrice($newTotal + $totalWeight * env('FREIGHT_PRICE')) }}kz</b>
+                                            </div>
                                         </div>
 
                                     </div>
@@ -139,9 +157,12 @@
                         <div class="cart_buttons" align="center">
                             {{-- <a href="{{ route('checkout.index') }}"  class="button cart_button_clear">Add to Cart</a> --}}
                             {{-- <a href="{{ route('formpayment.formasPagamento') }}"  class="btn btn-warning btn-lg">Forma de Pagamento</a> --}}
+                            {{-- <a href="{{ route('faturaProforma') }}" class="btn btn-warning btn-lg"
+                                style="width: 500px; margin-right: 700px; background: linear-gradient(to bottom, #003366 0%, #666633 100%);"><B>PAGAR
+                                    POR TRANFERENCIA BANCARIA</B></a> --}}
                             <a href="{{ route('resumo.create') }}" class="btn btn-warning btn-lg"
-                                style="margin-top:40px; border-radius: 4px; background: #E7540A"><B>PAGAMENTO
-                                    POR REFERÊNCIA</B></a>
+                                style="margin-top:40px; border-radius: 4px; background: #E7540A"><B>
+                                    PAGAMENTO POR REFERÊNCIA</B></a>
                         </div>
                     </div>
                 </div>

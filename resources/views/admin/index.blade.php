@@ -68,7 +68,7 @@
                         </div>
                         <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
                             <div class="admin-content analysis-progrebar-ctn res-mg-t-30">
-                                <h4 class="text-left text-uppercase"><b>Produtos</b></h4>
+                                <h4 class="text-left text-uppercase"><b>Productos</b></h4>
                                 <div class="row vertical-center-box vertical-center-box-tablet">
                                     <div class="text-left col-xs-3 mar-bot-15">
                                         <label class="label bg-blue">50% <i class="fa fa-level-up" aria-hidden="true"></i></label>
@@ -381,7 +381,7 @@
                                 </div>
                             </div>
                         </div>
-                      
+
                     </div>
                 </div>
             </div>

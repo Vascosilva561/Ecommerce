@@ -9,7 +9,7 @@ use Illuminate\Http\Request;
 
 class CouponsController extends Controller
 {
-   
+
     /**
      * Store a newly created resource in storage.
      *
@@ -20,7 +20,7 @@ class CouponsController extends Controller
     {
         $coupon = Coupon::where('code', $request->coupon_code)->first();
         if (!$coupon) {
-            return redirect()->route('checkout.index')->withErrors('Invalido Codigo de Copom. Porfavor tente novamente');
+            return redirect()->route('checkout.index')->withErrors('Invalido Código de Cupom. Por favor tente novamente');
         }
 
         session()->put('coupon', [
@@ -28,7 +28,7 @@ class CouponsController extends Controller
             'discount' => $coupon->discount(Cart::subtotal()),
 
         ]);
-        return redirect()->route('checkout.index')->with('success_message', 'Coupon foi Aplicado');
+        return redirect()->route('checkout.index')->with('success_message', 'Cupom foi Aplicado');
     }
 
 

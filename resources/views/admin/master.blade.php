@@ -106,7 +106,7 @@
                                             class="mini-sub-pro">Product Payment</span></a></li>
                             </ul>
                         </li>
-                        <li>
+                        {{-- <li>
                             <a class="has-arrow" href="mailbox.html" aria-expanded="false"><i
                                     class="icon nalika-mail icon-wrap"></i> <span
                                     class="mini-click-non">Mailbox</span></a>
@@ -118,11 +118,11 @@
                                 <li><a title="Compose Mail" href="mailbox-compose.html"><span
                                             class="mini-sub-pro">Compose Mail</span></a></li>
                             </ul>
-                        </li>
+                        </li> --}}
 
 
 
-                        <li id="removable">
+                        {{-- <li id="removable">
                             <a class="has-arrow" href="#" aria-expanded="false"><i
                                     class="icon nalika-new-file icon-wrap"></i> <span
                                     class="mini-click-non">Pages</span></a>
@@ -136,7 +136,7 @@
                                 <li><a title="Password Recovery" href="password-recovery.html"><span
                                             class="mini-sub-pro">Password Recovery</span></a></li>
                             </ul>
-                        </li>
+                        </li> --}}
                     </ul>
                 </nav>
             </div>
@@ -911,7 +911,7 @@
                                                 <li><a href="widgets.html">Widgets</a></li>
                                             </ul>
                                         </li>
-                                        <li><a data-toggle="collapse" data-target="#demo" href="#">Mailbox
+                                        {{-- <li><a data-toggle="collapse" data-target="#demo" href="#">Mailbox
                                                 <span
                                                     class="admin-project-icon nalika-icon nalika-down-arrow"></span></a>
                                             <ul id="demo" class="collapse dropdown-header-top">
@@ -922,7 +922,7 @@
                                                 <li><a href="mailbox-compose.html">Compose Mail</a>
                                                 </li>
                                             </ul>
-                                        </li>
+                                        </li> --}}
                                         <li><a data-toggle="collapse" data-target="#others"
                                                 href="#">Miscellaneous <span
                                                     class="admin-project-icon nalika-icon nalika-down-arrow"></span></a>
@@ -1025,7 +1025,7 @@
                                                 </li>
                                             </ul>
                                         </li>
-                                        <li><a data-toggle="collapse" data-target="#Pagemob" href="#">Pages
+                                        {{-- <li><a data-toggle="collapse" data-target="#Pagemob" href="#">Pages
                                                 <span
                                                     class="admin-project-icon nalika-icon nalika-down-arrow"></span></a>
                                             <ul id="Pagemob" class="collapse dropdown-header-top">
@@ -1038,7 +1038,7 @@
                                                 <li><a href="password-recovery.html">Password Recovery</a>
                                                 </li>
                                             </ul>
-                                        </li>
+                                        </li> --}}
                                     </ul>
                                 </nav>
                             </div>

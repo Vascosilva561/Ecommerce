@@ -33,7 +33,10 @@ Auth::routes();
 Route::post('/add-to-wishlist', 'LandingPageController@addWishlist')->name('addToWishlist')->middleware('auth');
 Route::get('/wishlist', 'LandingPageController@View_wishList')->middleware('auth')->name('wishlist');
 Route::post('/remove-wishlist/{id}', 'LandingPageController@removeWishlist')->middleware('auth')->name('removeWishlist');
-Route::get('/orders', 'ProfileController@orders')->middleware('auth');
+Route::group(['middleware' => ['auth'], 'prefix' => "orders"], function () {
+    Route::get('/', 'OrderController@index')->name('orders.index');
+    Route::get('/{order}', 'OrderController@show')->name('orders.show');
+});
 Route::get('/profile/address', 'ProfileController@address')->middleware('auth')->name('profile.address');
 
 
@@ -47,15 +50,15 @@ Route::get('/shop', 'ShopController@index')->name('shop.index');
 Route::get('/shop/{product}', 'ShopController@show')->name('shop.show');
 Route::get('/cart', 'CartController@index')->name('cart.index');
 Route::post('/cart', 'CartController@store')->name('cart.store');
-Route::post('/cartAdd', 'CartController@addToCart')->name('cart.addToCart');
+Route::post('/cart-add', 'CartController@addToCart')->name('cart.addToCart');
 //Route::patch('/cart/{product}', 'CartController@update')->name('cart.update');
 Route::put('/cart/update/{id}', 'CartController@update');
 Route::delete('/cart/{product}', 'CartController@destroy')->name('cart.destroy');
-Route::post('/cart/switchToSaveForLater/{product}', 'CartController@switchToSaveForLater')->name('cart.switchToSaveForLater');
-Route::get('/faturaProforma', 'CartController@faturaProforma');
+Route::post('/cart/switch-to-save-for-later/{product}', 'CartController@switchToSaveForLater')->name('cart.switchToSaveForLater');
+Route::get('/fatura-proforma', 'CartController@faturaProforma')->name('faturaProforma');
 
-Route::delete('/saveForLater/{product}', 'SaveForLaterController@destroy')->name('saveForLater.destroy');
-Route::post('/saveForLater/switchToSaveForLater/{product}', 'SaveForLaterController@switchToCart')->name('saveForLater.switchToCart');
+Route::delete('/save-for-later/{product}', 'SaveForLaterController@destroy')->name('saveForLater.destroy');
+Route::post('/save-for-later/switch-to-save-for-later/{product}', 'SaveForLaterController@switchToCart')->name('saveForLater.switchToCart');
 Route::get('/references', 'SaveForLaterController@index')->name('references.index');
 Route::post('/references/create', 'SaveForLaterController@create')->name('references.create');
 
@@ -64,7 +67,7 @@ Route::delete('/coupon', 'CouponsController@destroy')->name('coupon.destroy');
 
 
 
-Route::get('/register_address', 'AddressController@index')->name('register_address.index')->middleware('auth');
+Route::get('/register-address', 'AddressController@index')->name('registerAddress.index')->middleware('auth');
 Route::post('/form-validate', 'AddressController@address')->name('formValidate.address')->middleware('auth');
 Route::get('/address', 'AddressController@viewAddress')->name('address.viewAddress')->middleware('auth');
 Route::get('/address-edit/{id}', 'AddressController@editAddress')->name('address.edit')->middleware('auth');

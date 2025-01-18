@@ -89,7 +89,7 @@
                                     <div class="header_search_form_container">
                                         <form action="#" class="header_search_form clearfix">
                                             <input type="search" required="required" class="header_search_input"
-                                                placeholder="Procurar produtos">
+                                                placeholder="Procurar productos">
                                             <div class="custom_dropdown">
                                                 <div class="custom_dropdown_list">
                                                     <span class="custom_dropdown_placeholder clc">Todas
@@ -195,7 +195,7 @@
                                                 class="efect">Inicio<i class="fas fa-chevron-down"></i></a></li>
 
                                         <li><a href="{{ route('shop.index') }}" style="color: #952825;"
-                                                class="efect">Produtos<i class="fas fa-chevron-down"></i></a></li>
+                                                class="efect">Productos<i class="fas fa-chevron-down"></i></a></li>
                                         <li><a href="{{ route('checkout.index') }}" style="color: #952825;"
                                                 class="efect">Checkout<i class="fas fa-chevron-down"></i></a></li>
 

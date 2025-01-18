@@ -31,7 +31,7 @@
                     <!-- Description -->
                     <div class="col-lg-5 order-3">
                         <div class="product_description">
-                            <div class="product_category">Detalhes do Produto</div>
+                            <div class="product_category">Detalhes do Productos</div>
                             <div class="product_name">{{ $product->name }}</div>
                             <div class="product_name">
                                 <h5>{{ $product->details }}</h5>

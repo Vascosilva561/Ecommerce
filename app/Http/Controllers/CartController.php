@@ -6,7 +6,7 @@ use App\Product;
 use Gloudemans\Shoppingcart\Facades\Cart;
 use Illuminate\Http\Request;
 use PDF;
-
+// use Dompdf\Dompdf;
 
 class CartController extends Controller
 {
@@ -19,7 +19,7 @@ class CartController extends Controller
     {
         //$mightAlsoLike = Product::inRandomOrder()->take(4)->get();
         $mightAlsoLike = Product::mightAlsoLike()->get();
-       return view('cart')->with('mightAlsoLike', $mightAlsoLike);
+        return view('cart')->with('mightAlsoLike', $mightAlsoLike);
     }
 
     /**
@@ -40,19 +40,18 @@ class CartController extends Controller
      */
     public function store(Request $request)
     {
-        $duplicates = Cart::search(function($cartItem, $rowId) use ($request){
+        $duplicates = Cart::search(function ($cartItem, $rowId) use ($request) {
             return $cartItem->id === $request->id;
-
         });
 
         if ($duplicates->isNotEmpty()) {
             return redirect()->back()->with('success_message', 'O item já está no seu carrinho');
         }
-        
-        Cart::add($request->id, $request->name, 1, $request->price)
-                 ->associate('App\Product');
 
-                 return redirect()->back()->with('success_message', 'item adicionado no carinho');
+        Cart::add($request->id, $request->name, 1, $request->price)
+            ->associate('App\Product');
+
+        return redirect()->back()->with('success_message', 'item adicionado no carinho');
     }
 
     /**
@@ -86,11 +85,11 @@ class CartController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $qty=$request->qty;
-        $proId=$request->proId;
-        $product=Product::findOrFail($proId);
+        $qty = $request->qty;
+        $proId = $request->proId;
+        $product = Product::findOrFail($proId);
         Cart::update($id, $request->qty);
-        return back()->with('status','SUCESSS');
+        return back()->with('status', 'SUCESSS');
         // Cart::update($id, $request->quantity);
         // return request()->json(['sucess' => true]);
     }
@@ -105,7 +104,7 @@ class CartController extends Controller
     {
         Cart::remove($id);
         return back()->with('success_message', 'Item foi removido');
-    } 
+    }
 
     /**
      * Switch item for shopping cart to Save for later .
@@ -115,10 +114,10 @@ class CartController extends Controller
      */
     public function switchToSaveForLater($id)
     {
-         $item = Cart::get($id);
+        $item = Cart::get($id);
         Cart::remove($id);
 
-        $duplicates = Cart::instance('saveForLater')->search(function($cartItem, $rowId) use ($id){
+        $duplicates = Cart::instance('saveForLater')->search(function ($cartItem, $rowId) use ($id) {
             return $rowId === $id;
         });
 
@@ -126,25 +125,16 @@ class CartController extends Controller
             return redirect()->route('cart.index')->with('success_message', 'Item ja foi salvo para mais tarde');
         }
 
-         Cart::instance('saveForLater')->add($item->id, $item->name, 1, $item->price)
-                 ->associate('App\Product');
+        Cart::instance('saveForLater')->add($item->id, $item->name, 1, $item->price)
+            ->associate('App\Product');
 
-                 return redirect()->route('cart.index')->with('success_message', 'item adicionado para mais tarde');
+        return redirect()->route('cart.index')->with('success_message', 'item adicionado para mais tarde');
     }
 
-    public function faturaProforma(){
+    public function faturaProforma()
+    {
+        $dompdf = PDF::loadView('factura');
 
-        //$mightAlsoLike = Product::inRandomOrder()->take(4)->get();
-        $mightAlsoLike = Product::mightAlsoLike()->get();
-        $pdf = PDF::loadView('proforma', compact('mightAlsoLike'));
-        return $pdf->setPaper('a4')->stream('todos.proforma');
-
-        
-      // return view('cart')->with('mightAlsoLike', $mightAlsoLike);
-
-        /*$product = Product::all();
-        $pdf = PDF::loadView('pdf', compact('product'));
-        return $pdf->setPaper('a4')->stream('todos.pdf');*/
+        return $dompdf->stream();
     }
-
 }

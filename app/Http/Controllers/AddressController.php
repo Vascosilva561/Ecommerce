@@ -15,7 +15,7 @@ class AddressController extends Controller
     public function index()
     {
         if (auth()->user() && request()->is('guestCheckout')) {
-            return redirect()->route('register_address.index');
+            return redirect()->route('registerAddress.index');
         }
         return view('address.index');
     }

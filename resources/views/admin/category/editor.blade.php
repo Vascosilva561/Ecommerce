@@ -6,7 +6,8 @@
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
                         aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title" id="myModalLabel2" style="color: black">Right Sidebar</h4>
+                <h4 class="modal-title" id="myModalLabel2" style="color: black">
+                    {{ isset($item) ? 'Editar Categoria - ' . $item->name : 'Criar Categoria' }}</h4>
             </div>
 
             <div class="modal-body">

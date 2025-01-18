@@ -32,7 +32,7 @@ class ShopController extends Controller
         } else {
             $products = Product::take(12);
             //$categories = Category::all();
-            $categoryName = 'Produtos';
+            $categoryName = 'Productos';
         }
         if (request()->sort == 'low_high') {
             $products = $products->orderBy('price')->paginate($pagination);

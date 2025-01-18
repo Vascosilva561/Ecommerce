@@ -19,7 +19,7 @@ class LandingPageController extends Controller
      */
     public function index()
     {
-        //Buscar Todoas as categorias com os seus produtos!
+        //Buscar Todoas as categorias com os seus productos!
         $categories = Category::all();
         if (request()->category) {
             $products = Product::with('categories')->whereHas('categories', function ($query) {
@@ -28,7 +28,7 @@ class LandingPageController extends Controller
             $categoryName = optional($categories->where('slug', request()->category)->first())->name;
         }
 
-        //Produtos Mais vendidos
+        //Productos Mais vendidos
         $id = OrderProduct::select(
             'product_id',
             DB::raw('count(*) as total')
