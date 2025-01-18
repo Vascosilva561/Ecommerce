@@ -36,7 +36,7 @@
                                 name="endereco" style="color: black;">
                         @endforeach
                     </div>
-                    <p style="color: red;">Obs: O endereço de entrega sera usado como endereço de facturação.</p>
+                    <p style="color: red;">Obs: O endereço de entrega será usado como endereço de facturação.</p>
                 </form>
 
                 <br><br><br><br><br><br><br><br>

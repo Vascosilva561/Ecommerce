@@ -97,13 +97,15 @@
                             </a>
                             <ul class="submenu-angle" aria-expanded="true">
                                 <li><a title="Product List" href="{{ url('admin/categories') }}"><span
-                                            class="mini-sub-pro">Categoria</span></a></li>
+                                            class="mini-sub-pro">Categorias</span></a></li>
                                 <li><a title="Product Edit" href="{{ url('/admin/products') }}"><span
                                             class="mini-sub-pro">Productos</span></a></li>
                                 <li><a title="Product Cart" href="product-cart.html"><span
                                             class="mini-sub-pro">Pedidos</span></a></li>
                                 <li><a title="Product Payment" href="product-payment.html"><span
-                                            class="mini-sub-pro">Product Payment</span></a></li>
+                                            class="mini-sub-pro">Pagamentos</span></a></li>
+                                <li><a title="Product Payment" href="product-payment.html"><span
+                                            class="mini-sub-pro">Fornecedores</span></a></li>
                             </ul>
                         </li>
                         {{-- <li>
@@ -335,22 +337,6 @@
                                                     </a>
                                                     <ul role="menu"
                                                         class="dropdown-header-top author-log dropdown-menu animated zoomIn">
-                                                        <li><a href="register.html"><span
-                                                                    class="icon nalika-home author-log-ic"></span>
-                                                                Register</a>
-                                                        </li>
-                                                        <li><a href="#"><span
-                                                                    class="icon nalika-user author-log-ic"></span> My
-                                                                Profile</a>
-                                                        </li>
-                                                        <li><a href="lock.html"><span
-                                                                    class="icon nalika-diamond author-log-ic"></span>
-                                                                Lock</a>
-                                                        </li>
-                                                        <li><a href="#"><span
-                                                                    class="icon nalika-settings author-log-ic"></span>
-                                                                Settings</a>
-                                                        </li>
                                                         <li><a href="login.html"><span
                                                                     class="icon nalika-unlocked author-log-ic"></span>
                                                                 Log Out</a>

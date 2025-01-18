@@ -14,7 +14,7 @@
                                             </div>
                                             <div class="breadcomb-ctn">
                                                 <h2>Painel Administrativo</h2>
-                                                <p>Bem vindo ao<span class="bread-ntd">Admin E-shop</span></p>
+                                                <p>Seja Bem vindo!</span></p>
                                             </div>
                                         </div>
                                     </div>
@@ -36,10 +36,10 @@
                     <div class="row">
                         <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
                             <div class="admin-content analysis-progrebar-ctn res-mg-t-15">
-                                <h4 class="text-left text-uppercase"><b>Pedidos</b></h4>
+                                <h4 class="text-left text-uppercase"><b>Total de Pedidos:</b></h4>
                                 <div class="row vertical-center-box vertical-center-box-tablet">
                                     <div class="col-xs-3 mar-bot-15 text-left">
-                                        <label class="label bg-green">00<i class="fa fa-level-up" aria-hidden="true"></i></label>
+                                        <label class="label bg-green">+3 (24H)<i class="fa fa-level-up" aria-hidden="true"></i></label>
                                     </div>
                                     <div class="col-xs-9 cus-gh-hd-pro">
                                         <h2 class="text-right no-margin">{{ $total_counts }}</h2>
@@ -52,45 +52,49 @@
                         </div>
                         <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12" style="margin-bottom:1px;">
                             <div class="admin-content analysis-progrebar-ctn res-mg-t-30">
-                                <h4 class="text-left text-uppercase"><b>Tax Imposto</b></h4>
+                                <h4 class="text-left text-uppercase"><b>Total de vendas do Mês: </b></h4>
                                 <div class="row vertical-center-box vertical-center-box-tablet">
                                     <div class="text-left col-xs-3 mar-bot-15">
-                                        <label class="label bg-red">15% <i class="fa fa-level-down" aria-hidden="true"></i></label>
+                                        <label class="label bg-red">-13% <i class="fa fa-level-down" aria-hidden="true"></i></label>
                                     </div>
                                     <div class="col-xs-9 cus-gh-hd-pro">
-                                        <h2 class="text-right no-margin">5,000</h2>
+                                        <h2 class="text-right no-margin">5.920.890,00 Kz</h2>
                                     </div>
                                 </div>
                                 <div class="progress progress-mini">
-                                    <div style="width: 38%;" class="progress-bar progress-bar-danger bg-red"></div>
+                                    <div style="width: 89%;" class="progress-bar progress-bar-danger bg-red"></div>
                                 </div>
                             </div>
                         </div>
                         <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
                             <div class="admin-content analysis-progrebar-ctn res-mg-t-30">
+<<<<<<< HEAD
                                 <h4 class="text-left text-uppercase"><b>Productos</b></h4>
+=======
+                                <h4 class="text-left text-uppercase"><b>Pagamentos Pendentes:</b></h4>
+>>>>>>> 4b0cdde68af1f2e55976b3365d22b108c120a5e9
                                 <div class="row vertical-center-box vertical-center-box-tablet">
                                     <div class="text-left col-xs-3 mar-bot-15">
-                                        <label class="label bg-blue">50% <i class="fa fa-level-up" aria-hidden="true"></i></label>
+                                        <label class="label bg-blue">+1(24h) <i class="fa fa-level-up" aria-hidden="true"></i></label>
                                     </div>
                                     <div class="col-xs-9 cus-gh-hd-pro">
-                                        <h2 class="text-right no-margin">$70,000</h2>
+                                        <h2 class="text-right no-margin">6</h2>
                                     </div>
                                 </div>
                                 <div class="progress progress-mini">
-                                    <div style="width: 60%;" class="progress-bar bg-blue"></div>
+                                    <div style="width: 10%;" class="progress-bar bg-blue"></div>
                                 </div>
                             </div>
                         </div>
                         <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
                             <div class="admin-content analysis-progrebar-ctn res-mg-t-30">
-                                <h4 class="text-left text-uppercase"><b>Categorias</b></h4>
+                                <h4 class="text-left text-uppercase"><b>Novos Usuários</b></h4>
                                 <div class="row vertical-center-box vertical-center-box-tablet">
                                     <div class="text-left col-xs-3 mar-bot-15">
-                                        <label class="label bg-purple">80% <i class="fa fa-level-up" aria-hidden="true"></i></label>
+                                        <label class="label bg-purple">+24%(Mês) <i class="fa fa-level-up" aria-hidden="true"></i></label>
                                     </div>
                                     <div class="col-xs-9 cus-gh-hd-pro">
-                                        <h2 class="text-right no-margin">$100,000</h2>
+                                        <h2 class="text-right no-margin">122</h2>
                                     </div>
                                 </div>
                                 <div class="progress progress-mini">
@@ -111,7 +115,7 @@
                                 <div class="row">
                                     <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                                         <div class="caption pro-sl-hd">
-                                            <span class="caption-subject text-uppercase"><b>Product Sales</b></span>
+                                            <span class="caption-subject text-uppercase"><b>Gráfico Geral de Vendas</b></span>
                                         </div>
                                     </div>
                                     <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
