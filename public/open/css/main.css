@@ -403,6 +403,7 @@ iframe {
 }
 
 .wrap-login100-form-btn:hover .login100-form-bgbtn {
+  color: #fff;
   left: 0;
 }
 

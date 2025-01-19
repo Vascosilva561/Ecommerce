@@ -68,11 +68,7 @@
                         </div>
                         <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
                             <div class="admin-content analysis-progrebar-ctn res-mg-t-30">
-<<<<<<< HEAD
-                                <h4 class="text-left text-uppercase"><b>Productos</b></h4>
-=======
                                 <h4 class="text-left text-uppercase"><b>Pagamentos Pendentes:</b></h4>
->>>>>>> 4b0cdde68af1f2e55976b3365d22b108c120a5e9
                                 <div class="row vertical-center-box vertical-center-box-tablet">
                                     <div class="text-left col-xs-3 mar-bot-15">
                                         <label class="label bg-blue">+1(24h) <i class="fa fa-level-up" aria-hidden="true"></i></label>
