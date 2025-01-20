@@ -2,7 +2,7 @@
 <html>
 
 <head>
-    <title>Fatura Proforma</title>
+    <title>Factura Proforma</title>
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <meta http-equiv="content-type" content="text-html; charset=utf-8">
     <style type="text/css">
@@ -177,10 +177,10 @@
             <div class="company-info">
                 <p class="title">Dados da Empresa</p>
                 <p><strong>JM2X, LDA</strong></p>
-                <p>NIF: 00587021</p>
-                <p>Telefone: 244 940 803 094</p>
-                <p>Endereço: info@okulandisa.com</p>
-                <p>Email: info@okulandisa.com</p>
+                <p>NIF: 5111045546</p>
+                <p>Telefone: +244 931 486 991</p>
+                <p>Endereço: Rua Comandante Cassanje<br>nº92, Benguela.</p>
+                <p>Email: jm2xdistribuidora@hormail.com</p>
             </div>
         </div>
     </header>
