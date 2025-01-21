@@ -56,11 +56,12 @@
                      <div class="product-status-wrap">
                          <h4>Lista de Productos</h4>
                          <div class="add-product">
-                             <button type="button" data-toggle="modal" data-target="#myModal2" class="navbar-right">Add
+                             <button type="button" data-toggle="modal" data-target="#myModal2" class="navbar-right">Adicionar
                                  Producto </button>
                              @include('admin.products.create')
 
                          </div>
+
                          <table style="margin-top: -200px;">
                              <tr>
                                  <th>Image</th>
@@ -83,7 +84,7 @@
                                      </td>
                                      <td>{{ $product->slug }}</td>
                                      <td>{{ $product->price }},00kz</td>
-                                     <td>{{ $product->stock }} Unt</td>D
+                                     <td>{{ $product->stock }} Unt</td>
                                      <td>{{ $product->details }} </td>
 
 

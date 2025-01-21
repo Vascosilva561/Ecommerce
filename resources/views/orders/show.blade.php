@@ -73,11 +73,11 @@
                                 </span>
                             </p>
                             @if ($order->payment->receipt_image)
-                                <p><strong>Comprovante de Pagamento:</strong></p>
+                                <p><strong>Comprovativo de Pagamento:</strong></p>
                                 <!-- Botão para abrir o modal -->
                                 <button type="button" class="btn btn-primary" data-toggle="modal"
                                     data-target="#viewReceiptModal">
-                                    Visualizar Comprovante
+                                    Visualizar Comprovativo
                                 </button>
 
                                 <!-- Incluindo o componente viewReceiptModal com a URL do arquivo -->
@@ -85,12 +85,12 @@
                                     'url' => asset('images/receipts/' . $order->payment->receipt_image),
                                 ])
                             @else
-                                <p class="text-warning">Nenhum comprovante enviado.</p>
+                                <p class="text-warning">Nenhum comprovativo enviado.</p>
                             @endif
 
                             @if ($order->payment->status === 'Pendente' || $order->payment->status === 'Aguardando Confirmação')
                                 <button class="btn btn-primary" data-toggle="modal" data-target="#uploadReceiptModal">Enviar
-                                    Recibo
+                                    Recibo de Transferência
                                     {{ $order->payment->status === 'Aguardando Confirmação' ? 'Novamente' : '' }}</button>
                             @endif
                         </div>
@@ -110,7 +110,7 @@
                             <thead class="thead-dark">
                                 <tr>
                                     <th>Imagem</th>
-                                    <th>Nome do Produto</th>
+                                    <th>Nome do Producto</th>
                                     <th>Quantidade</th>
                                     <th>Preço Unitário</th>
                                     <th>Total</th>

@@ -61,7 +61,6 @@
                              <button type="button" data-toggle="modal" data-target="#myModal" class="navbar-right">Nova
                                  Categoria</button>
                              @include('admin.category.editor')
-
                          </div>
                          <table style="margin-top: -200px;">
                              <tr>

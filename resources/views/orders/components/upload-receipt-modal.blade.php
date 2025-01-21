@@ -6,14 +6,14 @@
             @csrf
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="uploadReceiptModalLabel">Enviar Comprovante de Pagamento</h5>
+                    <h5 class="modal-title" id="uploadReceiptModalLabel">Enviar Comprovativo de Pagamento</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
                 <div class="modal-body">
                     <div class="form-group">
-                        <label for="receipt_image">Selecione o comprovante (Imagem ou PDF)</label>
+                        <label for="receipt_image">Selecionar comprovativo (JPEG ou PDF)</label>
                         <input type="file" name="receipt_image" id="receipt_image" class="form-control"
                             accept="image/*,application/pdf" required>
                     </div>
