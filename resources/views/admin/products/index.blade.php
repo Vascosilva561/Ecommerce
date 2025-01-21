@@ -70,7 +70,7 @@
                                  <th>Preço</th>
                                  <th>Stock</th>
                                  <th>Detalhes</th>
-                                 <th>Setting</th>
+                                 <th>Acções</th>
                              </tr>
 
                              @foreach ($products as $product)

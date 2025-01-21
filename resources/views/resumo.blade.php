@@ -14,7 +14,7 @@
                 <div class="col-md-6" align="center">
                     <p style="font-size: 18px;"><B>PAGAMENTO POR REFERÊNCIA</B></p>
                     <hr>
-                    <img src="{{ asset('images/benguela/multibanco.png') }}" style="width: 150px;">
+                    <img src="{{ asset('images/benguela/multicaixa.png') }}" style="width: 150px;">
                     <p>Escolheste pagamento por referência</p>
                     <p>Aqui tens um pequeno resumo da sua encomenda</p>
                     <p>O total a pagar pela sua encomenda e: <b style="color: #0f8ce4;">{{ $newTotal }}kz</b></p>

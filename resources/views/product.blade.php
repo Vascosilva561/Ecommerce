@@ -73,7 +73,7 @@
 
 
 
-								$count=App\Wishlist_model::where(['prod_id'=>$product->id])->count();
+								$count=App\Wishlist::where(['prod_id'=>$product->id])->count();
 
 								if ($count=="0"){ ?>
 

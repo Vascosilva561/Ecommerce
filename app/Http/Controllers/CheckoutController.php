@@ -10,7 +10,7 @@ use Cartalyst\Stripe\Exception\CardErrorException;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
 use App\Product;
-use App\Mail\SendMail ;
+use App\Mail\SendMail;
 use App\Order;
 use PDF;
 use App\User;
@@ -57,10 +57,11 @@ class CheckoutController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(CheckoutRequest $request){
+    public function store(CheckoutRequest $request)
+    {
 
-        $contents = Cart::content()->map(function($item){
-            return $item->model->slug.','.$item->qty;
+        $contents = Cart::content()->map(function ($item) {
+            return $item->model->slug . ',' . $item->qty;
         })->values()->toJson();
 
         try {
@@ -70,7 +71,7 @@ class CheckoutController extends Controller
                 'source' => $request->stripeToken,
                 'description' => 'Order',
                 'receipt_email' => $request->email,
-                'metadata' =>[
+                'metadata' => [
                     //change to Order ID after we start using DB
                     'contents' => $contents,
                     'quantity' => Cart::instance('default')->count(),
@@ -84,11 +85,10 @@ class CheckoutController extends Controller
             session()->forget('coupon');
             return back()->with('success_message', 'Obrigado! Seu pagamento foi efetuado com sucesso');
             //return redirect()->route('thankyou.index')->with('success_message', 'Obrigado! Seu pagamento foi efetuado com sucesso');
-           
-       } catch (CardErrorException $e) {
-        return back()->withErrors('Error! ' . $e->getMessage());
-           
-       }
+
+        } catch (CardErrorException $e) {
+            return back()->withErrors('Error! ' . $e->getMessage());
+        }
     }
 
     /**
@@ -97,7 +97,8 @@ class CheckoutController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    private function getNumbers(){
+    private function getNumbers()
+    {
         $tax = config('cart.tax') / 100;
 
         $discount = session()->get('coupon')['discount'] ?? 0;
@@ -112,22 +113,21 @@ class CheckoutController extends Controller
             'newTax' => $newTax,
             'newTotal' => $newTotal,
         ]);
-        
     }
 
-    public function referencia(Request $request){
-        Order::createOrder();
+    public function referencia(Request $request)
+    {
+        $order = Order::createOrder();
         Cart::destroy();
-        
-        return redirect()->route('finish.viewReferences')->with('success_message', 'O item já está no seu carrinho');view('thankyou', compact('user'));
+
+        return redirect()->route('finish.viewReferences', ['order_id' => $order->id])->with('success_message', 'O item já está no seu carrinho');
+        view('thankyou', compact('user'));
     }
 
-    public function viewReferences(){
+    public function viewReferences($order_id)
+    {
+        $order  =  Order::findOrFail($order_id);
 
-        $user=Auth::user();
-        $user  =  Order::orderBy('id', 'DESC')->take(1)->get();
-
-        return view('thankyou',compact('user'));
-    }   
-    
+        return view('thankyou', compact('order'));
+    }
 }

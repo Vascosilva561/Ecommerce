@@ -6,7 +6,7 @@ use Auth;
 use App\Product;
 use App\Category;
 use App\OrderProduct;
-use App\Wishlist_model;
+use App\Wishlist;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -50,7 +50,7 @@ class LandingPageController extends Controller
 
     public function addWishlist(Request $request)
     {
-        $wishlist = new Wishlist_model();
+        $wishlist = new Wishlist();
         $wishlist->user_id = Auth::user()->id;
         $wishlist->prod_id = $request->prod_id;
 
@@ -64,7 +64,7 @@ class LandingPageController extends Controller
 
         $user = Auth::user();
         /*
-    $products = Wishlist_model::where('user_id', '=', $user->id)->leftJoin('products','Wishlist_model.prod_id','=', 'products.id')->get();
+    $products = Wishlist::where('user_id', '=', $user->id)->leftJoin('products','Wishlist.prod_id','=', 'products.id')->get();
     return view('wishlist', compact('products'));*/
 
 

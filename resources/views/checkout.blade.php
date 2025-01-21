@@ -154,14 +154,14 @@
                         </div>
 
 
-                        <div class="cart_buttons" align="center">
+                        <div class="cart_buttons d-flex" align="center">
                             {{-- <a href="{{ route('checkout.index') }}"  class="button cart_button_clear">Add to Cart</a> --}}
                             {{-- <a href="{{ route('formpayment.formasPagamento') }}"  class="btn btn-warning btn-lg">Forma de Pagamento</a> --}}
-                            {{-- <a href="{{ route('faturaProforma') }}" class="btn btn-warning btn-lg"
-                                style="width: 500px; margin-right: 700px; background: linear-gradient(to bottom, #003366 0%, #666633 100%);"><B>PAGAR
-                                    POR TRANFERENCIA BANCARIA</B></a> --}}
+                            <a href="{{ route('faturaProforma') }}" class="btn btn-warning btn-lg mr-2"
+                                style="background: linear-gradient(to bottom, #003366 0%, #666633 100%);"><B>PAGAR
+                                    POR TRANFERENCIA BANCARIA</B></a>
                             <a href="{{ route('resumo.create') }}" class="btn btn-warning btn-lg"
-                                style="margin-top:40px; border-radius: 4px; background: #E7540A"><B>
+                                style="border-radius: 4px; background: #E7540A"><B>
                                     PAGAMENTO POR REFERÊNCIA</B></a>
                         </div>
                     </div>

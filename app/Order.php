@@ -12,20 +12,22 @@ class Order extends Model
 {
     protected $table = 'orders';
     protected $primarykey = 'id';
-    protected $fillable = ['total', 'status', 'user_id', 'referens', 'sub_total', 'tax', 'freight_cost', 'address_id'];
+    protected $fillable = ['total', 'status', 'user_id', 'sub_total', 'tax', 'freight_cost', 'address_id'];
 
     public function orderFields()
     {
-        return $this->belongsToMany(Product::class)->withPivot('quantity', 'total');
+        return $this->belongsToMany(Product::class)->withPivot('quantity', 'total', 'price', 'tax');
+    }
+
+    public function payment()
+    {
+        return $this->hasOne(Payment::class, 'order_id');
     }
 
     public static function createOrder()
     {
         $user = Auth::user();
-        $referens = substr(str_shuffle('123456789'), 0, 9);
-        while ($user->orders()->where('referens', $referens)->count() > 0) {
-            $referens = substr(str_shuffle('123456789'), 0, 9);
-        }
+
 
         $totalWeight = 0;
         $cartItems = Cart::content();
@@ -43,19 +45,35 @@ class Order extends Model
             'freight_cost' => $freightCost,
             'total' => Cart::total() + $freightCost,
             'status' => 'Pendente',
-            'referens' => $referens
+        ]);
+
+        $transaction_id = Str::uuid();
+
+        while (Payment::where('transaction_id', $transaction_id)->count() > 0) {
+            $transaction_id = Str::uuid();
+        }
+
+        $reference = substr(str_shuffle('123456789'), 0, 9);
+        while (Payment::where('reference', $reference)->count() > 0) {
+            $reference = substr(str_shuffle('123456789'), 0, 9);
+        }
+
+        Payment::create([
+            'order_id' => $order->id,
+            'transaction_id' => $transaction_id,
+            'method' => 'Recibo',
+            'reference' => $reference
         ]);
 
         foreach ($cartItems as $cartItem) {
-            $order->orderFields()->attach(
-                $cartItem->id,
-                [
-                    'quantity' => $cartItem->qty,
-                    'tax' => $cartItem->tax,
-                    'price' => $cartItem->price,
-                    'total' => $cartItem->qty * $cartItem->price
-                ]
-            );
+            OrderProduct::create([
+                'order_id' => $order->id,
+                'product_id' => $cartItem->id,
+                'quantity' => $cartItem->qty,
+                'price' => $cartItem->price,
+                'tax' => $cartItem->tax,
+                'total' => $cartItem->qty * $cartItem->price
+            ]);
         }
 
         //$date = date('y-m-d');
@@ -80,7 +98,7 @@ class Order extends Model
         ];
 
         $opts = [
-            CURLOPT_URL             => "https://api.sandbox.proxypay.co.ao/references/" . $order->referens,
+            CURLOPT_URL             => "https://api.sandbox.proxypay.co.ao/references/" . $order->payment->reference,
             CURLOPT_CUSTOMREQUEST   => "PUT",
             //CURLOPT_URL             => "https://api.sandbox.proxypay.co.ao/payments",
             //CURLOPT_CUSTOMREQUEST   => "POST",
@@ -101,5 +119,7 @@ class Order extends Model
         $err = curl_error($curl);
 
         curl_close($curl);
+
+        return $order;
     }
 }

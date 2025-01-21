@@ -104,6 +104,8 @@
                                             class="mini-sub-pro">Pedidos</span></a></li>
                                 <li><a title="Product Payment" href="product-payment.html"><span
                                             class="mini-sub-pro">Pagamentos</span></a></li>
+                                <li><a title="Product Payment" href="{{ route('bank-accounts.index') }}"><span
+                                            class="mini-sub-pro">Contas Bancárias</span></a></li>
                                 <li><a title="Product Payment" href="product-payment.html"><span
                                             class="mini-sub-pro">Fornecedores</span></a></li>
                             </ul>

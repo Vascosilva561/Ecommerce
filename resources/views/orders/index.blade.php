@@ -44,7 +44,7 @@
                                     <tr>
                                         <td>{{ $order->created_at }}</td>
                                         <td>{{ $order->id }}</td>
-                                        <td>{{ $order->referens }}</td>
+                                        <td>{{ $order->payment->reference }}</td>
                                         <td>{{ presentPrice($order->total) }}kz</td>
 
                                         <td>

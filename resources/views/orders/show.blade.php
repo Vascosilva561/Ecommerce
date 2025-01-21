@@ -5,103 +5,159 @@
     <link rel="stylesheet" type="text/css" href="{{ asset('styles/product_responsive.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('styles/cart_styles.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('styles/cart_responsive.css') }}">
-@endsection
-
-@section('title', 'Pedido - ' . $order->id)
-
-@section('content')
     <style type="text/css">
         table td {
             padding: 10px;
         }
     </style>
+@endsection
 
-    <section id="cart_items">
-        <div class="container">
-            <br>
-            <h3 style="text-align: center; text-decoration: margin-top: 40px;">
-                <center>Pedido {{ $order->id }} (Referência: {{ $order->referens }})</center>
-            </h3><br>
+@section('title', 'Pedido - ' . $order->id)
+
+@section('content')
+    <section id="order_details">
+        <div class="container mt-4">
+            <h3 class="text-center mb-4">Detalhes do Pedido #{{ $order->id }}</h3>
 
             <div class="row">
+                <div class="col">
+                    @if (session()->has('error_message'))
+                        <div class="alert alert-danger">
+                            {{ session()->get('error_message') }}
+                        </div>
+                    @endif
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    @if (session()->has('success_message'))
+                        <div class="alert alert-success">
+                            {{ session()->get('success_message') }}
+                        </div>
+                    @endif
+                </div>
+            </div>
 
-                <div class="col-md-12">
+            <div class="row">
+                <div class="col">
+                    <!-- Resumo do Pedido -->
+                    <div class="card mb-4">
+                        <div class="card-header bg-primary text-white">
+                            <h5 class="mb-0">Resumo do Pedido</h5>
+                        </div>
+                        <div class="card-body">
+                            <p><strong>Referência do Pedido:</strong> {{ $order->payment->reference }}</p>
+                            <p><strong>Estado do Pedido:</strong>
+                                <span
+                                    class="badge badge-{{ $order->status === 'Cancelado' ? 'danger' : ($order->status === 'Pago' ? 'success' : 'info') }}">
+                                    {{ $order->status }}
+                                </span>
+                            </p>
+                            <p><strong>Data do Pedido:</strong> {{ $order->created_at->format('d/m/Y H:i') }}</p>
+                            <p><strong>Forma de Envio:</strong> {{ $order->shipping_method }}</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col">
+                    <!-- Informações do Pagamento -->
+                    <div class="card mb-4">
+                        <div class="card-header bg-success text-white">
+                            <h5 class="mb-0">Informações do Pagamento</h5>
+                        </div>
+                        <div class="card-body">
+                            <p><strong>Método de Pagamento:</strong> {{ $order->payment->method }}</p>
+                            <p><strong>Status do Pagamento:</strong>
+                                <span
+                                    class="badge badge-{{ $order->payment->status === 'Cancelado' ? 'danger' : ($order->payment->status === 'Confirmado' ? 'success' : 'info') }}">
+                                    {{ $order->payment->status }}
+                                </span>
+                            </p>
+                            @if ($order->payment->receipt_image)
+                                <p><strong>Comprovante de Pagamento:</strong></p>
+                                <!-- Botão para abrir o modal -->
+                                <button type="button" class="btn btn-primary" data-toggle="modal"
+                                    data-target="#viewReceiptModal">
+                                    Visualizar Comprovante
+                                </button>
+
+                                <!-- Incluindo o componente viewReceiptModal com a URL do arquivo -->
+                                @include('orders.components.view-receipt-modal', [
+                                    'url' => asset('images/receipts/' . $order->payment->receipt_image),
+                                ])
+                            @else
+                                <p class="text-warning">Nenhum comprovante enviado.</p>
+                            @endif
+
+                            @if ($order->payment->status === 'Pendente' || $order->payment->status === 'Aguardando Confirmação')
+                                <button class="btn btn-primary" data-toggle="modal" data-target="#uploadReceiptModal">Enviar
+                                    Recibo
+                                    {{ $order->payment->status === 'Aguardando Confirmação' ? 'Novamente' : '' }}</button>
+                            @endif
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <!-- Lista de Produtos -->
+            <div class="card mb-4">
+                <div class="card-header bg-info text-white">
+                    <h5 class="mb-0">Itens do Pedido</h5>
+                </div>
+                <div class="card-body">
                     <div class="table-responsive">
-                        <table class="table table-hover">
-                            <thead>
+                        <table class="table table-striped table-hover">
+                            <thead class="thead-dark">
                                 <tr>
-                                    <th>Data</th>
-                                    <th>Nome do Producto</th>
-                                    <th>Código do Producto</th>
+                                    <th>Imagem</th>
+                                    <th>Nome do Produto</th>
                                     <th>Quantidade</th>
-                                    <th>Preço Unit</th>
+                                    <th>Preço Unitário</th>
                                     <th>Total</th>
-
                                 </tr>
                             </thead>
-
                             <tbody>
                                 @foreach ($order_products as $order_product)
                                     <tr>
                                         <td>
-                                            <a href="{{ route('shop.show', $order_product->product->id) }}">
-                                                <img src="{{ asset('images/product/' . $order_product->product->image) }}"
-                                                    style="width: 120px;" alt="">
-                                            </a>
+                                            <img src="{{ asset('images/product/' . $order_product->product->image) }}"
+                                                alt="{{ $order_product->product->name }}" class="img-fluid"
+                                                style="max-width: 80px;">
                                         </td>
                                         <td>{{ ucwords($order_product->product->name) }}</td>
-                                        <td>{{ $order->referens }}</td>
                                         <td>{{ $order_product->quantity }}</td>
                                         <td>{{ presentPrice($order_product->price) }}kz</td>
                                         <td>{{ presentPrice($order_product->total) }}kz</td>
                                     </tr>
                                 @endforeach
-
                             </tbody>
-
                         </table>
-
                     </div>
                 </div>
             </div>
-            <div class="row">
-                <div class="col">
-                    <div class="cart_items" style="margin-top: -10px;">
-                        <ul class="cart_list">
-                            <li class="cart_item clearfix">
-                                <div class="cart_item_info d-flex flex-md-row flex-column justify-content-between">
-                                    <div class="cart_item_name cart_info_col">
-                                        <div class="cart_item_title"><b>SUBTOTAL</b></div>
-                                        <div class="cart_item_text">{{ presentPrice($order->sub_total) }}kz</div>
 
-                                    </div>
-
-                                    <div class="cart_item_color cart_info_col">
-                                        <div class="cart_item_title"><b>TAX (14%)</b></div>
-                                        <div class="cart_item_text"><span>{{ presentPrice($order->tax) }}kz</span></div>
-                                    </div>
-                                    <div class="cart_item_color cart_info_col">
-                                        <div class="cart_item_title"><b>ENVIO</b></div>
-                                        <div class="cart_item_text"><span
-                                                style="width: 200px;">{{ presentPrice($order->freight_cost) }}kz</span>
-                                        </div>
-                                    </div>
-
-                                    <div class="cart_item_price cart_info_col">
-                                        <div class="cart_item_title"><b>TOTAL</b></div>
-                                        <div class="cart_item_text">
-                                            <b>{{ presentPrice($order->total) }}kz</b>
-                                        </div>
-                                    </div>
-
-                                </div>
-                            </li>
-                        </ul>
-                    </div>
-
+            <!-- Totais do Pedido -->
+            <div class="card mb-4">
+                <div class="card-header bg-dark text-white">
+                    <h5 class="mb-0">Totais</h5>
                 </div>
-
+                <div class="card-body">
+                    <p><strong>Subtotal:</strong> {{ presentPrice($order->sub_total) }}kz</p>
+                    <p><strong>Taxa (14%):</strong> {{ presentPrice($order->tax) }}kz</p>
+                    <p><strong>Frete:</strong> {{ presentPrice($order->freight_cost) }}kz</p>
+                    <h5><strong>Total:</strong> {{ presentPrice($order->total) }}kz</h5>
+                </div>
             </div>
+
+            @if ($order->status !== 'Cancelado' && $order->status !== 'Entregue')
+                <div class="text-center">
+                    <button class="btn btn-danger" data-toggle="modal" data-target="#cancelOrderModal">Cancelar
+                        Pedido</button>
+                </div>
+            @endif
         </div>
     </section>
+
+    <!-- Modal para Enviar Recibo -->
+    @include('orders.components.upload-receipt-modal', ['order' => $order]);
 @endsection

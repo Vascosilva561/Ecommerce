@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class AddFieldsToOrderProduct extends Migration
+class CreateBankAccountsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,12 @@ class AddFieldsToOrderProduct extends Migration
      */
     public function up()
     {
-        Schema::table('order_product', function (Blueprint $table) {
-            $table->float('price')->after('product_id')->default(0);
+        Schema::create('bank_accounts', function (Blueprint $table) {
+            $table->increments('id');
+            $table->string('name');
+            $table->string('bank');
+            $table->string('iban');
+            $table->timestamps();
         });
     }
 
@@ -25,8 +29,6 @@ class AddFieldsToOrderProduct extends Migration
      */
     public function down()
     {
-        Schema::table('order_product', function (Blueprint $table) {
-            $table->dropColumn('price');
-        });
+        Schema::dropIfExists('bank_accounts');
     }
 }

@@ -18,6 +18,7 @@ Route::group(['middleware' => 'admin'], function () {
         Route::resource('/admin/categories', 'Admin\CategoryController', [
             'except' => ['destroy'],
         ]);
+        Route::resource('admin/bank-accounts', 'Admin\BankAccountController');
         Route::post('/admin/categories/{id}', 'Admin\CategoryController@destroy')->name('categories.destroy');
     });
 
@@ -37,6 +38,11 @@ Route::group(['middleware' => ['auth'], 'prefix' => "orders"], function () {
     Route::get('/', 'OrderController@index')->name('orders.index');
     Route::get('/{order}', 'OrderController@show')->name('orders.show');
 });
+
+Route::group(['middleware' => ['auth'], 'prefix' => "payments"], function () {
+    Route::post('/{id}/add-receipt', 'PaymentController@addReceipt')->name('payments.addReceipt');
+});
+
 Route::get('/profile/address', 'ProfileController@address')->middleware('auth')->name('profile.address');
 
 
@@ -79,7 +85,7 @@ Route::get('/checkout', 'CheckoutController@index')->name('checkout.index')->mid
 Route::post('/checkout', 'CheckoutController@store')->name('checkout.store');
 Route::get('/resumo', 'CheckoutController@create')->name('resumo.create');
 Route::get('/payment', 'CheckoutController@referencia')->name('payment.referencia');
-Route::get('/finish', 'CheckoutController@viewReferences')->name('finish.viewReferences');
+Route::get('/finish/{order_id}', 'CheckoutController@viewReferences')->name('finish.viewReferences');
 Route::post('/thankyou', 'ConfirmationController@store')->name('thankyou.index');
 
 Route::get('empty', function () {
