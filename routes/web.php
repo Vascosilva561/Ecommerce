@@ -12,19 +12,18 @@
 */
 
 Route::group(['middleware' => 'admin'], function () {
-    Route::group(['middleware' => 'auth:admin'], function () {
-        Route::get('/admin/dashboard', 'AdminController@index');
-        Route::resource('/admin/products', 'Admin\ProductsController');
-        Route::resource('/admin/categories', 'Admin\CategoryController', [
-            'except' => ['destroy'],
-        ]);
-        Route::resource('admin/bank-accounts', 'Admin\BankAccountController');
-        Route::post('/admin/categories/{id}', 'Admin\CategoryController@destroy')->name('categories.destroy');
+    Route::group(['middleware' => 'auth:admin', 'prefix' => 'admin', 'as' => 'admin.'], function () {
+        Route::get('/dashboard', 'AdminController@index');
+        Route::resource('/products', 'Admin\ProductController');
+        Route::resource('/categories', 'Admin\CategoryController');
+        Route::resource('/bank-accounts', 'Admin\BankAccountController');
+        Route::resource('/orders', 'Admin\OrderController');
+        Route::resource('/payments', 'Admin\PaymentController');
+        Route::resource('/suppliers', 'Admin\SupplierController');
+        Route::get('/login', 'AdminController@login')->name('login');
+        Route::post('/login', 'AdminController@postLogin')->name('postLogin');
+        Route::get('/logout', 'AdminController@logout')->name('logout');
     });
-
-    Route::get('/admin/login', 'AdminController@login')->name('admin.login');
-    Route::post('/admin/login', 'AdminController@postLogin');
-    Route::get('admin/logout', 'AdminController@logout');
 });
 
 

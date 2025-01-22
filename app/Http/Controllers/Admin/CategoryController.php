@@ -26,20 +26,9 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        $categories = Category::all();
-        return view('admin.category.list', compact('categories'));
+        $categories = Category::paginate();
+        return view('admin.categories.index', compact('categories'));
     }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
     /**
      * Store a newly created resource in storage.
      *
@@ -48,9 +37,6 @@ class CategoryController extends Controller
      */
     public function store(Request $request)
     {
-
-
-
         $formInput = $request->except('image');
         $this->validate($request, [
             'name' => 'required',
@@ -74,31 +60,8 @@ class CategoryController extends Controller
             }
             return back()->with('success_message', 'Categoria criada com sucesso');
         } else {
-            return redirect()->back();
+            return redirect()->back()->withErrors('Erro ao criar a categoria');
         }
-    }
-
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
     }
 
     /**
@@ -132,9 +95,9 @@ class CategoryController extends Controller
                 $request->image->storeAs('categories', $fname, 'local');
                 $category->update(['image' => $fname]);
             }
-            return back()->with('success_message', 'Categoria atualizada com sucesso');
+            return back()->with('success_message', 'Categoria actualizada com sucesso');
         } else {
-            return back()->with('error_message', 'Erro ao atualizar a categoria');
+            return back()->with('error_message', 'Erro ao actualizar a categoria');
         }
     }
 

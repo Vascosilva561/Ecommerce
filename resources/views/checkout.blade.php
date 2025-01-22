@@ -57,7 +57,7 @@
                                 <tr>
                                     <td>
                                         <a href="{{ route('shop.show', $item->model->slug) }}">
-                                            <img src="{{ asset('images/product/' . $item->model->image) }}"
+                                            <img src="{{ asset('images/products/' . $item->model->image) }}"
                                                 style="width: 120px;" alt="">
                                         </a>
                                     </td>

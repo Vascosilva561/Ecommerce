@@ -59,7 +59,7 @@
                                     <div class="product_border"></div>
                                     <div class="product_image d-flex flex-column align-items-center justify-content-center">
                                         <a href="{{ route('shop.show', ['product' => $product->id]) }}" tabindex="0"><img
-                                                src="{{ asset('images/product/' . $product->image) }}"
+                                                src="{{ asset('images/products/' . $product->image) }}"
                                                 style="width: 150px; height: 150px;" alt=""></a>
                                     </div>
                                     <div class="product_content">

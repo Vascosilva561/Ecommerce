@@ -177,7 +177,7 @@
                                     <div class="owl-item deals_item">
                                         <a href="{{ route('shop.show', $promocao->id) }}">
                                             <div class="deals_image"><img
-                                                    src="{{ asset('images/product/' . $promocao->image) }}" alt="">
+                                                    src="{{ asset('images/products/' . $promocao->image) }}" alt="">
                                             </div>
                                             <div class="deals_content">
                                                 <div class="deals_info_line d-flex flex-row justify-content-start">
@@ -267,7 +267,7 @@
                                                 <div
                                                     class="product_image d-flex flex-column align-items-center justify-content-center">
                                                     <a href="{{ route('shop.show', $product->id) }}"><img
-                                                            src="{{ asset('images/product/' . $product->image) }}"
+                                                            src="{{ asset('images/products/' . $product->image) }}"
                                                             alt="" style="width: 150px; height: 150px;"></a>
                                                 </div>
                                                 <div class="product_content">
@@ -414,7 +414,7 @@
                                         <div class="col-lg-8 col-md-6 fill_height">
                                             <div class="banner_2_image_container">
                                                 <div class="banner_2_image"><img
-                                                        src="/images/product/{{ $highlight->image }}" alt="">
+                                                        src="/images/products/{{ $highlight->image }}" alt="">
                                                 </div>
                                             </div>
                                         </div>
@@ -456,7 +456,7 @@
                                                     <div
                                                         class="product_image d-flex flex-column align-items-center justify-content-center">
                                                         <a href="{{ route('shop.show', $new->id) }}"><img
-                                                                src="{{ asset('images/product/' . $new->image) }}"
+                                                                src="{{ asset('images/products/' . $new->image) }}"
                                                                 alt="" style="width: 170px;"></a>
                                                     </div>
                                                     <div class="product_content">
@@ -517,7 +517,7 @@
                                         <div class="d-flex flex-column align-items-center justify-content-center">
                                             <div class="arrivals_single_image"><a
                                                     href="{{ route('shop.show', $news->id) }}"><img
-                                                        src="{{ asset('images/product/' . $news->image) }}"
+                                                        src="{{ asset('images/products/' . $news->image) }}"
                                                         alt=""></a></div>
                                             <div class="arrivals_single_content">
                                                 <div class="arrivals_single_category"><a href="#">Smartphones</a>
@@ -603,7 +603,7 @@
                                             <div class="bestsellers_image"><a
                                                     href="{{ route('shop.show', $productos->id) }}"
                                                     style="font-size: 12px;"><img
-                                                        src="{{ asset('images/product/' . $productos->image) }}"
+                                                        src="{{ asset('images/products/' . $productos->image) }}"
                                                         alt="" style="width: 200px;"></a></div>
                                             <div class="bestsellers_content">
                                                 <div class="bestsellers_category"><a href="#">.</a></div>
@@ -1047,7 +1047,7 @@
                                         class="viewed_item discount d-flex flex-column align-items-center justify-content-center text-center">
                                         <div class="viewed_image"><a
                                                 href="{{ route('shop.show', $view_count->id) }}"><img
-                                                    src="{{ asset('images/product/' . $view_count->image) }}"
+                                                    src="{{ asset('images/products/' . $view_count->image) }}"
                                                     alt="" style="width: 200px; height: 140px;"></a></div>
                                         <div class="viewed_content text-center">
                                             <div class="viewed_price">{{ $view_count->presentPrice() }}Kz</div>

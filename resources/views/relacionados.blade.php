@@ -26,7 +26,7 @@
                                      <a href="{{ route('shop.show', ['product' => $product->id]) }}"
                                          class="text-decoration-none">
                                          <div class="viewed_image"><img
-                                                 src="{{ asset('images/product/' . $product->image) }}" alt="">
+                                                 src="{{ asset('images/products/' . $product->image) }}" alt="">
                                          </div>
                                          <div class="viewed_content text-center">
                                              <div class="viewed_price">{{ $product->presentPrice() }}Kz</div>

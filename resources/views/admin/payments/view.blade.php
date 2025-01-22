@@ -3,11 +3,11 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content">
 
-            <div class="modal-header" style="background:#1B2A47">
+            <div class="modal-header text-white" style="background-color: #1b2a47">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
                         aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title" id="myModalLabel2" style="color: black">
-                    {{ isset($item) ? 'Editar Categoria - ' . $item->name : 'Criar Categoria' }}</h4>
+                <h4 class="modal-title" id="myModalLabel2">
+                    {{ isset($item) ? 'Editar Categoria' : 'Criar Categoria' }}</h4>
             </div>
 
             <div class="modal-body">
@@ -22,7 +22,7 @@
                                         <br><br>
                                         <div class="custom-product-edit">
                                             <form
-                                                action="{{ isset($item) ? route('categories.update', $item->id) : route('categories.store') }}"
+                                                action="{{ isset($item) ? route('admin.orders.update', $item->id) : route('admin.orders.store') }}"
                                                 method="POST" role="form" enctype="multipart/form-data">
                                                 @csrf
                                                 @if (isset($item))

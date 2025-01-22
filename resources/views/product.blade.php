@@ -15,8 +15,8 @@
                 <div class="col-lg-2 order-lg-1 order-2">
                     <ul class="image_list">
                         @foreach ($imagens as $image)
-                            <li data-image="{{ asset('images/product/' . $image->img) }}"><img
-                                    src="{{ asset('images/product/' . $image->img) }}" alt=""></li>
+                            <li data-image="{{ asset('images/products/' . $image->img) }}"><img
+                                    src="{{ asset('images/products/' . $image->img) }}" alt=""></li>
                         @endforeach
                     </ul>
                 </div>
@@ -24,7 +24,7 @@
                 @foreach ($products as $product)
                     <!-- Selected Image -->
                     <div class="col-lg-5 order-lg-2 order-1">
-                        <div class="image_selected"><img src="{{ asset('images/product/' . $product->image) }}"
+                        <div class="image_selected"><img src="{{ asset('images/products/' . $product->image) }}"
                                 alt=""></div>
                     </div>
 

@@ -83,7 +83,7 @@
                                              title="Edit" class="pd-setting-ed"><i class="fa fa-pencil-square-o"
                                                  aria-hidden="true"></i></button>
                                          @include('admin.bank-accounts.editor', ['item' => $item])
-                                         <form action="{{ route('bank-accounts.destroy', ['item' => $item->id]) }}"
+                                         <form action="{{ route('admin.bank-accounts.destroy', ['item' => $item->id]) }}"
                                              method="POST">
                                              @csrf
                                              @method('DELETE')

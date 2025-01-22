@@ -1,40 +1,10 @@
  @extends('admin.master')
- <link rel="stylesheet" type="text/css" href="{{ asset('css/modal.css') }}">
- @section('title', 'jfkj')
+ @section('style')
+     <link rel="stylesheet" type="text/css" href="{{ asset('css/modal.css') }}">
+ @endsection
+ @section('title', 'Productos')
  @section('content')
-     <div class="breadcome-area">
-         <div class="container-fluid">
-             <div class="row">
-                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                     <div class="breadcome-list">
-                         <div class="row">
-                             <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
-                                 <div class="breadcomb-wp">
-                                     <div class="breadcomb-icon">
-                                         <i class="icon nalika-home"></i>
-                                     </div>
-                                     <div class="breadcomb-ctn">
-                                         <h2>Productos</h2>
-
-                                     </div>
-                                 </div>
-                             </div>
-                             <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
-                                 <div class="breadcomb-report">
-                                     <button data-toggle="tooltip" data-placement="left" title="Download Report"
-                                         class="btn"><i class="icon nalika-download"></i></button>
-                                 </div>
-                             </div>
-                         </div>
-                     </div>
-                 </div>
-             </div>
-         </div>
-     </div>
-
-
-
-     <div class="product-status mg-b-30">
+     <div class="product-status mg-b-30" style="margin-top: 16px;">
          <div class="container-fluid">
              <div class="row">
                  @if (session()->has('success_message'))
@@ -56,9 +26,13 @@
                      <div class="product-status-wrap">
                          <h4>Lista de Productos</h4>
                          <div class="add-product">
-                             <button type="button" data-toggle="modal" data-target="#myModal2" class="navbar-right">Adicionar
+                             <button type="button" data-toggle="modal" data-target="#myModal"
+                                 class="navbar-right btn btn-primary">Adicionar
                                  Producto </button>
-                             @include('admin.products.create')
+                             @include('admin.products.editor', [
+                                 'categories' => $categories,
+                                 'item' => null,
+                             ])
 
                          </div>
 
@@ -77,7 +51,7 @@
                              @foreach ($products as $product)
                                  <tr style="color:black;">
 
-                                     <td><img src="{{ asset('images/product/' . $product->image) }}" alt="" /></td>
+                                     <td><img src="{{ asset('images/products/' . $product->image) }}" alt="" /></td>
                                      <td>{{ $product->name }}</td>
                                      <td>
                                          <button class="pd-setting">Active</button>
@@ -89,29 +63,32 @@
 
 
                                      <td>
-                                         <a href="#editcategories-{{ $product->id }}" data-toggle="modal"
-                                             data-target=".editcategories-{{ $product->id }}" title="Edit"
-                                             class="pd-setting-ed"><i class="fa fa-pencil-square-o"
-                                                 aria-hidden="true"></i></a>
-                                         <a data-toggle="tooltip" title="Trash" class="pd-setting-ed"><i
-                                                 class="fa fa-trash-o" aria-hidden="true"></i></a>
+                                         <div class="d-flex">
+                                             <button href="#myModal{{ $product->id }}" data-toggle="modal"
+                                                 data-target="#myModal{{ $product->id }}" title="Edit"
+                                                 class="pd-setting-ed btn btn-warning"><i class="fa fa-pencil-square-o"
+                                                     aria-hidden="true"></i></button>
+                                             <button type="submit" form="deleteForm{{ $product->id }}"
+                                                 class="pd-setting-ed btn btn-danger" data-toggle="tooltip"
+                                                 title="Trash"><i class="fa fa-trash-o" aria-hidden="true"></i></button>
+                                             <form action="{{ route('admin.products.destroy', ['id' => $product->id]) }}"
+                                                 method="POST" id="deleteForm{{ $product->id }}" class="hidden">
+                                                 @csrf
+                                                 @method('DELETE')
+                                             </form>
+                                         </div>
                                      </td>
 
                                  </tr>
-                                 @include('admin.products.edit')
+                                 @include('admin.products.editor', [
+                                     'item' => $product,
+                                     'categories' => $categories,
+                                 ])
                              @endforeach
 
 
                          </table>
-                         <div class="custom-pagination">
-                             <ul class="pagination">
-                                 <li class="page-item"><a class="page-link" href="#">Previous</a></li>
-                                 <li class="page-item"><a class="page-link" href="#">1</a></li>
-                                 <li class="page-item"><a class="page-link" href="#">2</a></li>
-                                 <li class="page-item"><a class="page-link" href="#">3</a></li>
-                                 <li class="page-item"><a class="page-link" href="#">Next</a></li>
-                             </ul>
-                         </div>
+                         {{ $products->appends(request()->input())->links() }}
                      </div>
                  </div>
              </div>

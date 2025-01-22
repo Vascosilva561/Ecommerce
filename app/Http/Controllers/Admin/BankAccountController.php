@@ -49,9 +49,9 @@ class BankAccountController extends Controller
             $bank_account = BankAccount::findOrFail($id);
             $data = $request->all();
             $bank_account->update($data);
-            return redirect()->route('bank-accounts.index')->with('success_message', 'Conta bancária actualizada com sucesso!');
+            return redirect()->route('admin.bank-accounts.index')->with('success_message', 'Conta bancária actualizada com sucesso!');
         } catch (\Exception $e) {
-            return redirect()->route('bank-accounts.index')->withErrors('Não foi possível actualizar a conta bancária!');
+            return redirect()->route('admin.bank-accounts.index')->withErrors('Não foi possível actualizar a conta bancária!');
         }
     }
 
@@ -66,9 +66,9 @@ class BankAccountController extends Controller
         try {
             $bank_account = BankAccount::findOrFail($id);
             $bank_account->delete();
-            return redirect()->route('bank-accounts.index')->with('success_message', 'Conta bancária deletada com sucesso!');
+            return redirect()->route('admin.bank-accounts.index')->with('success_message', 'Conta bancária deletada com sucesso!');
         } catch (\Exception $e) {
-            return redirect()->route('bank-accounts.index')->withErrors('Não foi possível deletar a conta bancária!');
+            return redirect()->route('admin.bank-accounts.index')->withErrors('Não foi possível deletar a conta bancária!');
         }
     }
 }

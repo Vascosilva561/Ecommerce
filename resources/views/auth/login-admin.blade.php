@@ -119,7 +119,7 @@
         <div class="container-login100" style="background:#152036;">
             <div class="wrap-login100">
 
-                <form class="login100-form validate-form" method="POST" action="{{ url('/admin/login') }}"
+                <form class="login100-form validate-form" method="POST" action="{{ route('admin.postLogin') }}"
                     aria-label="{{ __('Login') }}">
                     @csrf
                     <span class="login100-form-logo">

@@ -3,11 +3,11 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content">
 
-            <div class="modal-header" style="background:#1B2A47">
+            <div class="modal-header text-white" style="background-color: #1b2a47">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
                         aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title" id="myModalLabel2" style="color: black">
-                    {{ isset($item) ? 'Editar Conta de Banco - ' . $item->name : 'Criar Conta de Banco' }}</h4>
+                <h4 class="modal-title" id="myModalLabel2">
+                    {{ isset($item) ? 'Editar Categoria' : 'Criar Categoria' }}</h4>
             </div>
 
             <div class="modal-body">
@@ -22,7 +22,7 @@
                                         <br><br>
                                         <div class="custom-product-edit">
                                             <form
-                                                action="{{ isset($item) ? route('admin.bank-accounts.update', $item->id) : route('admin.bank-accounts.store') }}"
+                                                action="{{ isset($item) ? route('admin.categories.update', $item->id) : route('admin.categories.store') }}"
                                                 method="POST" role="form" enctype="multipart/form-data">
                                                 @csrf
                                                 @if (isset($item))
@@ -31,33 +31,34 @@
                                                 <div class="product-tab-list">
                                                     <div class="row">
                                                         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                                                            <!-- Ad$icione seus campos de formulário aqui -->
+                                                            <!-- Adicione seus campos de formulário aqui -->
                                                             <div class="form-group">
-                                                                <label for="name" class="text-white"
-                                                                    style="color:#fff">Nome da Conta</label>
+                                                                <label for="category_name" class="text-white"
+                                                                    style="color:#fff">Nome da
+                                                                    Categoria</label>
                                                                 <input type="text" class="form-control"
                                                                     id="name" name="name"
                                                                     value="{{ isset($item) ? $item->name : '' }}"
                                                                     required>
                                                             </div>
                                                             <div class="form-group">
-                                                                <label for="bank" class="text-white"
-                                                                    style="color:#fff">Nome do Banco</label>
+                                                                <label for="slug" class="text-white"
+                                                                    style="color:#fff">Slug da
+                                                                    Categoria</label>
                                                                 <input type="text" class="form-control"
-                                                                    id="bank" name="bank"
-                                                                    value="{{ isset($item) ? $item->bank : '' }}"
+                                                                    id="slug" name="slug"
+                                                                    value="{{ isset($item) ? $item->slug : '' }}"
                                                                     required>
                                                             </div>
                                                             <div class="form-group">
-                                                                <label for="iban" class="text-white"
-                                                                    style="color:#fff">IBAN</label>
-                                                                <input type="text" class="form-control"
-                                                                    id="iban" name="iban"
-                                                                    value="{{ isset($item) ? $item->iban : '' }}"
-                                                                    required>
+                                                                <label for="image"
+                                                                    class="text-white"style="color:#fff">Imagem da
+                                                                    Categoria</label>
+                                                                <input type="file" class="form-control"
+                                                                    id="image" name="image" accept="image/*,.svg">
                                                             </div>
                                                             <button type="submit"
-                                                                class="btn btn-primary">{{ isset($item) ? 'Actualizar' : 'Cadastrar' }}</button>
+                                                                class="btn btn-primary">{{ isset($item) ? 'Actualizar' : 'Enviar' }}</button>
                                                         </div>
                                                     </div>
                                                 </div>

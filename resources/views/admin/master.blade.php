@@ -62,6 +62,8 @@
     <!-- modernizr JS
   ============================================ -->
     <script src="{{ asset('admin/js/vendor/modernizr-2.8.3.min.js') }}"></script>
+
+    @yield('style')
 </head>
 
 <body>
@@ -96,17 +98,17 @@
                                 <span class="mini-click-non">Ecommerce</span>
                             </a>
                             <ul class="submenu-angle" aria-expanded="true">
-                                <li><a title="Product List" href="{{ url('admin/categories') }}"><span
+                                <li><a title="Product List" href="{{ route('admin.categories.index') }}"><span
                                             class="mini-sub-pro">Categorias</span></a></li>
-                                <li><a title="Product Edit" href="{{ url('/admin/products') }}"><span
+                                <li><a title="Product Edit" href="{{ route('admin.products.index') }}"><span
                                             class="mini-sub-pro">Productos</span></a></li>
-                                <li><a title="Product Cart" href="product-cart.html"><span
+                                <li><a title="Product Cart" href="{{ route('admin.orders.index') }}"><span
                                             class="mini-sub-pro">Pedidos</span></a></li>
-                                <li><a title="Product Payment" href="product-payment.html"><span
+                                <li><a title="Product Payment" href="{{ route('admin.payments.index') }}"><span
                                             class="mini-sub-pro">Pagamentos</span></a></li>
-                                <li><a title="Product Payment" href="{{ route('bank-accounts.index') }}"><span
+                                <li><a title="Product Payment" href="{{ route('admin.bank-accounts.index') }}"><span
                                             class="mini-sub-pro">Contas Bancárias</span></a></li>
-                                <li><a title="Product Payment" href="product-payment.html"><span
+                                <li><a title="Product Payment" href="{{ route('admin.suppliers.index') }}"><span
                                             class="mini-sub-pro">Fornecedores</span></a></li>
                             </ul>
                         </li>
