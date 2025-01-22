@@ -22,7 +22,7 @@
                                         <br><br>
                                         <div class="custom-product-edit">
                                             <form
-                                                action="{{ isset($item) ? route('admin.categories.update', $item->id) : route('admin.categories.store') }}"
+                                                action="{{ isset($item) ? route('admin.orders.update', $item->id) : route('admin.orders.store') }}"
                                                 method="POST" role="form" enctype="multipart/form-data">
                                                 @csrf
                                                 @if (isset($item))
