@@ -28,7 +28,7 @@ class AddDatesToOrders extends Migration
     public function down()
     {
         Schema::table('orders', function (Blueprint $table) {
-            //
+            $table->dropColumn(['sent_date', 'expected_date', 'delivered_date']);
         });
     }
 }
