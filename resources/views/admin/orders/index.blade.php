@@ -55,11 +55,11 @@
                                              <button data-toggle="modal" data-target="#myModal{{ $order->id }}"
                                                  title="Edit" class="pd-setting-ed btn btn-primary mr-2 flex-1"><i
                                                      class="fa fa-eye" aria-hidden="true"></i></button>
+                                             @include('admin.orders.view', ['item' => $order])
                                          </div>
                                      </td>
 
                                  </tr>
-                                 @include('admin.orders.view', ['item' => $order])
                              @endforeach
 
 

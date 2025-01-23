@@ -1,6 +1,6 @@
 <!-- Modal de Preview - viewReceiptModal -->
 <div class="modal fade" id="viewReceiptModal" tabindex="-1" role="dialog" aria-labelledby="viewReceiptModalLabel"
-    aria-hidden="true">
+    style="z-index: 1100" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
         <div class="modal-content">
             <div class="modal-header">

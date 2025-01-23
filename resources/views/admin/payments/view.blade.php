@@ -6,11 +6,10 @@
             <div class="modal-header text-white" style="background-color: #1b2a47">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
                         aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title" id="myModalLabel2">
-                    {{ isset($item) ? 'Editar Categoria' : 'Criar Categoria' }}</h4>
+                <h4 class="modal-title" id="myModalLabel2">Detalhes do Pagamento</h4>
             </div>
 
-            <div class="modal-body">
+            <div class="modal-body" style="display: flex; flex-direction: column">
                 <!-- Single pro tab start-->
                 <div class="single-product-tab-area mg-b-30">
                     <!-- Single pro tab review Start-->
@@ -21,48 +20,68 @@
                                     <div class="review-tab-pro-inner">
                                         <br><br>
                                         <div class="custom-product-edit">
-                                            <form
-                                                action="{{ isset($item) ? route('admin.orders.update', $item->id) : route('admin.orders.store') }}"
-                                                method="POST" role="form" enctype="multipart/form-data">
-                                                @csrf
-                                                @if (isset($item))
-                                                    @method('PUT')
-                                                @endif
-                                                <div class="product-tab-list">
-                                                    <div class="row">
-                                                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                                                            <!-- Adicione seus campos de formulário aqui -->
-                                                            <div class="form-group">
-                                                                <label for="category_name" class="text-white"
-                                                                    style="color:#fff">Nome da
-                                                                    Categoria</label>
-                                                                <input type="text" class="form-control"
-                                                                    id="name" name="name"
-                                                                    value="{{ isset($item) ? $item->name : '' }}"
-                                                                    required>
-                                                            </div>
-                                                            <div class="form-group">
-                                                                <label for="slug" class="text-white"
-                                                                    style="color:#fff">Slug da
-                                                                    Categoria</label>
-                                                                <input type="text" class="form-control"
-                                                                    id="slug" name="slug"
-                                                                    value="{{ isset($item) ? $item->slug : '' }}"
-                                                                    required>
-                                                            </div>
-                                                            <div class="form-group">
-                                                                <label for="image"
-                                                                    class="text-white"style="color:#fff">Imagem da
-                                                                    Categoria</label>
-                                                                <input type="file" class="form-control"
-                                                                    id="image" name="image" accept="image/*,.svg">
-                                                            </div>
-                                                            <button type="submit"
-                                                                class="btn btn-primary">{{ isset($item) ? 'Actualizar' : 'Enviar' }}</button>
-                                                        </div>
+                                            <div style="display: flex; flex-direction: column; height: 100%;">
+                                                <table class="table table-responsive">
+                                                    <tbody>
+                                                        <tr>
+                                                            <th style="border: none;">Transação ID</th>
+                                                            <td style="border: none; text-align: right;">
+                                                                {{ $item->transaction_id }}</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <th style="border: none;">
+                                                                Código de Pedido</th>
+                                                            <td style="border: none; text-align: right;">
+                                                                {{ $item->order_id }}</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <th style="border: none;">Data
+                                                            </th>
+                                                            <td style="border: none; text-align: right;">
+                                                                {{ $item->created_at }}</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <th style="border: none;">Tipo de Pagamento</th>
+                                                            <td style="border: none; text-align: right;">
+                                                                {{ $item->method }}</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <th style="border: none;">
+                                                                Referência</th>
+                                                            <td style="border: none; text-align: right;">
+                                                                {{ $item->reference }}</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <th style="border: none;">Status</th>
+                                                            <td style="border: none; text-align: right;">
+                                                                {{ $item->status }}</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <th style="border: none;">Total</th>
+                                                            <td style="border: none; text-align: right;">
+                                                                {{ presentPrice($item->order->total) }}kz</td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                                @if ($item->receipt_image)
+                                                    <div style="display: flex; justify-content: space-between;">
+                                                        <span
+                                                            style="color: white; margin-top:auto; margin-bottom:auto;"><strong>Comprovativo
+                                                                de
+                                                                Pagamento:</strong>
+                                                        </span>
+                                                        <!-- Botão para abrir o modal -->
+                                                        <button type="button" class="btn btn-primary"
+                                                            data-toggle="modal" data-target="#viewReceiptModal">
+                                                            Visualizar Comprovativo
+                                                        </button>
                                                     </div>
-                                                </div>
-                                            </form>
+                                                @else
+                                                    <p class="text-warning">Nenhum comprovativo enviado.</p>
+                                                @endif
+
+
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -70,7 +89,43 @@
                         </div>
                     </div>
                 </div>
+                @if ($item->status == 'Aguardando Confirmação')
+                    <div
+                        style="display: flex; justify-content: space-between; margin-top: auto; padding-left: 32px; padding-right: 32px;">
+                        <form action="{{ route('admin.payments.cancel', $item->id) }}" method="POST">
+                            @csrf
+                            @method('PUT')
+                            <button type="submit" class="btn btn-danger">Cancelar
+                                Pedido</button>
+                        </form>
+                        <form action="{{ route('admin.payments.confirm', $item->id) }}" method="POST">
+                            @csrf
+                            @method('PUT')
+                            <input type="hidden" name="status" value="Confirmado">
+                            <button type="submit" class="btn btn-success">Confirmar
+                                Pagamento</button>
+                        </form>
+                    </div>
+                @endif
+                @if ($item->status == 'Confirmado' && $item->order->status == 'Pagamento Aprovado')
+                    <div
+                        style="display: flex; justify-content: space-between; margin-top: auto; padding-left: 32px; padding-right: 32px;">
+                        <div></div>
+                        <form action="{{ route('admin.payments.refund', $item->id) }}" method="POST">
+                            @csrf
+                            @method('PUT')
+                            <button type="submit" class="btn btn-success">Reembolsar Pagamento</button>
+                        </form>
+                    </div>
+                @endif
+
             </div>
         </div>
     </div>
 </div>
+
+@if ($item->receipt_image)
+    @include('orders.components.view-receipt-modal', [
+        'url' => asset('images/receipts/' . $item->receipt_image),
+    ])
+@endif

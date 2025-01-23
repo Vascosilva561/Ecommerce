@@ -11,24 +11,28 @@
 |
 */
 
-Route::group(['middleware' => 'admin'], function () {
-    Route::group(['middleware' => 'auth:admin', 'prefix' => 'admin', 'as' => 'admin.'], function () {
+
+Route::group(['middleware' => ['admin'], 'prefix' => 'admin', 'as' => 'admin.'], function () {
+    Route::group(['middleware' => ['auth:admin']], function () {
         Route::get('/dashboard', 'AdminController@index');
         Route::resource('/products', 'Admin\ProductController');
         Route::resource('/categories', 'Admin\CategoryController');
         Route::resource('/bank-accounts', 'Admin\BankAccountController');
         Route::resource('/orders', 'Admin\OrderController');
+        Route::put('/orders/{id}/send', 'Admin\OrderController@send')->name('orders.send');
+        Route::put('/orders/{id}/delivery', 'Admin\OrderController@delivery')->name('orders.delivery');
         Route::resource('/payments', 'Admin\PaymentController');
+        Route::put('/payments/{id}/confirm', 'Admin\PaymentController@confirm')->name('payments.confirm');
+        Route::put('/payments/{id}/cancel', 'Admin\PaymentController@cancel')->name('payments.cancel');
+        Route::put('/payments/{id}/refund', 'Admin\PaymentController@refund')->name('payments.refund');
         Route::resource('/suppliers', 'Admin\SupplierController');
-        Route::get('/login', 'AdminController@login')->name('login');
-        Route::post('/login', 'AdminController@postLogin')->name('postLogin');
-        Route::get('/logout', 'AdminController@logout')->name('logout');
     });
+    Route::get('/login', 'AdminController@login')->name('login');
+    Route::post('/login', 'AdminController@postLogin')->name('postLogin');
+    Route::get('/logout', 'AdminController@logout')->name('logout');
 });
 
-
 Auth::routes();
-
 
 Route::post('/add-to-wishlist', 'LandingPageController@addWishlist')->name('addToWishlist')->middleware('auth');
 Route::get('/wishlist', 'LandingPageController@View_wishList')->middleware('auth')->name('wishlist');
@@ -70,8 +74,6 @@ Route::post('/references/create', 'SaveForLaterController@create')->name('refere
 Route::post('/coupon', 'CouponsController@store')->name('coupon.store');
 Route::delete('/coupon', 'CouponsController@destroy')->name('coupon.destroy');
 
-
-
 Route::get('/register-address', 'AddressController@index')->name('registerAddress.index')->middleware('auth');
 Route::post('/form-validate', 'AddressController@address')->name('formValidate.address')->middleware('auth');
 Route::get('/address', 'AddressController@viewAddress')->name('address.viewAddress')->middleware('auth');
@@ -95,12 +97,5 @@ Route::get('/clear-cache', function () {
     Artisan::call('cache:clear');
     return "Cache is cleared";
 });
-
-
-
-
-
-
-
 
 //Route::get('/home', 'HomeController@index')->name('home');

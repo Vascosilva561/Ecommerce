@@ -149,6 +149,58 @@
                 </div>
             </div>
 
+            @if ($order->status === 'Enviado' || $order->status === 'Entregue')
+                <div class="card mb-4">
+                    <div class="card-header bg-warning text-white">
+                        <h5 class="mb-0">Informações de Transporte</h5>
+                    </div>
+                    <div class="card-body">
+                        <div class="row text-center">
+                            <!-- Partida -->
+                            <div class="col-md-4">
+                                <div>
+                                    <i class="fas fa-truck text-danger" style="font-size: 24px;"></i>
+                                    <h6 class="mt-2"><strong>Partida</strong></h6>
+                                </div>
+                                <p>{{ $order->sent_date ? \Carbon\Carbon::parse($order->sent_date)->format('d/m/Y') : 'Data não informada' }}
+                                </p>
+                                <p>Benguela - Armazém JM2X</p>
+                            </div>
+                            <div class="col-md-4">
+                                <div>
+                                    <i class="fas fa-clock text-danger" style="font-size: 24px;"></i>
+                                    <h6 class="mt-2"><strong>Estimativa de Chegada</strong></h6>
+                                </div>
+                                <p>{{ $order->expected_date ? \Carbon\Carbon::parse($order->expected_date)->format('d/m/Y') : 'Data não informada' }}
+                                <p>Código de Rastreio:</p>
+                                @if ($order->tracking_code)
+                                    <div class="d-inline-block bg-light p-2 rounded border">
+                                        <code id="trackingCode">{{ $order->tracking_code }}</code>
+                                        <button id="trackingCodeButton" class="btn btn-sm btn-outline-primary ml-2">
+                                            Copiar
+                                        </button>
+                                    </div>
+                                @else
+                                    <p class="text-muted">não informado</p>
+                                @endif
+                            </div>
+                            @if ($order->delivered_date)
+                                <div class="col-md-4">
+                                    <div>
+                                        <i class="fas fa-home text-danger" style="font-size: 24px;"></i>
+                                        <h6 class="mt-2"><strong>Entregue</strong></h6>
+                                    </div>
+                                    <p>{{ $order->delivered_date ? \Carbon\Carbon::parse($order->delivered_date)->format('d/m/Y') : 'Data não informada' }}
+                                    <p>{{ $order->address ? $order->address->endereco : 'Não informado' }}</p>
+                                    </p>
+                                </div>
+                            @endif
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            @endif
+
             @if ($order->status !== 'Cancelado' && $order->status !== 'Entregue')
                 <div class="text-center">
                     <button class="btn btn-danger" data-toggle="modal" data-target="#cancelOrderModal">Cancelar
@@ -160,4 +212,22 @@
 
     <!-- Modal para Enviar Recibo -->
     @include('orders.components.upload-receipt-modal', ['order' => $order]);
+@endsection
+
+@section('script')
+    <script>
+        $('#trackingCodeButton').on('click', () => {
+            const codeElement = document.getElementById('trackingCode');
+            const textToCopy = codeElement.textContent;
+
+            navigator.clipboard.writeText(textToCopy)
+                .then(() => {
+                    $(this).html('Copiado!');
+                })
+                .catch(() => {
+                    $(this).html('Falha ao copiar o código. Tente novamente.');
+                });
+        });
+    </script>
+
 @endsection

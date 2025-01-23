@@ -59,11 +59,11 @@
                                             <button data-toggle="modal" data-target="#myModal{{ $payment->id }}"
                                                 title="Edit" class="pd-setting-ed btn btn-primary mr-2 flex-1"><i
                                                     class="fa fa-eye" aria-hidden="true"></i></button>
+                                            @include('admin.payments.view', ['item' => $payment])
                                         </div>
                                     </td>
 
                                 </tr>
-                                @include('admin.payments.view', ['item' => $payment])
                             @endforeach
 
 

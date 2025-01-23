@@ -12,7 +12,7 @@ class Order extends Model
 {
     protected $table = 'orders';
     protected $primarykey = 'id';
-    protected $fillable = ['total', 'status', 'user_id', 'sub_total', 'tax', 'freight_cost', 'address_id'];
+    protected $fillable = ['total', 'status', 'user_id', 'sub_total', 'tax', 'freight_cost', 'address_id', 'tracking_code', 'sent_date', 'expected_date', 'delivered_date'];
 
     public function orderFields()
     {
@@ -22,6 +22,16 @@ class Order extends Model
     public function payment()
     {
         return $this->hasOne(Payment::class, 'order_id');
+    }
+
+    public function products()
+    {
+        return $this->hasMany(OrderProduct::class);
+    }
+
+    public function address()
+    {
+        return $this->belongsTo(Address::class);
     }
 
     public static function createOrder()

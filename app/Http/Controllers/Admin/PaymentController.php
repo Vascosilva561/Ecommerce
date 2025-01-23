@@ -41,28 +41,6 @@ class PaymentController extends Controller
     }
 
     /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
-
-    /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
@@ -71,7 +49,62 @@ class PaymentController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        try {
+            $payment = Payment::findOrFail($id);
+            $payment->update($request->all());
+
+            return redirect()->route('admin.payments.index')->with('success_message', 'Pagamento actualizado com sucesso!');
+        } catch (\Exception $e) {
+            return redirect()->route('admin.payments.index')->withErrors('Erro ao actualizar o pagamento!');
+        }
+    }
+
+    public function confirm($id)
+    {
+        try {
+            $payment = Payment::findOrfail($id);
+            $payment->status = 'Confirmado';
+            $payment->save();
+
+            $payment->order->status = 'Pagamento Aprovado';
+            $payment->order->save();
+
+            return redirect()->route('admin.payments.index')->with('success_message', 'Pagamento confirmado com sucesso!');
+        } catch (\Exception $e) {
+            return redirect()->route('admin.payments.index')->withErrors('Erro ao confirmar o pagamento!');
+        }
+    }
+
+    public function cancel($id)
+    {
+        try {
+            $payment = Payment::findOrFail($id);
+            $payment->status = 'Cancelado';
+            $payment->save();
+
+            $payment->order->status = 'Cancelado';
+            $payment->order->save();
+
+            return redirect()->route('admin.payments.index')->with('success_message', 'Pagamento cancelado com sucesso!');
+        } catch (\Exception $e) {
+            return redirect()->route('admin.payments.index')->withErrors('Erro ao cancelar o pagamento!');
+        }
+    }
+
+    public function refund($id)
+    {
+        try {
+            $payment = Payment::findOrFail($id);
+            $payment->status = 'Reembolsado';
+            $payment->save();
+
+            $payment->order->status = 'Cancelado';
+            $payment->order->save();
+
+            return redirect()->route('admin.payments.index')->with('success_message', 'Pagamento reembolsado com sucesso!');
+        } catch (\Exception $e) {
+            return redirect()->route('admin.payments.index')->withErrors('Erro ao reembolsar o pagamento!');
+        }
     }
 
     /**

@@ -48,7 +48,26 @@
                                         <td>{{ presentPrice($order->total) }}kz</td>
 
                                         <td>
-                                            <span class="badge badge-primary px-3 py-2 mb-3">{{ $order->status }}</span>
+                                            @switch($order->status)
+                                                @case('Pagamento Aprovado')
+                                                    <span class="badge badge-success px-3 py-2 mb-3">{{ $order->status }}</span>
+                                                @break
+
+                                                @case('Cancelado')
+                                                    <span class="badge badge-danger px-3 py-2 mb-3">{{ $order->status }}</span>
+                                                @break
+
+                                                @case('Pendente')
+                                                    <span class="badge badge-warning px-3 py-2 mb-3">{{ $order->status }}</span>
+                                                @break
+
+                                                @case('Entregue')
+                                                    <span class="badge badge-success px-3 py-2 mb-3">{{ $order->status }}</span>
+                                                @break
+
+                                                @default
+                                                    <span class="badge badge-info px-3 py-2 mb-3">{{ $order->status }}</span>
+                                            @endswitch
 
                                             <br>
                                             <a href="{{ route('orders.show', $order->id) }}"
