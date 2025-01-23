@@ -34,7 +34,7 @@ class Order extends Model
         return $this->belongsTo(Address::class);
     }
 
-    public static function createOrder()
+    public static function createOrder($payment_method = "Recibo")
     {
         $user = Auth::user();
 
@@ -71,7 +71,7 @@ class Order extends Model
         Payment::create([
             'order_id' => $order->id,
             'transaction_id' => $transaction_id,
-            'method' => 'Recibo',
+            'method' => $payment_method,
             'reference' => $reference
         ]);
 

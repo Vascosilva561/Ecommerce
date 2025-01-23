@@ -117,10 +117,10 @@ class CheckoutController extends Controller
 
     public function referencia(Request $request)
     {
-        $order = Order::createOrder();
+        $order = Order::createOrder('Referência');
         Cart::destroy();
 
-        return redirect()->route('finish.viewReferences', ['order_id' => $order->id])->with('success_message', 'O item já está no seu carrinho');
+        return redirect()->route('finish.viewReferences', ['order_id' => $order->id])->with('success_message', 'Pedido criado com sucesso');
         view('thankyou', compact('user'));
     }
 

@@ -4,7 +4,7 @@
     <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="viewReceiptModalLabel">Comprovante de Pagamento</h5>
+                <h5 class="modal-title" id="viewReceiptModalLabel" style="color: black">Comprovante de Pagamento</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -15,7 +15,7 @@
                     style="height: 100%; width: 100%;">
                     <!-- Preview da imagem -->
                     <img id="viewReceiptModalImagePreview" src="{{ $url }}" alt="Imagem de Comprovante"
-                        class="img-fluid" style="max-height: 90vh; max-width: 100%;">
+                        class="img-fluid" style="max-height: 90vh; width: 100%;">
                     <!-- Preview do PDF -->
                     <embed id="viewReceiptModalPdfPreview" src="{{ $url }}" type="application/pdf"
                         style="width: 100%; height: 90vh;">

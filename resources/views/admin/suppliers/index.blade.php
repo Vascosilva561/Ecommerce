@@ -29,41 +29,48 @@
                         <h4>Lista de Fornecedores</h4>
                         <div class="add-product">
                             <button type="button" data-toggle="modal" data-target="#myModal"
-                                class="navbar-right btn btn-primary d-none"><i class="icon nalika-download"></i>
-                                Exportar</button>
-                            {{-- @include('admin.suppliers.editor') --}}
+                                class="navbar-right btn btn-primary d-none">Novo Fornecedor</button>
+                            @include('admin.suppliers.editor', ['categories' => $categories])
                         </div>
                         <table>
                             <tr>
-                                <th>Transação</th>
-                                <th>Código de Pedido</th>
-                                <th>Método</th>
-                                <th>Referência</th>
-                                <th>Data</th>
-                                <th>Total</th>
-                                <th>Status do Pedido</th>
+                                <th>Empresa</th>
+                                <th>Email</th>
+                                <th>Contacto</th>
+                                <th>NIF</th>
+                                <th>Localização</th>
                                 <th>Acções</th>
                             </tr>
 
                             @foreach ($suppliers as $supplier)
                                 <tr>
-                                    <td>{{ $supplier->transaction_id }}</td>
-                                    <td>{{ $supplier->order_id }}</td>
-                                    <td>{{ $supplier->method }}</td>
-                                    <td>{{ $supplier->reference }}</td>
-                                    <td>{{ $supplier->created_at }}</td>
-                                    <td>{{ presentPrice($supplier->order->total) }}kz</td>
-                                    <td>{{ $supplier->status }}</td>
+                                    <td>{{ $supplier->name }}</td>
+                                    <td>{{ $supplier->email }}</td>
+                                    <td>{{ $supplier->phone }}</td>
+                                    <td>{{ $supplier->nif }}</td>
+                                    <td>{{ $supplier->address }}</td>
                                     <td>
-                                        <div class="d-flex flex-nowrap">
-                                            <button data-toggle="modal" data-target="#myModal{{ $supplier->id }}"
-                                                title="Edit" class="pd-setting-ed btn btn-primary mr-2 flex-1"><i
-                                                    class="fa fa-eye" aria-hidden="true"></i></button>
+                                        <div class="d-flex">
+                                            <button href="#myModal{{ $supplier->id }}" data-toggle="modal"
+                                                data-target="#myModal{{ $supplier->id }}" title="Edit"
+                                                class="pd-setting-ed btn btn-warning"><i class="fa fa-pencil-square-o"
+                                                    aria-hidden="true"></i></button>
+                                            <button type="submit" form="deleteForm{{ $supplier->id }}"
+                                                class="pd-setting-ed btn btn-danger" data-toggle="tooltip" title="Trash"><i
+                                                    class="fa fa-trash-o" aria-hidden="true"></i></button>
+                                            <form action="{{ route('admin.suppliers.destroy', ['id' => $supplier->id]) }}"
+                                                method="POST" id="deleteForm{{ $supplier->id }}" class="hidden">
+                                                @csrf
+                                                @method('DELETE')
+                                            </form>
                                         </div>
                                     </td>
 
                                 </tr>
-                                @include('admin.suppliers.view', ['item' => $supplier])
+                                @include('admin.suppliers.editor', [
+                                    'item' => $supplier,
+                                    'categories' => $categories,
+                                ])
                             @endforeach
 
 

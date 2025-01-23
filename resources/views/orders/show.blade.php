@@ -76,7 +76,7 @@
                                 <p><strong>Comprovativo de Pagamento:</strong></p>
                                 <!-- Botão para abrir o modal -->
                                 <button type="button" class="btn btn-primary" data-toggle="modal"
-                                    data-target="#viewReceiptModal">
+                                    data-target="#viewReceiptModal" style="margin-bottom: 8px;">
                                     Visualizar Comprovativo
                                 </button>
 

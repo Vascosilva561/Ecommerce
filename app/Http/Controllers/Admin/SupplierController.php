@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Category;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Supplier;
@@ -15,8 +16,9 @@ class SupplierController extends Controller
      */
     public function index()
     {
+        $categories = Category::all();
         $suppliers = Supplier::paginate();
-        return view('admin.suppliers.index', compact('suppliers'));
+        return view('admin.suppliers.index', compact('suppliers', 'categories'));
     }
 
     /**
