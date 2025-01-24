@@ -5,7 +5,7 @@
 
             <div class="modal-header text-white" style="background-color: #1b2a47">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
+                    <span aria-hidden="true" style="color: white">&times;</span>
                 </button>
                 <h4 class="modal-title" id="{{ isset($item) ? 'myModalLabel' . $item->id : 'myModalLabel' }}">
                     {{ isset($item) ? 'Editar Produto' : 'Criar Produto' }}
@@ -67,14 +67,14 @@
                     <!-- Imagem -->
                     <div class="form-group">
                         <label for="image">Imagem</label>
-                        <input type="file" class="form-control-file" id="image" name="image">
+                        <input type="file" class="form-control-file" id="image" name="image" style="Color: #fff">
                     </div>
 
                     <!-- Estoque -->
                     <div class="form-group">
-                        <label for="stock">Estoque</label>
+                        <label for="stock">Quantidade em Stock</label>
                         <input type="number" class="form-control" id="stock" name="stock"
-                            value="{{ $item->stock ?? '' }}" placeholder="Digite a quantidade em estoque" required>
+                            value="{{ $item->stock ?? '' }}" placeholder="Digite a quantidade em stock" required>
                     </div>
 
                     <!-- Categoria -->

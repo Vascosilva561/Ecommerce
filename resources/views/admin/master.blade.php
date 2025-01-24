@@ -71,23 +71,17 @@
     <div class="left-sidebar-pro">
         <nav id="sidebar" class="">
             <div class="sidebar-header">
-                <a href="index.html"><img class="main-logo" src="{{ asset('images/icons/transferir.jpeg') }}"
-                        style="width: 200px; margin-top: 65px;" alt="" /></a>
-                <strong><img src="{{ asset('images/icons/transferir.jpeg') }}"
+                <a href="index.html"><img class="main-logo" src="{{ asset('images/icons/Logowhite.png') }}"
+                        style="width: 150px; margin-top: 20px;" alt="" /></a>
+                <strong><img src="{{ asset('images/icons/Logowhite.png') }}"
                         style="width: 200px; margin-top: 65px;"></strong>
             </div>
             <div class="nalika-profile">
                 <div class="profile-dtl">
-                    <a href="#"><img src="img/notification/4.jpg" alt="" /></a>
+                    <a href="#"><img src="img/notification/1.jpg" alt="" /></a>
                     <h2>{{ auth()->guard('admin')->user()->name }}</h2>
                 </div>
-                <div class="profile-social-dtl">
-                    <ul class="dtl-social">
-                        <li><a href="#"><i class="icon nalika-facebook"></i></a></li>
-                        <li><a href="#"><i class="icon nalika-twitter"></i></a></li>
-                        <li><a href="#"><i class="icon nalika-linkedin"></i></a></li>
-                    </ul>
-                </div>
+                
             </div>
             <div class="left-custom-menu-adp-wrap comment-scrollbar">
                 <nav class="sidebar-nav left-sidebar-menu-pro">
@@ -174,17 +168,7 @@
                                             </button>
                                         </div>
                                     </div>
-                                    <div class="col-lg-6 col-md-7 col-sm-6 col-xs-12">
-                                        <div class="header-top-menu tabl-d-n hd-search-rp">
-                                            <div class="breadcome-heading">
-                                                <form role="search" class="">
-                                                    <input type="text" placeholder="Search..."
-                                                        class="form-control">
-                                                    <a href=""><i class="fa fa-search"></i></a>
-                                                </form>
-                                            </div>
-                                        </div>
-                                    </div>
+                                    
                                     <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
                                         <div class="header-right-info">
                                             <ul class="nav navbar-nav mai-top-nav header-right-menu">
@@ -343,7 +327,7 @@
                                                         class="dropdown-header-top author-log dropdown-menu animated zoomIn">
                                                         <li><a href="login.html"><span
                                                                     class="icon nalika-unlocked author-log-ic"></span>
-                                                                Log Out</a>
+                                                                Sair</a>
                                                         </li>
                                                     </ul>
                                                 </li>
@@ -1045,8 +1029,7 @@
                     <div class="row">
                         <div class="col-lg-12">
                             <div class="footer-copy-right">
-                                <p>Copyright © 2018 <a href="https://colorlib.com/wp/templates/">Colorlib</a> All
-                                    rights reserved.</p>
+                                <p>© Copyright 2025 JM2X, Todos os direitos reservados.</p>
                             </div>
                         </div>
                     </div>

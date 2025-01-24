@@ -5,7 +5,7 @@
 
             <div class="modal-header text-white" style="background-color: #1b2a47">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
-                        aria-hidden="true">&times;</span></button>
+                        aria-hidden="true" style="color: white">&times;</span></button>
                 <h4 class="modal-title" id="myModalLabel2">Detalhes do Pagamento</h4>
             </div>
 

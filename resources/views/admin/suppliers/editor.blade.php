@@ -6,7 +6,7 @@
             <!-- Header do Modal -->
             <div class="modal-header" style="background:#1B2A47">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
-                        aria-hidden="true">&times;</span></button>
+                        aria-hidden="true" style="color: white">&times;</span></button>
                 <h4 class="modal-title" id="myModalLabel" style="color: white">
                     {{ isset($item) ? 'Editar Fornecedor - ' . $item->name : 'Criar Fornecedor' }}
                 </h4>
