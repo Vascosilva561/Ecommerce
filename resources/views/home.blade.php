@@ -310,7 +310,7 @@
                                                 </div>
                                                 <div class="product_fav"><i class="fas fa-heart"></i></div>
                                                 <ul class="product_marks">
-                                                    <li class="product_mark product_discount">-25%</li>
+                                                    <li class="product_mark product_discount">-10%</li>
                                                 </ul>
                                             </div>
                                         </div>
@@ -1054,7 +1054,7 @@
 
                                         </div>
                                         <ul class="item_marks">
-                                            <li class="item_mark item_discount">-25%</li>
+                                            <li class="item_mark item_discount">Popular</li>
                                             <li class="item_mark item_new">new</li>
                                         </ul>
                                     </div>
