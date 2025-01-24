@@ -159,7 +159,35 @@
                                         </div>
 
                                     </form>
-                                    <div class="product_fav"><i class="fas fa-heart"></i></div>
+                                    <?php
+
+								$wishlistData =DB::table('wishlists')
+								->rightJoin('products','wishlists.prod_id','=','products.id')
+								->where('wishlists.prod_id','=',$product->id)->get();
+
+
+
+
+								$count=App\Wishlist::where(['prod_id'=>$product->id])->count();
+
+								if ($count=="0"){ ?>
+
+                                    <form action="{{ route('addToWishlist') }}" method="post" role="form">
+                                        {{-- {{csrf_token()}} --}}
+                                        <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                                        <input type="hidden" value="{{ $product->id }}" name="prod_id">
+                                        <button type="submit" class="btn btn-link product_fav" style="padding: 0%; "><i class="fas fa-heart"></i></button>
+
+                                    </form>
+                                    <?php }else{?>
+
+                                    <form action="{{ route('removeWishlist', ['id' => $product->id]) }}" method="post"
+                                        role="form">
+                                        <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                                        <button type="submit" class="btn btn-link product_fav active" style="padding: 0%; "><i class="fas fa-heart"></i></button>
+                                    </form>
+                                    <?php }?>
+
 
                                 </div>
                             @empty

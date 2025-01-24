@@ -55,48 +55,54 @@
 
 
                             @foreach ($products as $product)
-                                <div class="product_item is_new">
-                                    <div class="product_border"></div>
-                                    <div class="product_image d-flex flex-column align-items-center justify-content-center">
-                                        <a href="{{ route('shop.show', ['product' => $product->id]) }}" tabindex="0"><img
-                                                src="{{ asset('images/products/' . $product->image) }}"
-                                                style="width: 150px; height: 150px;" alt=""></a>
-                                    </div>
-                                    <div class="product_content">
-                                        <div class="product_price">{{ $product->price }}kz</div>
-                                        <div class="product_name">
-                                            <div><a href="{{ route('shop.show', $product->id) }}" tabindex="0"
-                                                    style="color: #a12421; font-size: 11px;"><b>{{ $product->name }}</b></a>
+                                @if (isset($product->id))
+                                    <div class="product_item is_new">
+                                        <div class="product_border"></div>
+                                        <div
+                                            class="product_image d-flex flex-column align-items-center justify-content-center">
+                                            <a href="{{ route('shop.show', ['product' => $product->id]) }}"
+                                                tabindex="0"><img src="{{ asset('images/products/' . $product->image) }}"
+                                                    style="width: 150px; height: 150px;" alt=""></a>
+                                        </div>
+                                        <div class="product_content">
+                                            <div class="product_price">{{ $product->price }}kz</div>
+                                            <div class="product_name">
+                                                <div><a href="{{ route('shop.show', $product->id) }}" tabindex="0"
+                                                        style="color: #a12421; font-size: 11px;"><b>{{ $product->name }}</b></a>
+                                                </div>
                                             </div>
                                         </div>
-                                    </div>
-                                    <form action="{{ route('cart.store') }}" method="POST">
-                                        <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                                        {{ csrf_field() }}
-                                        <div class="d-flex justify-content-between align-items-center">
-                                            <div class="btn-group">
-                                                <input type="hidden" name="id" value="{{ $product->id }}">
-                                                <input type="hidden" name="name" value="{{ $product->name }}">
-                                                <input type="hidden" name="price" value="{{ $product->price }}">
+                                        <form action="{{ route('cart.store') }}" method="POST">
+                                            <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                                            {{ csrf_field() }}
+                                            <div class="d-flex justify-content-between align-items-center">
+                                                <div class="btn-group">
+                                                    <input type="hidden" name="id" value="{{ $product->id }}">
+                                                    <input type="hidden" name="name" value="{{ $product->name }}">
+                                                    <input type="hidden" name="price" value="{{ $product->price }}">
 
 
-                                                <button type="submit" class="btn btn-lg btn-outline-secondary"
-                                                    style="background-color: #a12421; color: white; font-size:16px;">Add ao
-                                                    carrinho</button>
+                                                    <button type="submit" class="btn btn-lg btn-outline-secondary"
+                                                        style="background-color: #a12421; color: white; font-size:16px;">Add
+                                                        ao
+                                                        carrinho</button>
 
+                                                </div>
                                             </div>
-                                        </div>
 
-                                    </form>
-                                    <form action="{{ route('removeWishlist', ['id' => $product->id]) }}" method="POST">
-                                        @csrf
-                                        <button type="submit" style="color: red;" class="btn btn-default btn-block">Remover
-                                            da
-                                            Lista</button>
-                                    </form>
-                                    <div class="product_fav"><i class="fas fa-heart"></i></div>
+                                        </form>
+                                        <form action="{{ route('removeWishlist', ['id' => $product->id]) }}"
+                                            method="POST">
+                                            @csrf
+                                            <button type="submit" style="color: red;"
+                                                class="btn btn-default btn-block">Remover
+                                                da
+                                                Lista</button>
+                                        </form>
+                                        <div class="product_fav"><i class="fas fa-heart"></i></div>
 
-                                </div>
+                                    </div>
+                                @endif
                             @endforeach
 
                         </div>
