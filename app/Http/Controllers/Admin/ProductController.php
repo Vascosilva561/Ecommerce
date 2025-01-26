@@ -66,14 +66,7 @@ class ProductController extends Controller
         Product::create($formInput);
         return redirect()->back();*/
         $product = Product::create([
-            'name' => $request->name,
-            'slug' => $request->slug,
-            'details'  => $request->details,
-            'price'  => $request->price,
-            'description'  => $request->description,
-            'featured'  => $request->featured,
-            'category_id' => $request->category_id,
-            'stock' => $request->stock,
+            ...$formInput,
             'image' => "",
         ]);
 
