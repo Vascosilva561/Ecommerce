@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\BankAccount;
 use App\Order;
 use App\OrderProduct;
+use Gloudemans\Shoppingcart\Facades\Cart;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -22,25 +24,52 @@ class OrderController extends Controller
         return view('orders.index', compact('orders'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
+    public function create($payment_method)
     {
-        //
+        try {
+            $order = null;
+            switch ($payment_method) {
+                case 'transference':
+                    $order = Order::createOrder('Transferência Bancária');
+                    break;
+                case 'reference':
+                    $order = Order::createOrder('Referência');
+                    break;
+                default:
+                    throw new \Exception('Método de pagamento não encontrado');
+            }
+
+            Cart::destroy();
+
+            if ($order) {
+                return redirect()->route('orders.finish', ['id' => $order->id]);
+            } else {
+                throw new \Exception('Erro interno ao criar pedido');
+            }
+        } catch (\Exception $e) {
+            return redirect()->route('orders.index')->withErrors('Erro ao realizar pedido', $e->getMessage());
+        }
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
+    public function finish(Request $request, $id)
     {
-        //
+        try {
+            $order = Order::findOrFail($id);
+            $bank_accounts = BankAccount::all();
+
+            switch ($order->payment->method) {
+                case 'Transferência Bancária':
+                    return view('orders.finish.transference', compact('bank_accounts', 'order'));
+                    break;
+                case 'Referência':
+                    return view('orders.finish.reference', compact('order'));
+                    break;
+                default:
+                    return redirect()->route('orders.index')->withErrors('Método de pagamento não encontrado');
+            }
+        } catch (\Exception $e) {
+            return redirect()->route('orders.index')->withErrors('Erro ao finalizar pedido', $e->getMessage());
+        }
     }
 
     /**
@@ -54,39 +83,5 @@ class OrderController extends Controller
         $order = Order::find($id);
         $order_products = OrderProduct::where('order_id', $id)->get();
         return view('orders.show', compact('order', 'order_products'));
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
     }
 }

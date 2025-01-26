@@ -25,9 +25,12 @@
             </div>
             <div class="row justify-content-center">
                 <div class="cart_buttons text-center" align="center">
-                    <a href="{{ route('payment.referencia') }}" class="btn btn-warning px-4 btn-lg text-uppercase"
-                        style="background: linear-gradient(to bottom, #ff0000 0%, #ff9933 100%);"><B>Confirmo
-                            a minha Encomenda</B></a>
+                    <form method="POST" action="{{ route('orders.create', ['method' => 'reference']) }}">
+                        @csrf
+                        <button type="sumbit" class="btn btn-warning px-4 btn-lg text-uppercase"
+                            style="background: linear-gradient(to bottom, #ff0000 0%, #ff9933 100%);"><B>Confirmo
+                                a minha Encomenda</B></button>
+                    </form>
                     {{-- <a href="{{ route('checkout.index') }}"  class="button cart_button_clear">Add to Cart</a> --}}
                     {{-- <a href="{{ route('faturaProforma') }}" class="btn btn-warning btn-lg"
                         style="width: 450px; margin-right: 700px; background: linear-gradient(to bottom, #003366 0%, #666633 100%);"><B>PAGAR

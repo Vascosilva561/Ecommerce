@@ -19,6 +19,11 @@ class Order extends Model
         return $this->belongsToMany(Product::class)->withPivot('quantity', 'total', 'price', 'tax');
     }
 
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
+
     public function payment()
     {
         return $this->hasOne(Payment::class, 'order_id');
@@ -72,7 +77,7 @@ class Order extends Model
             'order_id' => $order->id,
             'transaction_id' => $transaction_id,
             'method' => $payment_method,
-            'reference' => $reference
+            'reference' => $payment_method == "Referência" ? $reference : null
         ]);
 
         foreach ($cartItems as $cartItem) {

@@ -2,9 +2,12 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Exports\OrderExport;
+use App\Exports\PaymentExport;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Payment;
+use Maatwebsite\Excel\Facades\Excel;
 
 class PaymentController extends Controller
 {
@@ -116,5 +119,12 @@ class PaymentController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function export()
+    {
+        ob_end_clean(); // this
+        ob_start(); // and this
+        return Excel::download(new PaymentExport, 'payments.xlsx');
     }
 }

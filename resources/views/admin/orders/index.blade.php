@@ -28,15 +28,17 @@
                      <div class="product-status-wrap">
                          <h4>Lista de Pedidos</h4>
                          <div class="add-product">
-                             <button type="button" data-toggle="modal" data-target="#myModal"
-                                 class="navbar-right btn btn-primary d-none"><i class="icon nalika-download"></i>
-                                 Exportar</button>
+                             <a type="button" href="{{ route('admin.orders.export') }}"
+                                 class="navbar-right btn btn-primary"><i class="icon nalika-download"></i>
+                                 Exportar</a>
                              {{-- @include('admin.orders.editor') --}}
                          </div>
                          <table>
                              <tr>
-                                 <th>Referência</th>
                                  <th>Código de Pedido</th>
+                                 <th>Nome do Cliente</th>
+                                 <th>Email do Cliente</th>
+                                 <th>Contato do Cliente</th>
                                  <th>Data</th>
                                  <th>Total</th>
                                  <th>Status do Pedido</th>
@@ -45,8 +47,10 @@
 
                              @foreach ($orders as $order)
                                  <tr>
-                                     <td>{{ $order->payment->reference }}</td>
                                      <td>{{ $order->id }}</td>
+                                     <td>{{ $order->address->name }}</td>
+                                     <td>{{ $order->address->email }}</td>
+                                     <td>{{ $order->address->telefone }}</td>
                                      <td>{{ $order->created_at }}</td>
                                      <td>{{ presentPrice($order->total) }}kz</td>
                                      <td>{{ $order->status }}</td>

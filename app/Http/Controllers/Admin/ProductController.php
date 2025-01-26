@@ -42,6 +42,7 @@ class ProductController extends Controller
     {
 
         $formInput = $request->except('image');
+
         $this->validate($request, [
             'name' => 'required',
             'slug' => 'required',
@@ -51,8 +52,6 @@ class ProductController extends Controller
             'featured'  => 'required',
             'category_id' => 'required',
             'stock' => 'required',
-            'image' => 'image|mimes:png,jpg,jpeg|max:40000',
-
         ]);
 
         /* $image=$request->image;
@@ -65,10 +64,8 @@ class ProductController extends Controller
 
         Product::create($formInput);
         return redirect()->back();*/
-        $product = Product::create([
-            ...$formInput,
-            'image' => "",
-        ]);
+        $formInput['image'] = "";
+        $product = Product::create($formInput);
 
         if ($product) {
             if ($request->hasFile('image')) {
@@ -76,6 +73,7 @@ class ProductController extends Controller
                 $request->file('image');
                 $name = uniqid(date('HisYmd'));
                 $fname = "$name.$extension";
+                $request->image->storeAs('products', $fname);
                 $product->update(['image' => $fname]);
             }
             return redirect()->back()->with('sucesso', 'Producto criado com sucesso');

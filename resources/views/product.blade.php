@@ -37,7 +37,6 @@
                                 <h5>{{ $product->details }}</h5>
                             </div>
 
-
                             <div class="product_text">
                                 <p>
                                 <h4>Informações</h4>
@@ -45,6 +44,9 @@
                             </div>
                             <div class="product_text">
                                 <p style="font-size: 16px;">{{ $product->description }}</p>
+                            </div>
+                            <div class="product_text">
+                                <h3>{{ presentPrice($product->price) }}kz</h3>
                             </div>
                             <div class="order_info d-flex flex-row">
                                 <form action="{{ route('cart.store') }}" method="POST">

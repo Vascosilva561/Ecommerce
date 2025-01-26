@@ -28,9 +28,9 @@
                     <div class="product-status-wrap">
                         <h4>Lista de Pagamentos</h4>
                         <div class="add-product">
-                            <button type="button" data-toggle="modal" data-target="#myModal"
-                                class="navbar-right btn btn-primary d-none"><i class="icon nalika-download"></i>
-                                Exportar</button>
+                            <a type="button" href="{{ route('admin.payments.export') }}"
+                                class="navbar-right btn btn-primary"><i class="icon nalika-download"></i>
+                                Exportar</a>
                             {{-- @include('admin.payments.editor') --}}
                         </div>
                         <table>

@@ -14,18 +14,29 @@
 
 Route::group(['middleware' => ['admin'], 'prefix' => 'admin', 'as' => 'admin.'], function () {
     Route::group(['middleware' => ['auth:admin']], function () {
-        Route::get('/dashboard', 'AdminController@index');
+
+        Route::get('/dashboard', 'AdminController@index')->name('dashboard');
+
         Route::resource('/products', 'Admin\ProductController');
+
         Route::resource('/categories', 'Admin\CategoryController');
+
         Route::resource('/bank-accounts', 'Admin\BankAccountController');
+
+        Route::get('/orders/export', 'Admin\OrderController@export')->name('orders.export');
         Route::resource('/orders', 'Admin\OrderController');
         Route::put('/orders/{id}/send', 'Admin\OrderController@send')->name('orders.send');
         Route::put('/orders/{id}/delivery', 'Admin\OrderController@delivery')->name('orders.delivery');
+
+        Route::get('/payments/export', 'Admin\PaymentController@export')->name('payments.export');
         Route::resource('/payments', 'Admin\PaymentController');
         Route::put('/payments/{id}/confirm', 'Admin\PaymentController@confirm')->name('payments.confirm');
         Route::put('/payments/{id}/cancel', 'Admin\PaymentController@cancel')->name('payments.cancel');
         Route::put('/payments/{id}/refund', 'Admin\PaymentController@refund')->name('payments.refund');
+
         Route::resource('/suppliers', 'Admin\SupplierController');
+
+        Route::get('/clients', 'Admin\ClientController@index')->name('clients.index');
     });
     Route::get('/login', 'AdminController@login')->name('login');
     Route::post('/login', 'AdminController@postLogin')->name('postLogin');
@@ -37,9 +48,19 @@ Auth::routes();
 Route::post('/add-to-wishlist', 'LandingPageController@addWishlist')->name('addToWishlist')->middleware('auth');
 Route::get('/wishlist', 'LandingPageController@View_wishList')->middleware('auth')->name('wishlist');
 Route::post('/remove-wishlist/{id}', 'LandingPageController@removeWishlist')->middleware('auth')->name('removeWishlist');
+
 Route::group(['middleware' => ['auth'], 'prefix' => "orders"], function () {
     Route::get('/', 'OrderController@index')->name('orders.index');
-    Route::get('/{order}', 'OrderController@show')->name('orders.show');
+    Route::get('/{id}/finish', 'OrderController@finish')->name('orders.finish');
+    Route::get('/{id}', 'OrderController@show')->name('orders.show');
+
+    Route::post('/{payment_method}', 'OrderController@create')->name('orders.create');
+});
+
+Route::group(['middleware' => ['auth',], 'prefix' => "checkout"], function () {
+    Route::get('/', 'CheckoutController@index')->name('checkout.index');
+    Route::get('/transference', 'CheckoutController@transference')->name('checkout.transference');
+    Route::get('/reference', 'CheckoutController@reference')->name('checkout.reference');
 });
 
 Route::group(['middleware' => ['auth'], 'prefix' => "payments"], function () {
@@ -81,13 +102,6 @@ Route::get('/address-edit/{id}', 'AddressController@editAddress')->name('address
 Route::post('/address-update/{id}', 'AddressController@UpdateAddress')->name('address.update')->middleware('auth');
 Route::get('/send', 'AddressController@addSend')->name('send.addSend')->middleware('auth');
 Route::post('/form-send', 'AddressController@productSend')->name('formSend.productSend');
-
-Route::get('/checkout', 'CheckoutController@index')->name('checkout.index')->middleware('auth');
-Route::post('/checkout', 'CheckoutController@store')->name('checkout.store');
-Route::get('/resumo', 'CheckoutController@create')->name('resumo.create');
-Route::get('/payment', 'CheckoutController@referencia')->name('payment.referencia');
-Route::get('/finish/{order_id}', 'CheckoutController@viewReferences')->name('finish.viewReferences');
-Route::post('/thankyou', 'ConfirmationController@store')->name('thankyou.index');
 
 Route::get('empty', function () {
     Cart::instance('saveForLater')->destroy();

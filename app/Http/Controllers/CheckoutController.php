@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\BankAccount;
 use Illuminate\Http\Request;
 use App\Http\Requests\CheckoutRequest;
 use Gloudemans\Shoppingcart\Facades\Cart;
@@ -27,8 +28,7 @@ class CheckoutController extends Controller
      */
     public function index()
     {
-
-        return view('checkout')->with([
+        return view('checkout.index')->with([
             'discount' => $this->getNumbers()->get('discount'),
             'newSubtotal' => $this->getNumbers()->get('newSubtotal'),
             'newTax' => $this->getNumbers()->get('newTax'),
@@ -36,14 +36,21 @@ class CheckoutController extends Controller
         ]);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
+    public function reference()
     {
-        return view('resumo')->with([
+        return view('checkout.reference')->with([
+            'discount' => $this->getNumbers()->get('discount'),
+            'newSubtotal' => $this->getNumbers()->get('newSubtotal'),
+            'newTax' => $this->getNumbers()->get('newTax'),
+            'newTotal' => $this->getNumbers()->get('newTotal'),
+        ]);
+    }
+
+    public function transference()
+    {
+        $bank_accounts = BankAccount::all();
+        return view('checkout.transference')->with([
+            'bank_accounts' => $bank_accounts,
             'discount' => $this->getNumbers()->get('discount'),
             'newSubtotal' => $this->getNumbers()->get('newSubtotal'),
             'newTax' => $this->getNumbers()->get('newTax'),
@@ -80,7 +87,7 @@ class CheckoutController extends Controller
                 ],
             ]);
 
-            //SUCESSFUL
+            //SUCCESSFULL
             Cart::instance('default')->destroy();
             session()->forget('coupon');
             return back()->with('success_message', 'Obrigado! Seu pagamento foi efetuado com sucesso');
@@ -113,21 +120,5 @@ class CheckoutController extends Controller
             'newTax' => $newTax,
             'newTotal' => $newTotal,
         ]);
-    }
-
-    public function referencia(Request $request)
-    {
-        $order = Order::createOrder('Referência');
-        Cart::destroy();
-
-        return redirect()->route('finish.viewReferences', ['order_id' => $order->id])->with('success_message', 'Pedido criado com sucesso');
-        view('thankyou', compact('user'));
-    }
-
-    public function viewReferences($order_id)
-    {
-        $order  =  Order::findOrFail($order_id);
-
-        return view('thankyou', compact('order'));
     }
 }

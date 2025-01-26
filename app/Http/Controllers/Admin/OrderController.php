@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Exports\OrderExport;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Order;
+use Maatwebsite\Excel\Facades\Excel;
 
 class OrderController extends Controller
 {
@@ -42,6 +44,13 @@ class OrderController extends Controller
         } catch (\Exception $e) {
             return redirect()->route('admin.orders.index')->withErrors('Erro ao entregar o pedido!');
         }
+    }
+
+    public function export()
+    {
+        ob_end_clean(); // this
+        ob_start(); // and this
+        return Excel::download(new OrderExport, 'orders.xlsx');
     }
 
     // public function update(Request $request, $id)
