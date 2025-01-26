@@ -308,7 +308,38 @@
 
                                                     </div>
                                                 </div>
-                                                <div class="product_fav"><i class="fas fa-heart"></i></div>
+                                                <?php
+
+								$wishlistData =DB::table('wishlists')
+								->rightJoin('products','wishlists.prod_id','=','products.id')
+								->where('wishlists.prod_id','=',$product->id)->get();
+
+
+
+
+								$count=App\Wishlist::where(['prod_id'=>$product->id])->count();
+
+								if ($count=="0"){ ?>
+
+                                                <form action="{{ route('addToWishlist') }}" method="post"
+                                                    role="form">
+                                                    {{-- {{csrf_token()}} --}}
+                                                    <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                                                    <input type="hidden" value="{{ $product->id }}" name="prod_id">
+                                                    <button type="submit" class="btn btn-link product_fav"
+                                                        style="padding: 0%; "><i class="fas fa-heart"></i></button>
+
+                                                </form>
+                                                <?php }else{?>
+
+                                                <form action="{{ route('removeWishlist', ['id' => $product->id]) }}"
+                                                    method="post" role="form">
+                                                    <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                                                    <button type="submit" class="btn btn-link product_fav active"
+                                                        style="padding: 0%; "><i class="fas fa-heart"></i></button>
+                                                </form>
+                                                <?php }?>
+
                                                 <ul class="product_marks">
                                                     <li class="product_mark product_discount">-10%</li>
                                                 </ul>
@@ -361,7 +392,7 @@
                                 <div class="owl-item"
                                     @if ($loop->index % 2 == 0) style="background-color: #f5d67c;" @else style="background-color: white" @endif>
                                     <a class="text-reset text-dark"
-                                        href="/shop?category={{ strtolower($category->name) }}">
+                                        href="/shop?category={{ $category->slug }}">
                                         <div
                                             class="popular_category d-flex flex-column align-items-center justify-content-center">
                                             <div class="popular_category_image"><img
@@ -498,7 +529,34 @@
 
                                                         </div>
                                                     </div>
-                                                    <div class="product_fav"><i class="fas fa-heart"></i></div>
+                                                    <?php
+
+								$wishlistData =DB::table('wishlists')
+								->rightJoin('products','wishlists.prod_id','=','products.id')
+								->where('wishlists.prod_id','=',$new->id)->get();
+
+
+
+
+								$count=App\Wishlist::where(['prod_id'=>$new->id])->count();
+
+								if ($count=="0"){ ?>
+
+                                    <form action="{{ route('addToWishlist') }}" method="post" role="form">
+                                        {{-- {{csrf_token()}} --}}
+                                        <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                                        <input type="hidden" value="{{ $new->id }}" name="prod_id">
+                                        <button type="submit" class="btn btn-link product_fav" style="padding: 0%; "><i class="fas fa-heart"></i></button>
+
+                                    </form>
+                                    <?php }else{?>
+
+                                    <form action="{{ route('removeWishlist', ['id' => $new->id]) }}" method="post"
+                                        role="form">
+                                        <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                                        <button type="submit" class="btn btn-link product_fav active" style="padding: 0%; "><i class="fas fa-heart"></i></button>
+                                    </form>
+                                    <?php }?>
                                                     <ul class="product_marks">
                                                         <li class="product_mark product_new"
                                                             style="background-color: #a12421;"><b>novo</b></li>
@@ -554,8 +612,35 @@
                                                     {{-- <button type="submit" class="product_cart_button">Adicionar ao Carrinho</button> --}}
                                                 </form>
                                             </div>
-                                            <div class="arrivals_single_fav product_fav active"><i
-                                                    class="fas fa-heart"></i></div>
+                                            <?php
+
+								$wishlistData =DB::table('wishlists')
+								->rightJoin('products','wishlists.prod_id','=','products.id')
+								->where('wishlists.prod_id','=',$news->id)->get();
+
+
+
+
+								$count=App\Wishlist::where(['prod_id'=>$news->id])->count();
+
+								if ($count=="0"){ ?>
+
+                                    <form action="{{ route('addToWishlist') }}" method="post" role="form">
+                                        {{-- {{csrf_token()}} --}}
+                                        <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                                        <input type="hidden" value="{{ $news->id }}" name="prod_id">
+                                        <button type="submit" class="btn btn-link product_fav" style="padding: 0%; "><i class="fas fa-heart"></i></button>
+
+                                    </form>
+                                    <?php }else{?>
+
+                                    <form action="{{ route('removeWishlist', ['id' => $news->id]) }}" method="post"
+                                        role="form">
+                                        <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                                        <button type="submit" class="btn btn-link product_fav active" style="padding: 0%; "><i class="fas fa-heart"></i></button>
+                                    </form>
+                                    <?php }?>
+
                                             <ul class="arrivals_single_marks product_marks">
                                                 <li class="product_mark product_new" style="background-color: #a12421;">
                                                     <b>novo</b>
@@ -616,7 +701,7 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="bestsellers_fav active"><i class="fas fa-heart"></i></div>
+                                        {{-- <div class="bestsellers_fav active"><i class="fas fa-heart"></i></div> --}}
                                         <ul class="bestsellers_marks">
                                             {{-- <li class="bestsellers_mark bestsellers_discount" style="background-color: #28a745;">{{ $productos->quantity }}</li> --}}
                                             <li class="bestsellers_mark bestsellers_new"></li>

@@ -17,10 +17,10 @@ class CreateOrdersTable extends Migration
             $table->increments('id');
 
             $table->string('status');
-            $table->float('sub_total');
-            $table->float('tax')->default(0);
-            $table->float('freight_cost')->default(0);
-            $table->float('total');
+            $table->decimal('sub_total', 15);
+            $table->decimal('tax', 15)->default(0);
+            $table->decimal('freight_cost', 15)->default(0);
+            $table->decimal('total', 15);
             $table->unsignedInteger('user_id')->nullable();
             $table->unsignedInteger('address_id')->nullable();
 

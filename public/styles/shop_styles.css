@@ -1562,6 +1562,7 @@ select option {
 }
 
 .product_fav i {
+    top: 10px;
     display: block;
     position: absolute;
     left: 50%;
@@ -1571,7 +1572,6 @@ select option {
     -o-transform: translateX(-50%);
     transform: translateX(-50%);
     color: #cccccc;
-    line-height: 36px;
     pointer-events: none;
     z-index: 0;
     -webkit-transition: all 200ms ease;
