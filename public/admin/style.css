@@ -882,10 +882,8 @@ ul.breadcome-menu li a:hover{
     padding: 15px;
     position: relative;
     border-radius: 5px;
-    border-bottom: 1px solid #fff;
-    border-top: 1px solid #fff;
+    border: 1px solid #fff;
     display: block;
-    border-left: 1px solid #fff;
 }
 .breadcomb-ctn h2{
 	font-size:20px;

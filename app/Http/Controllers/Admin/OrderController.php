@@ -28,7 +28,7 @@ class OrderController extends Controller
 
             return redirect()->route('admin.orders.index')->with('success_message', 'Pedido enviado com sucesso!');
         } catch (\Exception $e) {
-            return redirect()->route('admin.orders.index')->withErrors('Erro ao enviar o pedido!');
+            return redirect()->route('admin.orders.index')->withErrors(['Erro ao enviar o pedido!', $e->getMessage()]);
         }
     }
 

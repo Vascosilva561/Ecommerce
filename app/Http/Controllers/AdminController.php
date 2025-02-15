@@ -8,6 +8,9 @@ use App\Order;
 use App\Imagens;
 use Cache;
 use App\Category;
+use App\Payment;
+use App\User;
+
 //use App\Admin;
 
 class AdminController extends Controller
@@ -19,10 +22,11 @@ class AdminController extends Controller
 
     public function index()
     {
-        $total_counts = Order::count();
-        return view('admin.index')->with([
-            'total_counts' => $total_counts,
-        ]);;
+        $total_orders = Order::count();
+        $total_sales = Payment::where("status","Confirmado")->with("order")->get()->sum("order.total");
+        $pendent_payments = Payment::whereIn("status",["Pendente","Aguardando Confirmação"])->count();
+        $total_users = User::count();
+        return view('admin.index')->with(compact("total_orders","total_sales","pendent_payments","total_users"));;
     }
 
     public function login()
