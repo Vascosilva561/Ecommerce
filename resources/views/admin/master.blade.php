@@ -432,13 +432,15 @@
         <script src="js/flot/jquery.flot.js"></script>
         <script src="js/flot/jquery.flot.resize.js"></script>
         <script src="js/flot/curvedLines.js"></script>
-        <script src="js/flot/flot-active.js"></script>
+        {{-- <script src="js/flot/flot-active.js"></script> --}}
         <!-- plugins JS
   ============================================ -->
         <script src="js/plugins.js"></script>
         <!-- main JS
   ============================================ -->
         <script src="js/main.js"></script>
+
+        @yield('script')
 </body>
 
 </html>

@@ -10,6 +10,8 @@ use Cache;
 use App\Category;
 use App\Payment;
 use App\User;
+use Carbon\Carbon;
+use Illuminate\Support\Facades\DB;
 
 //use App\Admin;
 
@@ -23,10 +25,18 @@ class AdminController extends Controller
     public function index()
     {
         $total_orders = Order::count();
-        $total_sales = Payment::where("status","Confirmado")->with("order")->get()->sum("order.total");
-        $pendent_payments = Payment::whereIn("status",["Pendente","Aguardando Confirmação"])->count();
+        $total_sales = Payment::where("status", "Confirmado")->with("order")->get()->sum("order.total");
+        $pendent_payments = Payment::whereIn("status", ["Pendente", "Aguardando Confirmação"])->count();
         $total_users = User::count();
-        return view('admin.index')->with(compact("total_orders","total_sales","pendent_payments","total_users"));;
+        $per_day_sales = Order::select(DB::raw('DATE(created_at) as date'), DB::raw("sum(total) as total"))
+            ->groupBy('date')
+            ->orderBy("date", "ASC")
+            ->where("created_at", ">", Carbon::now()->addDays(-31))
+            ->whereHas("payment", function ($query) {
+                $query->where("status", "Confirmado");
+            })
+            ->get();
+        return view('admin.index')->with(compact("total_orders", "total_sales", "pendent_payments", "total_users", 'per_day_sales'));;
     }
 
     public function login()
