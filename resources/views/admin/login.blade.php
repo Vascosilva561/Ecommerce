@@ -126,18 +126,30 @@
                         <i class=""> <img src="{{ asset('images/icons/logo-shopp.png') }}"></i>
                     </span><br><br>
 
+                    @if ($errors->has('errors'))
+                        <span class="invalid-feedback d-block" role="alert">
+                            <strong>{{ $errors->first('errors') }}</strong>
+                        </span>
+                    @endif
+
+                    @if ($errors->has('email'))
+                        <span class="invalid-feedback d-block" role="alert">
+                            <strong>{{ $errors->first('email') }}</strong>
+                        </span>
+                    @endif
+                    @if ($errors->has('password'))
+                        <span class="invalid-feedback d-block" role="alert">
+                            <strong>{{ $errors->first('password') }}</strong>
+                        </span>
+                    @endif
+                    <span class="login100-form-title p-b-48"></span>
+
                     <div class="wrap-input100 validate-input" data-validate = "Digite o nome do utilizador">
                         <input class="input100" id="email" type="email"
                             class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" name="email"
                             value="{{ old('email') }}" required autofocus>
                         <span class="focus-input100" data-placeholder="&#xf207;"></span>
 
-
-                        @if ($errors->has('email'))
-                            <span class="invalid-feedback" role="alert">
-                                <strong>{{ $errors->first('email') }}</strong>
-                            </span>
-                        @endif
                     </div>
 
                     <div class="wrap-input100 validate-input" data-validate="Digite password">
@@ -146,11 +158,6 @@
                             required>
                         <span class="focus-input100" data-placeholder="&#xf191;"></span>
 
-                        @if ($errors->has('password'))
-                            <span class="invalid-feedback" role="alert">
-                                <strong>{{ $errors->first('password') }}</strong>
-                            </span>
-                        @endif
                     </div>
 
                     <div class="contact100-form-checkbox">

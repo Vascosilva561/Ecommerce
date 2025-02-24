@@ -7,7 +7,8 @@
     <link rel="stylesheet" type="text/css" href="{{ asset('styles/responsive.css') }}">
     {{-- <link rel="stylesheet" type="text/css" href="{{ asset('styles/shop_styles.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('styles/shop_responsive.css') }}"> --}}
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/swiper-bundle.min.css') }}">
+
 
     <style>
         .swiper .swiper-slide img {
@@ -391,8 +392,7 @@
 
                                 <div class="owl-item"
                                     @if ($loop->index % 2 == 0) style="background-color: #f5d67c;" @else style="background-color: white" @endif>
-                                    <a class="text-reset text-dark"
-                                        href="/shop?category={{ $category->slug }}">
+                                    <a class="text-reset text-dark" href="/shop?category={{ $category->slug }}">
                                         <div
                                             class="popular_category d-flex flex-column align-items-center justify-content-center">
                                             <div class="popular_category_image"><img
@@ -542,21 +542,27 @@
 
 								if ($count=="0"){ ?>
 
-                                    <form action="{{ route('addToWishlist') }}" method="post" role="form">
-                                        {{-- {{csrf_token()}} --}}
-                                        <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                                        <input type="hidden" value="{{ $new->id }}" name="prod_id">
-                                        <button type="submit" class="btn btn-link product_fav" style="padding: 0%; "><i class="fas fa-heart"></i></button>
+                                                    <form action="{{ route('addToWishlist') }}" method="post"
+                                                        role="form">
+                                                        {{-- {{csrf_token()}} --}}
+                                                        <input type="hidden" name="_token"
+                                                            value="{{ csrf_token() }}">
+                                                        <input type="hidden" value="{{ $new->id }}"
+                                                            name="prod_id">
+                                                        <button type="submit" class="btn btn-link product_fav"
+                                                            style="padding: 0%; "><i class="fas fa-heart"></i></button>
 
-                                    </form>
-                                    <?php }else{?>
+                                                    </form>
+                                                    <?php }else{?>
 
-                                    <form action="{{ route('removeWishlist', ['id' => $new->id]) }}" method="post"
-                                        role="form">
-                                        <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                                        <button type="submit" class="btn btn-link product_fav active" style="padding: 0%; "><i class="fas fa-heart"></i></button>
-                                    </form>
-                                    <?php }?>
+                                                    <form action="{{ route('removeWishlist', ['id' => $new->id]) }}"
+                                                        method="post" role="form">
+                                                        <input type="hidden" name="_token"
+                                                            value="{{ csrf_token() }}">
+                                                        <button type="submit" class="btn btn-link product_fav active"
+                                                            style="padding: 0%; "><i class="fas fa-heart"></i></button>
+                                                    </form>
+                                                    <?php }?>
                                                     <ul class="product_marks">
                                                         <li class="product_mark product_new"
                                                             style="background-color: #a12421;"><b>novo</b></li>
@@ -625,21 +631,23 @@
 
 								if ($count=="0"){ ?>
 
-                                    <form action="{{ route('addToWishlist') }}" method="post" role="form">
-                                        {{-- {{csrf_token()}} --}}
-                                        <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                                        <input type="hidden" value="{{ $news->id }}" name="prod_id">
-                                        <button type="submit" class="btn btn-link product_fav" style="padding: 0%; "><i class="fas fa-heart"></i></button>
+                                            <form action="{{ route('addToWishlist') }}" method="post" role="form">
+                                                {{-- {{csrf_token()}} --}}
+                                                <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                                                <input type="hidden" value="{{ $news->id }}" name="prod_id">
+                                                <button type="submit" class="btn btn-link product_fav"
+                                                    style="padding: 0%; "><i class="fas fa-heart"></i></button>
 
-                                    </form>
-                                    <?php }else{?>
+                                            </form>
+                                            <?php }else{?>
 
-                                    <form action="{{ route('removeWishlist', ['id' => $news->id]) }}" method="post"
-                                        role="form">
-                                        <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                                        <button type="submit" class="btn btn-link product_fav active" style="padding: 0%; "><i class="fas fa-heart"></i></button>
-                                    </form>
-                                    <?php }?>
+                                            <form action="{{ route('removeWishlist', ['id' => $news->id]) }}"
+                                                method="post" role="form">
+                                                <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                                                <button type="submit" class="btn btn-link product_fav active"
+                                                    style="padding: 0%; "><i class="fas fa-heart"></i></button>
+                                            </form>
+                                            <?php }?>
 
                                             <ul class="arrivals_single_marks product_marks">
                                                 <li class="product_mark product_new" style="background-color: #a12421;">
@@ -1163,7 +1171,7 @@
 @endsection
 
 @section('script')
-    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <script src="{{ asset('js/swiper-bundle.min.js') }}"></script>
     <script>
         const swiper = new Swiper("#swiper-banner", {
             loop: true,

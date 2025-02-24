@@ -30,9 +30,9 @@ class BankAccountController extends Controller
         try {
             $data = $request->all();
             BankAccount::create($data);
-            return redirect()->route('bank-accounts.index')->with('success_message', 'Conta bancária cadastrada com sucesso!');
+            return redirect()->route('admin.bank-accounts.index')->with('success_message', 'Conta bancária cadastrada com sucesso!');
         } catch (\Exception $e) {
-            return redirect()->route('bank-accounts.index')->withErrors('Não foi possível cadastrar a conta bancária!');
+            return redirect()->route('admin.bank-accounts.index')->withErrors('Não foi possível cadastrar a conta bancária!');
         }
     }
 

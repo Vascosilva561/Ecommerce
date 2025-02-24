@@ -48,8 +48,8 @@ class AdminController extends Controller
     public function postLogin(Request $request)
     {
         $validator = validator($request->all(), [
-            'email' => 'required|min:3|max:50',
-            'password' => 'required|min:6|max:50',
+            'email' => 'required',
+            'password' => 'required',
         ]);
 
 

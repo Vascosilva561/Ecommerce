@@ -125,6 +125,21 @@
                                     <span class="login100-form-title p-b-26">
                                         {{ __('Registrar') }}
                                     </span>
+                                    @if ($errors->has('name'))
+                                        <span class="invalie-feedback d-block" role="alert">
+                                            <strong>{{ $errors->first('name') }}</strong>
+                                        </span>
+                                    @endif
+                                    @if ($errors->has('email'))
+                                        <span class="invalid-feedback d-block" role="alert">
+                                            <strong>{{ $errors->first('email') }}</strong>
+                                        </span>
+                                    @endif
+                                    @if ($errors->has('password'))
+                                        <span class="text-danger d-block" role="alert">
+                                            <strong>{{ $errors->first('password') }}</strong>
+                                        </span>
+                                    @endif
                                     <span class="login100-form-title p-b-48">
                                         <i class="zmdi zmdi-font"></i>
                                     </span>
@@ -136,11 +151,6 @@
                                         <span class="focus-input100" for="email"
                                             data-placeholder="{{ __('Nome de Usuario') }}"></span>
 
-                                        @if ($errors->has('name'))
-                                            <span class="invalid-feedback" role="alert">
-                                                <strong>{{ $errors->first('name') }}</strong>
-                                            </span>
-                                        @endif
                                     </div>
 
                                     <div class="wrap-input100 validate-input" data-validate = "Enter Email">
@@ -149,12 +159,6 @@
                                             value="{{ old('email') }}" required>
                                         <span class="focus-input100" for="email"
                                             data-placeholder="{{ __('Email de Usuario') }}"></span>
-
-                                        @if ($errors->has('email'))
-                                            <span class="invalid-feedback" role="alert">
-                                                <strong>{{ $errors->first('email') }}</strong>
-                                            </span>
-                                        @endif
                                     </div>
 
                                     <div class="wrap-input100 validate-input" data-validate="Enter password">
@@ -164,12 +168,6 @@
                                         <input id="password" type="password" name="password"
                                             class="input100{{ $errors->has('password') ? ' is-invalid' : '' }}" required>
                                         <span class="focus-input100" data-placeholder="{{ __('Palavra-passe') }}"></span>
-
-                                        @if ($errors->has('password'))
-                                            <span class="invalid-feedback" role="alert">
-                                                <strong>{{ $errors->first('password') }}</strong>
-                                            </span>
-                                        @endif
                                     </div>
 
 

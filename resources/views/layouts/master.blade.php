@@ -323,7 +323,8 @@
                                                             @csrf
                                                             <button role="button"
                                                                 class="btn btn-link cursor-pointer p-0 text-decoration-none hover:text-decoration-none efect mt-auto"
-                                                                type="submit" style="color: #952825;">Desconectar<i
+                                                                type="submit"
+                                                                style="color: #952825; background: none;">Desconectar<i
                                                                     class="fas fa-chevron-down"></i></button>
                                                         </form>
                                                     </a>

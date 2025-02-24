@@ -120,6 +120,23 @@
                                     <span class="login100-form-title p-b-26">
                                         {{ __('Entrar') }}
                                     </span>
+
+                                    @if ($errors->has('errors'))
+                                        <span class="invalid-feedback d-block" role="alert">
+                                            <strong>{{ $errors->first('errors') }}</strong>
+                                        </span>
+                                    @endif
+
+                                    @if ($errors->has('email'))
+                                        <span class="invalid-feedback d-block" role="alert">
+                                            <strong>{{ $errors->first('email') }}</strong>
+                                        </span>
+                                    @endif
+                                    @if ($errors->has('password'))
+                                        <span class="invalid-feedback d-block" role="alert">
+                                            <strong>{{ $errors->first('password') }}</strong>
+                                        </span>
+                                    @endif
                                     <span class="login100-form-title p-b-48">
                                         <i class="zmdi zmdi-font"></i>
                                     </span>
